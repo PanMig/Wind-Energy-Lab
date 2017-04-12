@@ -29,3 +29,7 @@ You can try and test an early version of the game in the following link: https:/
 Beware, a zip file will be downloaded. Unzip the file and have both the game file as well as the demo(v_03).data folder in the same directory.
 The are three resolution you can play: 1920*1080, 1336*768, 1280*800, and three quality options: Fantastic, Beautiful, good.
 Choose based on your system.
+
+# Contact 
+Panagiotismigo@gmail.com
+nikolopo@iti.gr
