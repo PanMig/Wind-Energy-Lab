@@ -30,10 +30,10 @@ Beware, a zip file will be downloaded. Unzip the file and have both the game fil
 The are three resolution you can play: 1920*1080, 1336*768, 1280*800, and three quality options: Fantastic, Beautiful, good.
 Choose based on your system.
 
-# Contact 
-Panagiotismigo@gmail.com
-nikolopo@iti.gr
-gchantas@iti.gr
-ververid@iti.gr
-anastasovitis@iti.gr
+# Contact
+- Panagiotis migkotzidis (panagiotismigo@gmail.com)
+- Spiros Nikolopoulos (nikolopo@iti.gr)
+- Giannis Chantas (gchantas@iti.gr)
+- Dimitrios Ververidis (ververid@iti.gr)
+- Leuteris Anastasovitis (anastasovitis@iti.gr)
 
