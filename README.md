@@ -33,3 +33,7 @@ Choose based on your system.
 # Contact 
 Panagiotismigo@gmail.com
 nikolopo@iti.gr
+gchantas@iti.gr
+ververid@iti.gr
+anastasovitis@iti.gr
+
