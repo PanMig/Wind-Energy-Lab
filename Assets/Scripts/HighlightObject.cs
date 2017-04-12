@@ -1,34 +1,73 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HighlightObject : MonoBehaviour {
 
-	private Color startColorBody;
-	private Renderer rendBody;
-	[SerializeField]private GameObject bladeObject;
-	private Renderer rendBlades;
-    private Color startColorBlades;
+	public Renderer[] childrenRenderers;
+	[SerializeField] private Material dafaultMat;
+	[SerializeField] private Material highlightedMat;
+	[SerializeField] private Material transparentMat;
 
     // Use this for initialization
     void Start () {
-		//turbine body
-		rendBody = GetComponent<Renderer>();
-		startColorBody = rendBody.material.color;
-		//turbine blades
-		rendBlades = bladeObject.GetComponent<Renderer>();
-		startColorBlades = rendBlades.material.color;
+		GetComponents();
+	}
+	
+	void GetComponents (){
+		childrenRenderers = GetComponentsInChildren<Renderer>();
+		foreach(Renderer rend in childrenRenderers){
+			rend.material = getDefaultMat();
+		}
 	}
 
-	public void ChangeMatColor (bool mouseIsOver){
+	/*
+	////////////////////////
+		Material Setters
+	///////////////////////
+	*/
+
+	public void SetUnDamagedMat (bool mouseIsOver){
 		if(mouseIsOver == true){
-				rendBody.material.color = Color.cyan;
-				rendBlades.material.color = Color.cyan;
+			foreach(Renderer rend in childrenRenderers){
+				rend.material = getHighlightedMat();
+			}
 		}
-		else{
-			rendBody.material.color = startColorBody;
-			rendBlades.material.color = startColorBlades;
+		else {
+			foreach(Renderer rend in childrenRenderers){
+				rend.material = getDefaultMat();
+			}
 		}
+	}
+	
+	public void SetDamagedMat (bool mouseIsOver){
+		if(mouseIsOver == true){
+			foreach(Renderer rend in childrenRenderers){
+				rend.material = getHighlightedMat();
+			}
+		}
+		else {
+			foreach(Renderer rend in childrenRenderers){
+				rend.material = getTransparentMat();
+			}
+		}
+	}
+
+	/*
+	////////////////////////
+		Material getters
+	///////////////////////
+	 */
+
+    public Material getDefaultMat(){
+		return dafaultMat;
+	}
+	public Material getHighlightedMat(){
+		return highlightedMat;
+	}
+	public Material getTransparentMat(){
+		return transparentMat;	
 	}
 
 

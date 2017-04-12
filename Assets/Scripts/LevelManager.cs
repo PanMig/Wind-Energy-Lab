@@ -8,4 +8,12 @@ public class LevelManager : MonoBehaviour {
 	public void LoadNextLevel(){
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
 	}
+
+	public void ExitGame(){
+		Application.Quit();
+	}
+
+	public void ReplayGame(){
+		SceneManager.LoadScene(1);
+	}
 }

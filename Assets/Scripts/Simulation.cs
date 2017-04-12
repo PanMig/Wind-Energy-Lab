@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,58 +11,95 @@ public class Simulation : MonoBehaviour {
 	public Text powerReqText;
 	public Text powerOutputText;
 	public Text powerUsageText;
+	public Text incomeText;
+
+	//the side text next to the panel of the output power,
+	public Text powerOutputSideText;
+	public Image powerOutputsideImage;
 	
 	/* =====================================
 			wind simulation fields
 	======================================*/
-	private int windMinSpeed = 4;
-	private int windMaxSpeed = 16;
-	private int currentWindSpeed;
+	public int windMinSpeed = 4;
+	public int windMaxSpeed = 16;
+	public int currentWindSpeed;
 	// 0 = wind speed is decreasing, 1 = is increasing.
 	private int windChangeDirection = 0; 
 	private int windChangeCounter = 2;
+	public Image windIncreaseIcon;
+	public Image windDecreaseIcon;
 	 /* =====================================
 			time simulation fields
 	======================================*/
 	private float startTime;
+	public float minutesCount;
 	private float seconds;
-	private int simulationSpeed = 90;
+	public int simulationSpeed = 2;
+	private float time;
+	private string minutes;
+	private string secondstr;
 	 
 	/*=====================================
 			power Reqs simulation fields
 	======================================*/
-	public int	powerRequirementsMin = 20000;
-	public int	powerRequirementsMax = 24000;
-	public int	currentPowerReqs = 15000;
-	public int	powerChangeDirection = 0;
-	public int	powerChangeCounter = 2;
+	public int powerRequirementsMin = 1000;
+	public int powerRequirementsMax = 24000;
+	private int	currentPowerReqs;
+	private int	powerChangeDirection = 0;
+	private int	powerChangeCounter = 2;
     private int singleTurbinePower = 0;
 	
 	/* =====================================
 			power Output simulation fields
 	======================================*/
-	private int[] singlePowerOutput = {0,0,50,100,200,400,700,1000,1500,2000,2300,2400,2450,2500,2500,2500,2500,2500,2500,2500};
+	private int[] singlePowerOutput = {0,0,50,100,200,400,700,1000,1500,2000,2300,2400,2450,2500,2500,2500,2500,2500,2500,2500,2500};
     private int totalPowerOutput;
-	public SpawnObjectManager spawnManager;
-	private string powerUsage = "Under power" ;
+	public TurbineSpawnManager spawnManager;
+	public string powerUsage = "-Under power" ;
+    public float income = 8;
+	private Color red;
+	private Color green;
+	private Color blue;
 
     void Start(){
+		powerOutputSideText.enabled = false;
+		powerOutputsideImage.enabled = false;
+		//the icons that display wind change
+		windIncreaseIcon.enabled = false;
+		windDecreaseIcon.enabled = false;
+		//initialize values to random prices.
+		currentPowerReqs = Random.Range(10200,15200);
+		currentWindSpeed = Random.Range(10,12);
 		startTime = Time.time;
-		currentWindSpeed = 10;
+		//initialize color(used as text colors)
+		red = new Color(2,0,0,1);
+		green = new Color(0,118,0,255);
+		blue = Color.blue;
 	}
 
 	void Awake() {
 		float firstExecution = 0.0f;
-		float repeatRate = 5.0f;
+		float repeatRate = 15.0f;
+		//call methods to simulate expected values
 		InvokeRepeating("CalculateWindSpeed",firstExecution,repeatRate);
-		InvokeRepeating("CalculatePowerRequirements",firstExecution,10.0f);
-		InvokeRepeating("CalculatePowerUsage",firstExecution,repeatRate);
+		InvokeRepeating("CalculatePowerRequirements",firstExecution,30.0f);
+		InvokeRepeating("incomeCalculation",firstExecution,60.0f);
 	}
 	
 	
 	// Update is called once per frame
 	void Update () {
+		DisplayText("income");
 		CalculateTime();
+		if(spawnManager.buttonPressed == true){
+			StartCoroutine(calculateAddedPower());
+			spawnManager.buttonPressed = false;
+		}
+	}
+
+	void FixedUpdate(){
+		calculateOutputPower();
+		CalculatePowerUsage();
 	}
 
 	/* 
@@ -71,10 +109,11 @@ public class Simulation : MonoBehaviour {
 	*/
 	void CalculateTime(){
 		Time.timeScale = simulationSpeed;
-		float time = Time.time - startTime ;
-		string minutes = ((int) (time/60)).ToString();
+		time = Time.time - startTime ;
+		minutes = ((int) (time/60)).ToString();
+		minutesCount = ((int) (time/60));
 		seconds = (time%60);
-		string secondstr = ((int)seconds).ToString();
+		secondstr = ((int)seconds).ToString();
 		timeText.text = minutes + ":" +secondstr ;
 	}
 
@@ -88,7 +127,9 @@ public class Simulation : MonoBehaviour {
 		
 		int windAdjust;
 		if(windChangeDirection == 0){
-			// decrease
+			// display decrease icon 
+			windIncreaseIcon.enabled = false;
+			windDecreaseIcon.enabled = true;
 			windAdjust = Mathf.FloorToInt(Mathf.Floor(Random.Range(-3.0f,0.0f)));
 			if((currentWindSpeed + windAdjust) >= windMinSpeed){
 				currentWindSpeed += windAdjust;
@@ -100,7 +141,9 @@ public class Simulation : MonoBehaviour {
 			}
 		}
 		 else{
-			// increase
+			// display increase icon
+			windDecreaseIcon.enabled = false;
+			windIncreaseIcon.enabled = true;
 			windAdjust = Mathf.FloorToInt(Mathf.Floor(Random.Range(1.0f,4.0f)));
 			if((currentWindSpeed+windAdjust) <= windMaxSpeed){
 				currentWindSpeed += windAdjust;	
@@ -112,7 +155,6 @@ public class Simulation : MonoBehaviour {
 			}		
 		}
 		CalculateBarriers("wind");
-		calculateOutputPower();
 		DisplayText("wind");	
 	}
 
@@ -155,7 +197,6 @@ public class Simulation : MonoBehaviour {
 			}
 		}
 		CalculateBarriers("powerReqs");
-		calculateOutputPower();
 		DisplayText("powerReqs");
 
 	}
@@ -172,6 +213,44 @@ public class Simulation : MonoBehaviour {
 		DisplayText("powerOutput");
 	}
 
+	/* displays the added power output to the total amount 
+	that each turbine is producing */
+    public IEnumerator calculateAddedPower()
+    {
+		int addedAmount =  singlePowerOutput[currentWindSpeed];
+		powerOutputSideText.text = " + " + addedAmount.ToString();
+		powerOutputSideText.enabled = true;
+		powerOutputsideImage.enabled = true;
+		yield return new WaitForSeconds(2f);
+		powerOutputSideText.enabled = false;
+		powerOutputsideImage.enabled = false;
+    }
+	
+	public IEnumerator calculateSubstractedPower()
+    {
+		int substractedAmount =  singlePowerOutput[currentWindSpeed];
+		powerOutputSideText.text = " - " + substractedAmount.ToString();
+		powerOutputSideText.enabled = true;
+		powerOutputsideImage.enabled = true;
+		yield return new WaitForSeconds(2f);
+		powerOutputSideText.enabled = false;
+		powerOutputsideImage.enabled = false;
+    }
+
+    /* 
+	=====================================
+			Calculate income
+	=====================================
+	*/
+    void incomeCalculation(){
+		if(string.Equals(powerUsage,"-Under power")){
+			income += 0.5f;
+		}
+		else if(string.Equals(powerUsage,"-Correct power")){
+			income += 1.5f;
+		}
+		DisplayText("income");
+	}
 
 	/* 
 	=====================================
@@ -182,16 +261,16 @@ public class Simulation : MonoBehaviour {
 		calculateOutputPower();
 		int localpowerDiff = totalPowerOutput - currentPowerReqs;
 		if (localpowerDiff < 0){
-			powerUsage = "Under power ";
-			powerUsageText.color = new Color(2,0,0,1);
+			powerUsage = "-Under power";
+			powerUsageText.color = red;
 		}
 		else if((totalPowerOutput - currentPowerReqs) > singleTurbinePower){
-			powerUsage = "Over power";
-			powerUsageText.color = new Color(0,0,1,255);
+			powerUsage = "-Over power";
+			powerUsageText.color = blue;
 		}
 		else {
-			powerUsage = "Correct power";
-			powerUsageText.color = new Color(0,-2,0,255);
+			powerUsage = "-Correct power";
+			powerUsageText.color = green;
 		}
 		DisplayText("powerUsage");
 	}
@@ -204,16 +283,19 @@ public class Simulation : MonoBehaviour {
 	void DisplayText(string whatTypeToDisplay){
 		
 		if(string.Equals(whatTypeToDisplay,"wind")){
-			windText.text = "Wind : " + currentWindSpeed.ToString() + " m/s";
+			windText.text = currentWindSpeed.ToString();
 		}
 		else if(string.Equals(whatTypeToDisplay,"powerOutput")){
-			powerOutputText.text = "Power Output : " + totalPowerOutput.ToString() + " Kw";
+			powerOutputText.text = totalPowerOutput.ToString();
 		}
 		else if(string.Equals(whatTypeToDisplay,"powerReqs")){
-			powerReqText.text = "Power Reqs : " + currentPowerReqs.ToString() + " Kw";
+			powerReqText.text = currentPowerReqs.ToString();
 		}
 		else if(string.Equals(whatTypeToDisplay,"powerUsage")){
-			powerUsageText.text ="- " + powerUsage;
+			powerUsageText.text = powerUsage;
+		}
+		else if(string.Equals(whatTypeToDisplay,"income")){
+			incomeText.text = income.ToString();
 		}
 		else{
 			Debug.Log("wrong input at DisplayText() , check given parameters");
@@ -254,8 +336,6 @@ public class Simulation : MonoBehaviour {
 		}
 	}
 
-
-
 }
 
 
@@ -266,5 +346,4 @@ public class Simulation : MonoBehaviour {
  int minutes = (int)((t/60)%60)
  int hours = (int)((t/3600)%24)
  int days = (int)(t/86400); // There are 86400 seconds in a day (60*60*24)
-
- */
+*/
