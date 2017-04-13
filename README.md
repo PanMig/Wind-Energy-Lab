@@ -23,7 +23,7 @@ The language used is C# (.mono).
 There are the classes in the Turbine script folder that simulate the operation of the wind turbines in the game, which is the main object of the game.
 Also, there is also a number of other scripts that execute various behaviors of different game objects.
 
-# Turbine classes.
+# Turbine game object classes.
 - TurbineController.cs : The main class for the turbine gameObject that controls the behavior of the object. All actions concerning the turbine should be called from this class. That's why this class is having a big number of dependencies.
 
 - TurbineAnimCtrl.cs : Controls the animator component that is attached to the game object.
@@ -35,6 +35,13 @@ Also, there is also a number of other scripts that execute various behaviors of 
 - TurbineRepair.cs : When a turbine is damaged, then the player can repair that turbine. That is what the class does. It basically sets the isDamaged boolean to false, and all the rest are handle automatically from the other turbine's classes.
 
 - TurbineSpawnManager.cs : Adds turbine prefabs to the map of the game, and handles the behaviour of the main button in the gui, the button that adds a turbine.
+
+# Other scripts
+- Simulation.cs : Simulates the speed of the wind, and the power requirements of the city in the game. By simulation, we mean that it gives to the mentioned variables, random values, that increment and decrement it's valued, in a natural way. Also, the power output that is produced as well as, the usage of the wind farm(under power, correct, over). Also, time is simulated in this class. All the mentioned variables are not game objects in the architecture of the program, but are just variables that its values are being displayed on the screen as text.
+
+- ObjectPooler.cs : Creates an object pooler to reduce the allocation and deallocations in the memory. Currently, the object pooler is used for the particle effect that is being emitted and destroyed several times in the game when a turbine is damaged. However, the class can be used for any game object.
+
+- ChangeBuildingsMaterial.cs : Switches between different materials for highlighting the buildings in the minimap on the left corner of the screen.
 
 # Demo
 You can try and test an early version of the game in the following link: https://www.dropbox.com/s/2kj9hk8izo2fndc/Demo%28v_0.3%29.zip?dl=0
