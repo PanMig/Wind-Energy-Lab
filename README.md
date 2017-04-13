@@ -21,8 +21,20 @@ The game tries to have as much as possible a relistic look, that resembles a rea
 The language used is C# (.mono).
 
 There are the classes in the Turbine script folder that simulate the operation of the wind turbines in the game, which is the main object of the game.
-
 Also, there is also a number of other scripts that execute various behaviors of different game objects.
+
+# Turbine classes.
+- TurbineController.cs : The main class for the turbine gameObject that controls the behavior of the object. All actions concerning the turbine should be called from this class. That's why this class is having a big number of dependencies.
+
+- TurbineAnimCtrl.cs : Controls the animator component that is attached to the game object.
+
+- TurbineDamage.cs : Calculates the propability in which a turbine can be damaged and damages the game object (stops rotating and becomes semi transparent).
+
+- TurbineInputManager.cs : Controls all the input action on the turbine from the player. More specifically this class gets the mouse clicks on the game object, mouse hover, and highlights the selection of the game object.
+
+- TurbineRepair.cs : When a turbine is damaged, then the player can repair that turbine. That is what the class does. It basically sets the isDamaged boolean to false, and all the rest are handle automatically from the other turbine's classes.
+
+- TurbineSpawnManager.cs : Adds turbine prefabs to the map of the game, and handles the behaviour of the main button in the gui, the button that adds a turbine.
 
 # Demo
 You can try and test an early version of the game in the following link: https://www.dropbox.com/s/2kj9hk8izo2fndc/Demo%28v_0.3%29.zip?dl=0
