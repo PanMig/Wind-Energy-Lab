@@ -16,8 +16,9 @@ public class TurbineSpawnManager : MonoBehaviour {
 
 
 	public void SpawnTurbine(){
-		
+		// shows if the spawn button is pressed. Used only in the simulation script and for optimization purposes.
 		buttonPressed = true;
+
 		//planes level
 		if (SceneManager.GetActiveScene().buildIndex == 1){
 			if(numberOfTurbines <5){

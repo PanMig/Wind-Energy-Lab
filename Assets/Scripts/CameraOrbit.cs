@@ -12,6 +12,7 @@ public class CameraOrbit : MonoBehaviour {
 		startRot = GetComponent<Transform>().rotation;
 	}
 
+	// when rendering camera always use late update.
 	void LateUpdate() {
 		if (Input.GetMouseButton(1)) {
 			OrbitCamera();
@@ -28,6 +29,8 @@ public class CameraOrbit : MonoBehaviour {
 		OrbitCamera(target, x_rotate,0.0f);
 	}
 	
+	
+	//returns the camera to the initial view.
 	public void GetDefaultCameraView(){
 			gameObject.transform.position = startPos;
 			gameObject.transform.rotation = startRot;

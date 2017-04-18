@@ -8,8 +8,7 @@ public class TurbineInputManager : MonoBehaviour {
 	public Canvas PopUpCanvas;
 	private Text popUpText;
 	private Image backgroundImage;
-	//used to highlight the turbine with a color on mouse over
-	private HighlightObject outliner;
+	private HighlightObject outliner; //used to highlight the turbine with a color on mouse over
     private TurbineController turbine;
 	private bool displayPopUpText = false;
 	private Vector2 mousePos;
@@ -22,24 +21,31 @@ public class TurbineInputManager : MonoBehaviour {
 	}
 
 	void Update(){
-		//used for highlighting the turbine when is damaged
+		//used for highlighting the turbine when is damaged.
 		if(turbine.IsDamaged()){
 			HighlightTurbine(turbine.IsDamaged());
 		}
 	}
 
+
+	//when user clicks the turbine.
 	void OnMouseDown () {
+		//clicks while turbine is rotating.
 		if(turbine.IsRotating() == true && turbine.IsDamaged() == false){
 			turbine.DisableTurbine();
 		}
+		//clicks while is not rotating.
 		else if(turbine.IsRotating() == false && turbine.IsDamaged() == false){
 			turbine.EnableTurbine();
 		}
+		//clicks while turbine is damaged.
 		else if(turbine.IsDamaged() == true){
 			turbine.repairTurbine();
 		}
 	}
 
+	
+	//when mouse is hovered over a wind turbine the turbine is highlighted.
 	void HighlightTurbine(bool isDamaged){
 		if(isDamaged == false){
 			outliner.SetUnDamagedMat(displayPopUpText);	
@@ -49,6 +55,7 @@ public class TurbineInputManager : MonoBehaviour {
 		}
 	}
 
+	//when mouse is over a wind turbine without being clicked.
 	void OnMouseEnter(){
 		PlaceCanvasToMouse();
 		displayPopUpText = true;
@@ -56,6 +63,7 @@ public class TurbineInputManager : MonoBehaviour {
 		HighlightTurbine(turbine.IsDamaged());
 	}
 
+	//when mouse is not over a wind turbine (specifically on the collider of the turbine).
 	void OnMouseExit(){
 		displayPopUpText = false;
 		DisplayPopUpText();
@@ -94,6 +102,7 @@ public class TurbineInputManager : MonoBehaviour {
 		} 
 	}
 
+	// used to move the text next to the selected turbine.
 	void PlaceCanvasToMouse(){
 		mousePos = Input.mousePosition;
 		canvasPos.x = mousePos.x;

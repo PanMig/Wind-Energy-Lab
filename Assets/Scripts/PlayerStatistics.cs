@@ -29,6 +29,11 @@ public class PlayerStatistics : MonoBehaviour {
 		overPowerSec = 0;
 	}
 
+
+	/*
+	Stops the simulation and loads the end scene in the game. This can be achieved either by clicking on the exit button,
+	or after 24 minutes have passed.
+	*/
 	public void EndSimulation(){
 		if(SceneManager.GetActiveScene().buildIndex == 1){
 			if(simulator.minutesCount >= 24 || endSimulation == true){
@@ -42,7 +47,12 @@ public class PlayerStatistics : MonoBehaviour {
 		endSimulation = true;
 	}
 	
-	 void CalculatePowerUsageStatistics(){
+
+	/*
+	It holds to static variables the seconds that the player has spent in each power output scenario respectively.
+	These values are later used in the end scene to calculate and display the usage of the wind farm, concerning the time spent in each scenario. 
+	*/
+ 	void CalculatePowerUsageStatistics(){
 		if(SceneManager.GetActiveScene().buildIndex == 1){
 			if(string.Equals(simulator.powerUsage,"-Under power")){
 				underPowerSec++;

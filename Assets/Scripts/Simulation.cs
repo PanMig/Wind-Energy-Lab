@@ -337,13 +337,3 @@ public class Simulation : MonoBehaviour {
 	}
 
 }
-
-
-
-/* time calculation
- float t = Time.time;
- int sec = (int)(t%60);
- int minutes = (int)((t/60)%60)
- int hours = (int)((t/3600)%24)
- int days = (int)(t/86400); // There are 86400 seconds in a day (60*60*24)
-*/

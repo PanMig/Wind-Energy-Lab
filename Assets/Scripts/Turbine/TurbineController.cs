@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TurbineController : MonoBehaviour {
+	
+	//dependacies of other scripts
 	private TurbineAnimCtrl turbineAnim;
 	private TurbineDamage turbineDmg;
     private TurbineSpawnManager turbineSpawner;
@@ -11,7 +13,7 @@ public class TurbineController : MonoBehaviour {
 	private TurbineRepair repair;
 	private Simulation simulator;
 	public static int damagedTurbines = 0;
-	private bool lowWindDisabled = false;
+	private bool lowWindDisabled = false; //shows if turbine should stop rotating when wind under 4 m/s.
 	private PauseGame gameManager;
 	private bool scriptsEnabled = true;
 
@@ -26,14 +28,18 @@ public class TurbineController : MonoBehaviour {
 		gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PauseGame>();
 	}
 
+
+	//updates every frame (do not insert callbacks without conditions, caused the will be called every frame and will decrease perfromance).
 	void Update(){
 		//checks if game is paused or not
 		if(gameManager.gamePaused == true){
 			PauseTurbine(gameManager.gamePaused);		
 		}
+
 		else{
 			if(scriptsEnabled == false) UnPauseTurbine(gameManager.gamePaused);
 			
+			//sets the speed of the rotation based on the wind rotation
 			turbineAnim.SetRotationSpeed(simulator.currentWindSpeed);
 
 
@@ -44,16 +50,18 @@ public class TurbineController : MonoBehaviour {
 			if(simulator.currentWindSpeed > 3 && IsRotating() == false && lowWindDisabled == true){
 				EnableOnWindHigh();
 			}
-		
 		}
-
-
 	}
 
+
+	/* 
+	make turbines stop rotating when wind is below 4 m/s.
+	*/
 	public void DisableOnWindLow(){
 			DisableTurbine();
 			lowWindDisabled = true;
 	}
+
 
 	/* 
 	make turbines rotate again when wind is not below
@@ -77,6 +85,7 @@ public class TurbineController : MonoBehaviour {
 	}
 
 	public void repairTurbine(){
+		//decreases total income
 		if(simulator.income - 1 >= 0){
 			simulator.income--;
 			repair.turbineRepair();
@@ -92,13 +101,17 @@ public class TurbineController : MonoBehaviour {
 	}
 
 	public void DisableTurbine(){
+		//used to display the numbers for the output values next to the minimap
 		StartCoroutine(simulator.calculateSubstractedPower());
+
 		turbineAnim.DisableRotation();
 		turbineSpawner.numberOfTurbinesOperating--;	
 	}
 
 	public void EnableTurbine(){
+		//used to display the numbers for the output values next to the minimap
 		StartCoroutine(simulator.calculateAddedPower());
+
 		turbineAnim.EnableRotation();
 		turbineSpawner.numberOfTurbinesOperating++;
 	}
@@ -110,6 +123,7 @@ public class TurbineController : MonoBehaviour {
 	public int getNumberOfTurbinesOperating(){
 		return turbineSpawner.numberOfTurbinesOperating;	
 	}
+
 
 	//disables all scripts if game is paused
 	public  void PauseTurbine(bool gamePaused){

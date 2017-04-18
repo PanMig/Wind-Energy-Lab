@@ -30,6 +30,7 @@ public class ParticlesController : MonoBehaviour {
 		isEmiting = true;
 	}
 
+	//set the position of the particle effect and istantiates it.
 	public void SetAndInstantiateParticle(){
 		obj = ObjectPooler.current.GetPooledObject();
 		if(obj == null)  return;
@@ -41,6 +42,5 @@ public class ParticlesController : MonoBehaviour {
 	public void StopParticle(){
 		obj.SetActive(false);
 		isEmiting = false;
-
 	}
 }

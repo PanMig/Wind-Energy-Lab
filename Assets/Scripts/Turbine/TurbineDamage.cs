@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ In this class we use some basic probality maths to randomly damage a wind turbine.
+ The main class is CalculateDamagePropability(), that produces a float " damagePropability " with 
+ different values in each iteration.
+ */
 public class TurbineDamage : MonoBehaviour {
 	
 	private Simulation simulator;
@@ -10,7 +15,7 @@ public class TurbineDamage : MonoBehaviour {
 	private float propabilityMultiplier;
 	private float turbineUsage;
     private int damageStartTime;
-	private float rate;
+	private float rate; // te rate that the method to damage the turbine will be called
 
      void Start(){			
          damageStartTime = 4;
@@ -18,6 +23,7 @@ public class TurbineDamage : MonoBehaviour {
          float rate = Random.Range(120.0f,300.0f);
          simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
          turbine = GetComponent<TurbineController>();
+		 //Calls the method for the first time in "startCall" with a repeat rate of the "rate" value.
          InvokeRepeating("CalculateDamagePropability",startCall,rate);		
      }
 	
