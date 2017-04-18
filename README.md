@@ -44,8 +44,8 @@ Also, there is a number of other scripts that execute various behaviors of diffe
 - ParticlesController.cs : Controls the emission of the particle system in the game. More specifically, this script is attached in the turbine prefab, and emits the particle system prefab (smoke in our case). The particle system is not destroyed, but disabled and enabled upon request using the object pooling technique.
 
 - DisplayStatistics.cs : This script is used in the end screen of the game. Two functions are present in this script,
-- void ConvertSecondToMin() : that converts the seconds that the player has spent in each power output scenario (under, over, correct).
-- DisplayPlayerStatistics() : displays a msg that informs the player about the use of the wind farm based on his actions.
+  - void ConvertSecondToMin() : that converts the seconds that the player has spent in each power output scenario (under, over,   correct).
+  - DisplayPlayerStatistics() : displays a msg that informs the player about the use of the wind farm based on his actions.
 
 - ChangeBuildingsMaterial.cs : Switches between different materials for highlighting the buildings in the minimap on the left corner of the screen.
 
