@@ -46,6 +46,10 @@ Also, there is a number of other scripts that execute various behaviors of diffe
 - DisplayStatistics.cs : This script is used in the end screen of the game. Two functions are present in this script,
   - void ConvertSecondToMin() : that converts the seconds that the player has spent in each power output scenario (under, over,   correct).
   - DisplayPlayerStatistics() : displays a msg that informs the player about the use of the wind farm based on his actions.
+  
+- PlayerStatistics.cs : The class uses the above methods 
+  - CalculatePowerUsageStatistics() : It holds to static variables the seconds that the player has spent in each power output scenario  respectively. These values are later used in the end scene to calculate and display the usage of the wind farm, concerning the time spent in each scenario.
+  - EndSimulation() : stops the simulation and loads the end scene in the game. This can be achieved either by clicking on the exit button, or after 24 minutes have passed. 
 
 - ChangeBuildingsMaterial.cs : Switches between different materials for highlighting the buildings in the minimap on the left corner of the screen.
 
