@@ -21,7 +21,7 @@ The game tries to have as much as possible a relistic look, that resembles a rea
 The language used is C# (.mono).
 
 There are the classes in the Turbine script folder that simulate the operation of the wind turbines in the game, which is the main object of the game.
-Also, there is also a number of other scripts that execute various behaviors of different game objects.
+Also, there is a number of other scripts that execute various behaviors of different game objects.
 
 # Turbine game object classes.
 - TurbineController.cs : The main class for the turbine gameObject that controls the behavior of the object. All actions concerning the turbine should be called from this class. That's why this class is having a big number of dependencies.
@@ -37,7 +37,7 @@ Also, there is also a number of other scripts that execute various behaviors of 
 - TurbineSpawnManager.cs : Adds turbine prefabs to the map of the game, and handles the behaviour of the main button in the gui, the button that adds a turbine.
 
 # Other scripts
-- Simulation.cs : Simulates the speed of the wind, and the power requirements of the city in the game. By simulation, we mean that it gives to the mentioned variables, random values, that increment and decrement it's valued, in a natural way. Also, the power output that is produced as well as, the usage of the wind farm(under power, correct, over). Also, time is simulated in this class. All the mentioned variables are not game objects in the architecture of the program, but are just variables that its values are being displayed on the screen as text.
+- Simulation.cs : Simulates the speed of the wind, and the power requirements of the city in the game. By simulation, we mean that it gives to the mentioned variables, random values, that increment and decrement it's valued, in a natural way. Also, the power output that is produced as well as, the usage of the wind farm(under power, correct, over) are calculated. Moreover, time is simulated in this class. All the mentioned variables are not game objects in the architecture of the program, but are just variables that its values are being displayed on the screen as text.
 
 - ObjectPooler.cs : Creates an object pooler to reduce the allocation and deallocations in the memory. Currently, the object pooler is used for the particle effect that is being emitted and destroyed several times in the game when a turbine is damaged. However, the class can be used for any game object.
 
