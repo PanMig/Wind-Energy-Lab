@@ -33,6 +33,8 @@ public class DisplayStatistics : MonoBehaviour {
 		underPowerUsageText.text = "Under power :  " + underPowerMin.ToString() + " minutes and " + underPowerSec.ToString() + " seconds" ;
 		correctPowerUsageText.text = "Correct power :  " + correctPowerMin.ToString() + " minutes and " + correctPowerSec.ToString() + " seconds" ;
 		overPowerUsageText.text = "Over power :  " + overPowerMin.ToString() + " minutes and " + overPowerSec.ToString() + " seconds" ;
+
+		// set text msg based on power usage.
 		if (underPowerMin > correctPowerMin && underPowerMin > overPowerMin){
 			usage.text = "The wind farm was mostly working in under Power, not very efficient.";		
 		}

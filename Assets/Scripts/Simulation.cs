@@ -40,7 +40,7 @@ public class Simulation : MonoBehaviour {
 	private string secondstr;
 	 
 	/*=====================================
-			power Reqs simulation fields
+		power Reqs simulation fields
 	======================================*/
 	public int powerRequirementsMin = 1000;
 	public int powerRequirementsMax = 24000;
@@ -50,13 +50,15 @@ public class Simulation : MonoBehaviour {
     private int singleTurbinePower = 0;
 	
 	/* =====================================
-			power Output simulation fields
+		power Output simulation fields
 	======================================*/
 	private int[] singlePowerOutput = {0,0,50,100,200,400,700,1000,1500,2000,2300,2400,2450,2500,2500,2500,2500,2500,2500,2500,2500};
     private int totalPowerOutput;
 	public TurbineSpawnManager spawnManager;
-	public string powerUsage = "-Under power" ;
+	public string powerUsage = "-Under power" ; //TODO : maybe this can be changed to a enum, but it will less readable to the next developer that gets the source code.
     public float income = 8;
+
+	// The colors for the power usage text.
 	private Color red;
 	private Color green;
 	private Color blue;
@@ -80,7 +82,7 @@ public class Simulation : MonoBehaviour {
 	void Awake() {
 		float firstExecution = 0.0f;
 		float repeatRate = 15.0f;
-		//call methods to simulate expected values
+		//call methods to simulate simulation values (wind , power reqs, income).
 		InvokeRepeating("CalculateWindSpeed",firstExecution,repeatRate);
 		InvokeRepeating("CalculatePowerRequirements",firstExecution,30.0f);
 		InvokeRepeating("incomeCalculation",firstExecution,60.0f);
@@ -91,13 +93,20 @@ public class Simulation : MonoBehaviour {
 	void Update () {
 		DisplayText("income");
 		CalculateTime();
+		// used for displaying the power added text when inserting a turbine.
 		if(spawnManager.buttonPressed == true){
 			StartCoroutine(calculateAddedPower());
 			spawnManager.buttonPressed = false;
 		}
 	}
 
+	//it is not called every frame, but every fixed frame (helps performance).
 	void FixedUpdate(){
+		/* 
+		Upates the power produced and the power usage text.
+		This values are updated every fixed frame, because there in no
+		fixed time when their values will change (e.g wind changes, power reqs for fixed amount of time).		
+		*/
 		calculateOutputPower();
 		CalculatePowerUsage();
 	}
@@ -214,7 +223,7 @@ public class Simulation : MonoBehaviour {
 	}
 
 	/* displays the added power output to the total amount 
-	that each turbine is producing */
+	that each turbine is producing (text above the power output)*/
     public IEnumerator calculateAddedPower()
     {
 		int addedAmount =  singlePowerOutput[currentWindSpeed];
