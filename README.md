@@ -65,5 +65,4 @@ Choose based on your system.
 - Spiros Nikolopoulos (nikolopo@iti.gr)
 - Giannis Chantas (gchantas@iti.gr)
 - Dimitrios Ververidis (ververid@iti.gr)
-- Leuteris Anastasovitis (anastasovitis@iti.gr)
 
