@@ -4,7 +4,7 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 5
+  m_CurrentQuality: 4
   m_QualitySettings:
   - serializedVersion: 2
     name: Fastest
@@ -60,7 +60,6 @@ QualitySettings:
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 4
     excludedTargetPlatforms:
-    - Standalone
     - WebGL
   - serializedVersion: 2
     name: Simple
@@ -87,8 +86,7 @@ QualitySettings:
     particleRaycastBudget: 64
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 4
-    excludedTargetPlatforms:
-    - Standalone
+    excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Good
     pixelLightCount: 2

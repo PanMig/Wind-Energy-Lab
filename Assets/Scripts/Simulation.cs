@@ -1,11 +1,10 @@
-﻿//using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Simulation : MonoBehaviour {
-
+	[Header ("Text fields")]
 	public Text windText;
 	public Text timeText;
 	public Text powerReqText;
@@ -13,10 +12,16 @@ public class Simulation : MonoBehaviour {
 	public Text powerUsageText;
 	public Text incomeText;
 
-	//the side text next to the panel of the output power,
+	[Space]
+	[Header ("Action added Text")] // the text that is displayed for 2 seconds(upon the minimap) when interacting with the turbine.
+
+	//the side text next to the panel of the output power.
 	public Text powerOutputSideText;
 	public Image powerOutputsideImage;
-	
+
+	[Space]
+	[Header ("Simulation variables")]
+
 	/* =====================================
 			wind simulation fields
 	======================================*/
@@ -48,7 +53,6 @@ public class Simulation : MonoBehaviour {
 	private int	powerChangeDirection = 0;
 	private int	powerChangeCounter = 2;
     private int singleTurbinePower = 0;
-	
 	/* =====================================
 		power Output simulation fields
 	======================================*/

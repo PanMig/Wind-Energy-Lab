@@ -1,17 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class TurbineSpawnManager : MonoBehaviour {
 
+	[Header ("Prefab")]
 	public GameObject turbinePrefab;
+	[Space]
+	[Header ("SpawnPoints")]
 	public Transform spawnPointUp;
 	public Transform spawnPointDown;
+	[Space]
+	[Header ("Counters")]
 	public int numberOfTurbines = 0;
 	public int numberOfTurbinesOperating = 0;
-	public bool buttonPressed = false;
     public int maxNumberOfTurbines = 10; //public to be changed from the inspector
+	public bool buttonPressed = false;
 
     public void SpawnTurbine(){
 		
