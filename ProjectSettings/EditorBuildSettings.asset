@@ -7,9 +7,16 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/scenes/StartScene.unity
+    guid: d0acd6d07b972374a9aa5edc147ce78a
   - enabled: 1
     path: Assets/scenes/InputScene.unity
+    guid: d0591a375fac0fc478a95b2a04bdcac0
+  - enabled: 1
+    path: Assets/scenes/Stage1.unity
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/scenes/SimulationScene(plane).unity
+    guid: 920976037e34fb3479ef3be2b25d32bc
   - enabled: 1
     path: Assets/scenes/EndScene.unity
+    guid: 71da6991e2934ba49995d7af139e61d2
