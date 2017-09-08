@@ -146,8 +146,54 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &61553783
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2979.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 424.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2917.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_Name
+      value: RadioTower_FBX (8)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+  m_IsPrefabParent: 0
 --- !u!1 &112389651
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,15 +242,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.597}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.597}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 7616d92aa1840fb4fb4f2570b425f15c, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -217,7 +263,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 112389651}
---- !u!1001 &212845756
+--- !u!1001 &201595746
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -226,15 +272,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3424.4
+      value: 3184.6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -972.5333
+      value: 408.4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2297.1
+      value: 2946.6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalRotation.x
@@ -254,11 +300,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_Name
-      value: RadioTower_FBX (3)
+      value: RadioTower_FBX (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
@@ -320,9 +366,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 4000
-  field of view: 71.6
+  near clip plane: 0.01
+  far clip plane: 2000
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -346,13 +392,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 275078861}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 3400, y: -802.47, z: 2184}
+  m_LocalRotation: {x: 0.173562, y: 0.031019425, z: -0.0054695606, w: 0.98431915}
+  m_LocalPosition: {x: 3160.6, y: 574.9, z: 2574.4194}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 20, y: 3.6100001, z: 0}
 --- !u!114 &275078867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,12 +410,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e321c157d7863bf478b3ca38f0b09293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 100
   ScreenEdgeBorderThickness: 5
+  moveSpeed: 100
   rotateSpeed: 20
   zoomSpeed: 2
-  limitDist: 500
---- !u!1001 &391441947
+  heightLimit: {x: 480, y: 800}
+  lenghtLimit: {x: 2000, y: 4000}
+  widthLimit: {x: 1000, y: 5000}
+--- !u!1001 &414233642
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -378,15 +426,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3494.6
+      value: 2896.4001
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -972.5333
+      value: 408.4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2368.8
+      value: 2892.8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalRotation.x
@@ -406,16 +454,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_Name
-      value: RadioTower_FBX (1)
+      value: RadioTower_FBX (7)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
   m_IsPrefabParent: 0
---- !u!1001 &468043923
+--- !u!1001 &881419221
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -424,15 +472,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3327.6
+      value: 2875.1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -972.5333
+      value: 384
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2370
+      value: 2832.9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalRotation.x
@@ -452,7 +500,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_Name
@@ -461,7 +509,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
   m_IsPrefabParent: 0
---- !u!1001 &574626704
+--- !u!1001 &1010953618
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -470,61 +518,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3424.4
+      value: 2946.6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -972.5333
+      value: 410.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2368.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_Name
-      value: RadioTower_FBX (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-  m_IsPrefabParent: 0
---- !u!1001 &762173598
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3298
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -972.5333
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2480.5
+      value: 2829.4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalRotation.x
@@ -548,12 +550,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_Name
-      value: RadioTower_FBX (11)
+      value: RadioTower_FBX (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
   m_IsPrefabParent: 0
---- !u!1001 &989349992
+--- !u!1001 &1063344952
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -562,15 +564,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3475.9
+      value: 3234.8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -972.5333
+      value: 410.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2551
+      value: 2883.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalRotation.x
@@ -590,11 +592,57 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_Name
-      value: RadioTower_FBX (8)
+      value: RadioTower_FBX (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+  m_IsPrefabParent: 0
+--- !u!1001 &1074335527
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3268.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 412.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2830.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
+      propertyPath: m_Name
+      value: RadioTower_FBX (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
@@ -662,9 +710,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &1206292078
+--- !u!1001 &1163366729
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -673,15 +721,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3462.6
+      value: 3268
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -972.5333
+      value: 424.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2331.7173
+      value: 2971
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalRotation.x
@@ -701,53 +749,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-  m_IsPrefabParent: 0
---- !u!1001 &1337733030
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3388.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -972.5333
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2428.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_Name
-      value: RadioTower_FBX (6)
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
@@ -817,7 +819,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1440504034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 260, y: -1322, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1074,105 +1076,13 @@ RectTransform:
   m_Children:
   - {fileID: 112389652}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1001 &1663461519
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3327.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -972.5333
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2297.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_Name
-      value: RadioTower_FBX (4)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-  m_IsPrefabParent: 0
---- !u!1001 &1768685171
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3364.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -972.5333
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2480.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_Name
-      value: RadioTower_FBX (10)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-  m_IsPrefabParent: 0
 --- !u!1 &1783360964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,9 +1143,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1960929710
+--- !u!1001 &1855699383
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1244,15 +1154,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4470059054007144, guid: 5d68357e4799fea4c8925e86d6a99683, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3426.1365
+      value: 3465.7
       objectReference: {fileID: 0}
     - target: {fileID: 4470059054007144, guid: 5d68357e4799fea4c8925e86d6a99683, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -927.38
+      value: 405.8
       objectReference: {fileID: 0}
     - target: {fileID: 4470059054007144, guid: 5d68357e4799fea4c8925e86d6a99683, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 2533.4
+      value: 3111
       objectReference: {fileID: 0}
     - target: {fileID: 4470059054007144, guid: 5d68357e4799fea4c8925e86d6a99683, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1272,29 +1182,29 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4470059054007144, guid: 5d68357e4799fea4c8925e86d6a99683, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4470059054007144, guid: 5d68357e4799fea4c8925e86d6a99683, type: 2}
       propertyPath: m_LocalScale.x
-      value: 6.61937
+      value: 10.357763
       objectReference: {fileID: 0}
     - target: {fileID: 4470059054007144, guid: 5d68357e4799fea4c8925e86d6a99683, type: 2}
       propertyPath: m_LocalScale.y
-      value: 5.295496
+      value: 8.28621
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485521601405526, guid: 5d68357e4799fea4c8925e86d6a99683, type: 2}
+      propertyPath: m_Name
+      value: MapPointer (1)
       objectReference: {fileID: 0}
     - target: {fileID: 114171269557622598, guid: 5d68357e4799fea4c8925e86d6a99683,
         type: 2}
       propertyPath: infoPanel
       value: 
       objectReference: {fileID: 112389653}
-    - target: {fileID: 1485521601405526, guid: 5d68357e4799fea4c8925e86d6a99683, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d68357e4799fea4c8925e86d6a99683, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &2010413873
+--- !u!1001 &1930908074
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1303,15 +1213,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3475.9
+      value: 3163.3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -972.5333
+      value: 384
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2480.5
+      value: 2886.7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1331,57 +1241,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
       propertyPath: m_Name
-      value: RadioTower_FBX (9)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-  m_IsPrefabParent: 0
---- !u!1001 &2039668353
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3475.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -972.5333
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2428.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
-      propertyPath: m_Name
-      value: RadioTower_FBX (7)
+      value: RadioTower_FBX (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dddb285b3a28b440b1ce7a517372471, type: 3}
