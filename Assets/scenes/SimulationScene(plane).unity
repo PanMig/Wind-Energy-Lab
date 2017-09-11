@@ -12971,12 +12971,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScreenEdgeBorderThickness: 5
-  moveSpeed: 70
+  panSpeed: 100
+  minPanSpeed: 100
+  maxPanSpeed: 300
+  secToMaxSpeed: 2
   rotateSpeed: 20
   zoomSpeed: 10
   heightLimit: {x: 30, y: 100}
   lenghtLimit: {x: 100, y: 600}
   widthLimit: {x: 45, y: 400}
+  zoomLimit: {x: 25, y: 70}
 --- !u!1001 &1876240786
 Prefab:
   m_ObjectHideFlags: 0

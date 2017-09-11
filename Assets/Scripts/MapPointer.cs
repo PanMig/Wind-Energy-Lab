@@ -7,6 +7,7 @@ public class MapPointer : MonoBehaviour {
     [Header("GUI components")]
     [SerializeField] private Image infoPanel;
     private TextMeshProUGUI textPro;
+
     [Space]
     public Sprite[] pointerSprites;
 	SpriteRenderer spriteRend;
