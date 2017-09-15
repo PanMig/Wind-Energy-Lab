@@ -5,11 +5,11 @@ public class TurbineSpawnManager : MonoBehaviour {
 	[Header ("Prefab")]
 	public GameObject turbinePrefab;
 	[Space]
-	[Header ("SpawnPoints")]
-	public Transform spawnPointUp;
-	public Transform spawnPointDown;
-	[Space]
-	[Header ("Counters")]
+	[Header ("SpawnPoint")]
+	public Transform spawnPoint;
+    [Space]
+    [Header("Counters")]
+    public Vector2 pos;
 	public int numberOfTurbines = 0;
 	public int numberOfTurbinesOperating = 0;
     public int maxNumberOfTurbines = 10; //public to be changed from the inspector
@@ -22,20 +22,26 @@ public class TurbineSpawnManager : MonoBehaviour {
 			buttonPressed = true;
 		}
 		//TODO: it is good to not have hard coded values in conditions and follow a more generic logic, but that must change when the all the levels finished.
-		if(numberOfTurbines <5){ // the first row of turbines.
-			spawnPointUp.position = new Vector3(spawnPointUp.position.x + 
-			40, spawnPointUp.position.y, spawnPointUp.position.z); 
-			Instantiate(turbinePrefab,spawnPointUp.position,spawnPointUp.rotation); // adds turbines to the specified transform point (spawnPointUp).
+		if(numberOfTurbines < 5){ // the first row of turbines.
+			spawnPoint.position = new Vector3(spawnPoint.position.x + 
+			pos.x, spawnPoint.position.y, spawnPoint.position.z + pos.y); 
+			Instantiate(turbinePrefab,spawnPoint.position,spawnPoint.rotation); // adds turbines to the specified transform point (spawnPointUp).
 			numberOfTurbines ++;
 			numberOfTurbinesOperating++;
 		}
-		else if(numberOfTurbines < maxNumberOfTurbines && numberOfTurbines >=5 ){
+		
+        
+	}
+
+}
+
+
+
+
+/*else if(numberOfTurbines < maxNumberOfTurbines && numberOfTurbines >=5 ){
 			spawnPointDown.position = new Vector3(spawnPointDown.position.x + 
 			39, spawnPointDown.position.y, spawnPointDown.position.z);
 			Instantiate(turbinePrefab,spawnPointDown.position,spawnPointDown.rotation); // adds turbines to the specified transform point(spawnPointDown).
 			numberOfTurbines ++;
 			numberOfTurbinesOperating++;	
-		}
-	}
-
-}
+}*/

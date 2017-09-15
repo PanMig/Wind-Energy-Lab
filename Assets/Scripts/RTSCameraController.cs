@@ -7,7 +7,7 @@ public class RTSCameraController : MonoBehaviour {
     public float ScreenEdgeBorderThickness = 5.0f;
     [Space]
     [Header("Speeds")]
-    public float panSpeed;
+    private float panSpeed;
     public float minPanSpeed;
     public float maxPanSpeed;
     public float secToMaxSpeed; //seconds taken to reach max speed;
@@ -121,7 +121,7 @@ public class RTSCameraController : MonoBehaviour {
                 mouseDelta = Vector3.zero;
 
             var rotation = Vector3.up * Time.deltaTime * rotateSpeed * mouseDelta.x;
-            //rotation += Vector3.left * Time.deltaTime * rotateSpeed * mouseDelta.y;
+            rotation += Vector3.left * Time.deltaTime * rotateSpeed * mouseDelta.y;
 
             transform.Rotate(rotation, Space.World);
 

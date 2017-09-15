@@ -27,8 +27,11 @@ EditorBuildSettings:
     path: Assets/scenes/TurnineTypeSelection.unity
     guid: 9d5322024ea4fa8449d478021cc984c7
   - enabled: 1
-    path: Assets/scenes/SimulationScene(plane).unity
-    guid: 920976037e34fb3479ef3be2b25d32bc
+    path: Assets/scenes/SimulationScene(Mountains).unity
+    guid: 3880ff298f98892468db031c6f790cd1
   - enabled: 1
     path: Assets/scenes/EndScene.unity
     guid: 71da6991e2934ba49995d7af139e61d2
+  - enabled: 1
+    path: Assets/scenes/SimulationScene(plane).unity
+    guid: 920976037e34fb3479ef3be2b25d32bc
