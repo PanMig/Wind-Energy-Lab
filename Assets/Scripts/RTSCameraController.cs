@@ -24,6 +24,7 @@ public class RTSCameraController : MonoBehaviour {
     private Vector3 initialPos;
     private Vector3 panMovement;
     private Vector3 pos;
+    private Quaternion rot;
     private bool rotationActive = false;
     private Vector3 lastMousePosition;
     private Quaternion initialRot;
@@ -120,7 +121,8 @@ public class RTSCameraController : MonoBehaviour {
                 mouseDelta = Vector3.zero;
 
             var rotation = Vector3.up * Time.deltaTime * rotateSpeed * mouseDelta.x;
-            rotation += Vector3.left * Time.deltaTime * rotateSpeed * mouseDelta.y;
+            //rotation += Vector3.left * Time.deltaTime * rotateSpeed * mouseDelta.y;
+
             transform.Rotate(rotation, Space.World);
 
             // Make sure z rotation stays locked

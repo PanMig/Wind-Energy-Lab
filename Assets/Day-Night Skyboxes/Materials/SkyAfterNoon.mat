@@ -9,65 +9,44 @@ Material:
   m_Name: SkyAfterNoon
   m_Shader: {fileID: 104, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
-  m_LightmapFlags: 5
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
+  disabledShaderPasses: []
   m_SavedProperties:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TexEnvs:
-    - first:
-        name: _BackTex
-      second:
+    - _BackTex:
         m_Texture: {fileID: 2800000, guid: c01c0eb1cbd649e44a59f130b953a379, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _DownTex
-      second:
+    - _DownTex:
         m_Texture: {fileID: 2800000, guid: b6ef619cfefbc3a48bfe3a846f9adb9a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _FrontTex
-      second:
+    - _FrontTex:
         m_Texture: {fileID: 2800000, guid: 801a87c5db92ace45a6a9346777f1f5f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _LeftTex
-      second:
+    - _LeftTex:
         m_Texture: {fileID: 2800000, guid: 811d583fb21e7a147a32350476c9b9b5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _MainTex
-      second:
+    - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _RightTex
-      second:
+    - _RightTex:
         m_Texture: {fileID: 2800000, guid: 969ef861056a05940ba9123d15486191, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _UpTex
-      second:
+    - _UpTex:
         m_Texture: {fileID: 2800000, guid: 31b24bb50a20c0047b30ee5fc78848b2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - first:
-        name: _Exposure
-      second: 0.81
-    - first:
-        name: _Rotation
-      second: 238
+    m_Floats: []
     m_Colors:
-    - first:
-        name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
-    - first:
-        name: _Tint
-      second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

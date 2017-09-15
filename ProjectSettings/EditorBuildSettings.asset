@@ -15,11 +15,14 @@ EditorBuildSettings:
     path: Assets/scenes/StartScene.unity
     guid: d0acd6d07b972374a9aa5edc147ce78a
   - enabled: 1
-    path: Assets/scenes/LocationSelection.unity
+    path: Assets/scenes/AreaSelection.unity
     guid: 45690a22c2294ae40a5b460a6d7ef94e
-  - enabled: 1
-    path: Assets/scenes/Stage2.unity
+  - enabled: 0
+    path: Assets/scenes/SubareaSelection.unity
     guid: ef6d3646d1d2225499a7cb7df8632bf1
+  - enabled: 1
+    path: Assets/scenes/SubareaSelection 1.unity
+    guid: 4bfe49472ff90944cb5ac4802f47fac4
   - enabled: 1
     path: Assets/scenes/TurnineTypeSelection.unity
     guid: 9d5322024ea4fa8449d478021cc984c7

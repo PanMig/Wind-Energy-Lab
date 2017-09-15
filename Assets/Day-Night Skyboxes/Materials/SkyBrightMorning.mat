@@ -9,7 +9,7 @@ Material:
   m_Name: SkyBrightMorning
   m_Shader: {fileID: 104, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
-  m_LightmapFlags: 5
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -46,9 +46,7 @@ Material:
         m_Texture: {fileID: 2800000, guid: 6942c5222258a7d4ca5f071156794a1f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _Exposure: 0.96
-    - _Rotation: 83
+    m_Floats: []
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

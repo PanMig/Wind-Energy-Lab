@@ -104,6 +104,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!1002 &2300001
 EditorExtensionImpl:
@@ -142,7 +143,7 @@ Light:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_Enabled: 0
-  serializedVersion: 7
+  serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.042951375, g: 0.5661765, b: 0, a: 1}
   m_Intensity: 0.8
@@ -167,6 +168,8 @@ Light:
   m_Lightmapping: 2
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1002 &10800001
