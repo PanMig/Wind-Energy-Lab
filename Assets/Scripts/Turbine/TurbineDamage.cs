@@ -50,7 +50,7 @@ public class TurbineDamage : MonoBehaviour {
 			}
 			float damagePropability = turbineUsage * propabilityMultiplier;
 			if(damagePropability > 0.85){
-				damageTurbine();
+			    //damageTurbine(); DAMAGE FUTURE HAS BEEN REMOVED
 			} 
 		}
 	}

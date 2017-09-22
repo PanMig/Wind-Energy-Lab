@@ -251,7 +251,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3164375, y: 0.296}
   m_AnchorMax: {x: 0.41500002, y: 0.34674072}
-  m_AnchoredPosition: {x: 2, y: 192.92001}
+  m_AnchoredPosition: {x: 0, y: 167}
   m_SizeDelta: {x: 4, y: 11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &268817854
@@ -306,7 +306,18 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1412594991}
+        m_MethodName: SetWindClass
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &268817855
@@ -1007,7 +1018,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.36900002, y: 0.27748144}
   m_AnchorMax: {x: 0.36900002, y: 0.27748144}
-  m_AnchoredPosition: {x: -1.4400024, y: 2}
+  m_AnchoredPosition: {x: 0, y: -33.5}
   m_SizeDelta: {x: 192, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &660837658
@@ -1060,9 +1071,24 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Option C
       m_Image: {fileID: 0}
+    - m_Text: "Option \u0394"
+      m_Image: {fileID: 0}
+    - m_Text: "Option \u0395"
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1412594991}
+        m_MethodName: SetRotorDiameter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &660837659
@@ -1633,6 +1659,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1412594991}
+        m_MethodName: CalculateMaxNumberOfTurbines
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &903982701
@@ -1725,9 +1762,10 @@ MonoBehaviour:
   m_text: "<size=120%><b><i><align=\"center\">Rotor menu</b></i>\n\n\n<i><size=75%><align=\"center\"><color=\"red\"><color=\"white\">
     Depending on the average wind speed prevailing in the area, different wind turbines
     are installed.\nChoose a wind turbine type to use in your wind farm, by looking
-    on the detailed table below.</i>\n\n\n\n\n<align=\"left\"><space=2em>Choose a
-    wind class :\n\n\n\n\n<align=\"left\"><space=2em>Choose a wind turbine type :
-    \ \n"
+    on the detailed table below.\n\n<align=\"center\"><space=2em><color=\"red\"><size=\"35\">Beware
+    read carefully the instruction sheet before choosing a turbine type.  </i>\n\n\n\n<size=\"45\"><color=\"white\"><align=\"left\"><space=2em>Choose
+    a wind class :\n\n\n\n\n<align=\"left\"><space=2em>Choose a wind turbine type
+    :  \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 83a1b0fe6c3dbac44b66f09c82e1d509, type: 2}
@@ -1794,12 +1832,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -0.5091553, w: 0}
   m_textInfo:
     textComponent: {fileID: 1134495751}
-    characterCount: 267
+    characterCount: 345
     spriteCount: 0
-    spaceCount: 59
-    wordCount: 44
+    spaceCount: 72
+    wordCount: 55
     linkCount: 0
-    lineCount: 15
+    lineCount: 16
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -2195,6 +2233,46 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1405100328}
+--- !u!1 &1412594987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1412594990}
+  - component: {fileID: 1412594991}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: GameManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1412594990
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1412594987}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 909.83966, y: 1094.5897, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1412594991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1412594987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26a4caa9a5784c349871b237f27ea546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1417196217
 GameObject:
   m_ObjectHideFlags: 0

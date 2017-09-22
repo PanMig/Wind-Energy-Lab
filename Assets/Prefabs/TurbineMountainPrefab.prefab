@@ -37,7 +37,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4868114880650698}
-  - component: {fileID: 54475260817323320}
   - component: {fileID: 65504447065146584}
   - component: {fileID: 114063247971858786}
   - component: {fileID: 114073306975542638}
@@ -45,6 +44,7 @@ GameObject:
   - component: {fileID: 114273953244927758}
   - component: {fileID: 114000111357796424}
   - component: {fileID: 114141115947797830}
+  - component: {fileID: 54012381347438250}
   m_Layer: 0
   m_Name: TurbineMountainPrefab
   m_TagString: Turbine
@@ -143,8 +143,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1490337103480528}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 1935, y: 274, z: 2892.8}
-  m_LocalScale: {x: 16.88357, y: 16.883566, z: 16.883574}
+  m_LocalPosition: {x: 358.1, y: 59.5, z: 415.98654}
+  m_LocalScale: {x: 4.5636373, y: 4.563637, z: 4.563639}
   m_Children:
   - {fileID: 4320559732742180}
   - {fileID: 4983129800955730}
@@ -243,7 +243,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054006666946308}
   m_Mesh: {fileID: 4300000, guid: d6be08df3b577e64c9f2fc226cabe875, type: 3}
---- !u!54 &54475260817323320
+--- !u!54 &54012381347438250
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -252,7 +252,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 10
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0

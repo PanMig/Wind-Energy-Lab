@@ -57,7 +57,7 @@ public class Simulation : MonoBehaviour {
 		power Output simulation fields
 	======================================*/
 	private int[] singlePowerOutput = {0,0,50,100,200,400,700,1000,1500,2000,2300,2400,2450,2500,2500,2500,2500,2500,2500,2500,2500};
-    private int totalPowerOutput;
+    private float totalPowerOutput;
 	public TurbineSpawnManager spawnManager;
 	public string powerUsage = "-Under power" ; //TODO : maybe this can be changed to a enum, but it will less readable to the next developer that gets the source code.
     public float income = 8;
@@ -97,11 +97,6 @@ public class Simulation : MonoBehaviour {
 	void Update () {
 		DisplayText("income");
 		CalculateTime();
-		// used for displaying the power added text when inserting a turbine.
-		if(spawnManager.buttonPressed == true){
-			StartCoroutine(calculateAddedPower());
-			spawnManager.buttonPressed = false;
-		}
 	}
 
 	//it is not called every frame, but every fixed frame (helps performance).
@@ -222,7 +217,7 @@ public class Simulation : MonoBehaviour {
 	*/
 	void calculateOutputPower(){
 		singleTurbinePower = singlePowerOutput[currentWindSpeed];
-		totalPowerOutput = singleTurbinePower * spawnManager.numberOfTurbinesOperating;
+		totalPowerOutput = (singleTurbinePower * spawnManager.numberOfTurbinesOperating )* 0.001f;
 		DisplayText("powerOutput");
 	}
 
@@ -272,7 +267,7 @@ public class Simulation : MonoBehaviour {
 	*/
 	void CalculatePowerUsage(){
 		calculateOutputPower();
-		int localpowerDiff = totalPowerOutput - currentPowerReqs;
+		int localpowerDiff = (int)totalPowerOutput - currentPowerReqs;
 		if (localpowerDiff < 0){
 			powerUsage = "-Under power";
 			powerUsageText.color = red;

@@ -7,13 +7,10 @@ public class PlayerStatistics : MonoBehaviour {
 	public static int underPowerSec;
     public static int correctPowerSec;
     public static int overPowerSec;
-    public bool endSimulation = false;
     private int sceneCount;
 
     // Use this for initialization
     void Start () {
-		sceneCount = SceneManager.sceneCountInBuildSettings;
-		endSimulation = false;
 		if(SceneManager.GetActiveScene().buildIndex != sceneCount - 1){ // if not the last scene
 			simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
 			InitializeCountValues();
@@ -21,32 +18,10 @@ public class PlayerStatistics : MonoBehaviour {
 		}
 	}
 
-	void Update(){
-		EndSimulation();
-	}
-
 	void InitializeCountValues(){
 		underPowerSec = 0;
 		correctPowerSec = 0;
 		overPowerSec = 0;
-	}
-
-
-	/*
-	Stops the simulation and loads the end scene in the game. This can be achieved either by clicking on the exit button,
-	or after 24 minutes have passed.
-	*/
-	public void EndSimulation(){
-		if(SceneManager.GetActiveScene().buildIndex != sceneCount - 1){  // if not the last scene
-			if(simulator.minutesCount >= 24 || endSimulation == true){
-				SceneManager.LoadScene(sceneCount - 1 ); // loads last scene
-				Resources.UnloadUnusedAssets(); //removes unused assets to free memory
-			}
-		}
-	}
-
-	public void ExitButtonPressed(){
-		endSimulation = true;
 	}
 	
 
@@ -66,10 +41,6 @@ public class PlayerStatistics : MonoBehaviour {
 				overPowerSec++;
 			}
 		}
-	}
-
-	void GetPlayerInfo(){
-		
 	}
 
 }

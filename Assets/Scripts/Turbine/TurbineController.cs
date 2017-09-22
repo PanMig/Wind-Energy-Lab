@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TurbineController : MonoBehaviour {
 	
@@ -14,7 +11,7 @@ public class TurbineController : MonoBehaviour {
 	private Simulation simulator;
 	public static int damagedTurbines = 0;
 	private bool lowWindDisabled = false; //shows if turbine should stop rotating when wind under 4 m/s.
-	private PauseGame gameManager;
+	private GM_PauseGame gameManager;
 	private bool scriptsEnabled = true;
 
     // Use this for initialization
@@ -25,7 +22,7 @@ public class TurbineController : MonoBehaviour {
 		repair = GetComponent<TurbineRepair>();
 		turbineSpawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<TurbineSpawnManager>();
 		simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
-		gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PauseGame>();
+		gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GM_PauseGame>();
 	}
 
 
@@ -41,7 +38,6 @@ public class TurbineController : MonoBehaviour {
 			
 			//sets the speed of the rotation based on the wind rotation
 			turbineAnim.SetRotationSpeed(simulator.currentWindSpeed);
-
 
 			//used for disables rotation when wind is low
 			if(simulator.currentWindSpeed < 3 && IsRotating() == true){
@@ -76,6 +72,7 @@ public class TurbineController : MonoBehaviour {
 		return turbineAnim.isRotating; 	
 	}
 
+    //future has been removed
 	public bool IsDamaged(){
 		return turbineDmg.isDamaged;
 	}
