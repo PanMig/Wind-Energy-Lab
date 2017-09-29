@@ -8,23 +8,23 @@ public class GM_EndSimulation : MonoBehaviour {
     private int sceneCount;
     private Simulation simulator;
 
+    private bool valuesInitialized = false;
+
     // Use this for initialization
     void Start () {
         sceneCount = SceneManager.sceneCountInBuildSettings;
         endSimulation = false;
-        //simumlation scene
-        if (SceneManager.GetActiveScene().buildIndex == sceneCount - 2)
-        {
-            simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
-        }
     }
 
     void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex != sceneCount - 2)
+        //simumlation scene
+        if (SceneManager.GetActiveScene().buildIndex == sceneCount - 2 && valuesInitialized == false)
         {
-            EndSimulation();
+            simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
+            valuesInitialized = true;
         }
+        EndSimulation();
     }
 
 
@@ -34,7 +34,7 @@ public class GM_EndSimulation : MonoBehaviour {
 	*/
     public void EndSimulation()
     {
-        if (SceneManager.GetActiveScene().buildIndex == sceneCount - 2)  // if not the last scene
+        if (SceneManager.GetActiveScene().buildIndex == sceneCount - 2) // if the pre-last scene
         {
             if (simulator.minutesCount >= simulationDurationTime || endSimulation == true)
             {
@@ -43,6 +43,7 @@ public class GM_EndSimulation : MonoBehaviour {
             }
         }
     }
+
 
     public void ExitButtonPressed()
     {

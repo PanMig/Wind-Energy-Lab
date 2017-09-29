@@ -16,14 +16,16 @@ public class MapPointer : MonoBehaviour {
     private Vector2 panelPos;
     private Vector3 mousePos;
 
+    private GameManager gm;
+    [SerializeField] private int cost;
+
     void Start()
 	{
-
-        levelManager = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
+        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 		spriteRend = GetComponent<SpriteRenderer>();
 		this.spriteRend.sprite = pointerSprites[0];
         
-        // get sprite position
+        //get sprite position
         spritePos = GetComponent<Transform>().position;
 
         //panel 
@@ -48,14 +50,15 @@ public class MapPointer : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        levelManager.LoadNextLevel();
+        gm.IncrementCost(cost);
+        GameManager.instance.LoadNextLevel();
     }
 
     void PlacePanelNextToSprite()
     {
         mousePos = Input.mousePosition;
         panelPos.x = mousePos.x;
-        panelPos.y = mousePos.y + 130.0f;
+        panelPos.y = mousePos.y + 180.0f;
         infoPanel.transform.position = panelPos;
     }
 

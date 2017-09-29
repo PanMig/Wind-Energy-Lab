@@ -4,25 +4,27 @@ public class TurbineController : MonoBehaviour {
 	
 	//dependacies of other scripts
 	private TurbineAnimCtrl turbineAnim;
-	private TurbineDamage turbineDmg;
     private TurbineSpawnManager turbineSpawner;
 	private TurbineInputManager inputManager;
-	private TurbineRepair repair;
 	private Simulation simulator;
-	public static int damagedTurbines = 0;
 	private bool lowWindDisabled = false; //shows if turbine should stop rotating when wind under 4 m/s.
-	private GM_PauseGame gameManager;
+	private PauseSimulation gameManager;
 	private bool scriptsEnabled = true;
+
+    //deprecated fields (damage / repair future)
+    /*
+    private TurbineDamage turbineDmg;
+    private TurbineRepair repair;
+    public static int damagedTurbines = 0;
+    */
 
     // Use this for initialization
     void Start () {
 		inputManager = GetComponent<TurbineInputManager>();
 		turbineAnim = GetComponentInChildren<TurbineAnimCtrl>();
-		turbineDmg = GetComponent<TurbineDamage>();
-		repair = GetComponent<TurbineRepair>();
 		turbineSpawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<TurbineSpawnManager>();
 		simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
-		gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GM_PauseGame>();
+		gameManager = GameObject.FindGameObjectWithTag("Simulator").GetComponent<PauseSimulation>();
 	}
 
 
@@ -53,7 +55,7 @@ public class TurbineController : MonoBehaviour {
 	/* 
 	make turbines stop rotating when wind is below 4 m/s.
 	*/
-	public void DisableOnWindLow(){
+    public void DisableOnWindLow(){
 			DisableTurbine();
 			lowWindDisabled = true;
 	}
@@ -68,12 +70,77 @@ public class TurbineController : MonoBehaviour {
 			lowWindDisabled = false;
 	}
 
-	public bool IsRotating(){
+   
+    public bool IsRotating(){
 		return turbineAnim.isRotating; 	
 	}
 
-    //future has been removed
-	public bool IsDamaged(){
+
+    #region enable / disable
+
+    public void DisableTurbine(){
+		//used to display the numbers for the output values next to the minimap
+		StartCoroutine(simulator.calculateSubstractedPower());
+
+		turbineAnim.DisableRotation();
+		turbineSpawner.numberOfTurbinesOperating--;	
+	}
+
+    public void EnableTurbine(){
+		//used to display the numbers for the output values next to the minimap
+		StartCoroutine(simulator.calculateAddedPower());
+
+		turbineAnim.EnableRotation();
+		turbineSpawner.numberOfTurbinesOperating++;
+	}
+
+    #endregion
+
+    public int getTotalNumberOfTurbines(){
+		return turbineSpawner.numberOfTurbines;	
+	}
+
+	public int getNumberOfTurbinesOperating(){
+		return turbineSpawner.numberOfTurbinesOperating;	
+	}
+
+
+    #region Disable scripts on pause
+
+    //disables all scripts if game is paused
+    public  void PauseTurbine(bool gamePaused){
+		if(gamePaused == true){
+			//disable animation
+			turbineAnim.enabled = false;
+			turbineAnim.GetComponent<Animator>().enabled = false;
+			turbineSpawner.enabled = false;
+			inputManager.enabled = false;
+
+			//used in the update function to minimize the times it calls the function
+			scriptsEnabled = false;
+		}
+	}
+
+	//enables all scripts if game is paused
+	public void UnPauseTurbine(bool gamePaused){
+		if(gamePaused == false){
+			//enable animation
+			turbineAnim.enabled = true;
+			turbineAnim.GetComponent<Animator>().enabled = true;
+			turbineSpawner.enabled = true;
+			inputManager.enabled = true;
+			
+			//used in the update function to minimize the times it calls the function
+			scriptsEnabled = true;
+		}
+	}
+
+    #endregion
+
+    //! Section is now deprecated
+    #region Damage / repair
+    /*
+    public bool IsDamaged(){
 		return turbineDmg.isDamaged;
 	}
 
@@ -90,72 +157,14 @@ public class TurbineController : MonoBehaviour {
 		}
 	}
 
-	public bool isRepaired(){
+    public bool isRepaired(){
 	 	return repair.isRepaired;
 	}
 	public void setRepair(bool repairBool){
 		repair.isRepaired = repairBool;
 	}
+    */
+    #endregion
 
-	public void DisableTurbine(){
-		//used to display the numbers for the output values next to the minimap
-		StartCoroutine(simulator.calculateSubstractedPower());
-
-		turbineAnim.DisableRotation();
-		turbineSpawner.numberOfTurbinesOperating--;	
-	}
-
-	public void EnableTurbine(){
-		//used to display the numbers for the output values next to the minimap
-		StartCoroutine(simulator.calculateAddedPower());
-
-		turbineAnim.EnableRotation();
-		turbineSpawner.numberOfTurbinesOperating++;
-	}
-
-	public int getTotalNumberOfTurbines(){
-		return turbineSpawner.numberOfTurbines;	
-	}
-
-	public int getNumberOfTurbinesOperating(){
-		return turbineSpawner.numberOfTurbinesOperating;	
-	}
-
-
-	//disables all scripts if game is paused
-	public  void PauseTurbine(bool gamePaused){
-		if(gamePaused == true){
-			//disable animation
-			turbineAnim.enabled = false;
-			turbineAnim.GetComponent<Animator>().enabled = false;
-
-			turbineDmg.enabled = false;
-			repair.enabled = false;
-			turbineSpawner.enabled = false;
-			inputManager.enabled = false;
-
-			//used in the update function to minimize the times it calls the function
-			scriptsEnabled = false;
-		}
-	}
-
-	//enables all scripts if game is paused
-	public void UnPauseTurbine(bool gamePaused){
-		if(gamePaused == false){
-			//enable animation
-			turbineAnim.enabled = true;
-			turbineAnim.GetComponent<Animator>().enabled = true;
-
-			turbineDmg.enabled = true;
-			repair.enabled = true;
-			turbineSpawner.enabled = true;
-			inputManager.enabled = true;
-			
-			//used in the update function to minimize the times it calls the function
-			scriptsEnabled = true;
-		}
-	}
-
-	
 
 }

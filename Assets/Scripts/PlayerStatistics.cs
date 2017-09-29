@@ -7,40 +7,40 @@ public class PlayerStatistics : MonoBehaviour {
 	public static int underPowerSec;
     public static int correctPowerSec;
     public static int overPowerSec;
-    private int sceneCount;
 
     // Use this for initialization
     void Start () {
-		if(SceneManager.GetActiveScene().buildIndex != sceneCount - 1){ // if not the last scene
-			simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
-			InitializeCountValues();
-			InvokeRepeating("CalculatePowerUsageStatistics",60.0f,1.0f);
-		}
+        if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 2)
+        {
+            simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
+            InitializeCountValues();
+            InvokeRepeating("CalculatePowerUsageStatistics", 60.0f, 1.0f);
+        }
 	}
 
-	void InitializeCountValues(){
-		underPowerSec = 0;
+	void InitializeCountValues() {
+        underPowerSec = 0;
 		correctPowerSec = 0;
-		overPowerSec = 0;
-	}
-	
+        overPowerSec = 0;
+    }
 
 	/*
 	It holds to static variables the seconds that the player has spent in each power output scenario respectively.
 	These values are later used in the end scene to calculate and display the usage of the wind farm, concerning the time spent in each scenario. 
 	*/
  	void CalculatePowerUsageStatistics(){
-		if(SceneManager.GetActiveScene().buildIndex != sceneCount - 1){
-			if(string.Equals(simulator.powerUsage,"-Under power")){
-				underPowerSec++;
-			}
-			else if(string.Equals(simulator.powerUsage,"-Correct power")){
-				correctPowerSec++;
-			}
-			else {
-				overPowerSec++;
-			}
-		}
+        if (string.Equals(simulator.powerUsage, "-Under power"))
+        {
+            underPowerSec++;
+        }
+        else if (string.Equals(simulator.powerUsage, "-Correct power"))
+        {
+            correctPowerSec++;
+        }
+        else
+        {
+            overPowerSec++;
+        }
 	}
 
 }

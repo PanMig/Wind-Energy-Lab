@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(CapsuleCollider))]
 
 public class CameraRTSController : MonoBehaviour
 {
@@ -35,11 +33,12 @@ public class CameraRTSController : MonoBehaviour
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float rotationAngle;
 
+    private float ScreenEdgeBorderThickness = 5.0f;
+
 
     // Use this for initialization
     void Start()
     {
-        gameObject.GetComponent<Rigidbody>().useGravity = false;
         initialPos = transform.position;
         initialRot = transform.rotation;
         if (rotationAngle > 180) rotationAngle = 179;
@@ -55,19 +54,19 @@ public class CameraRTSController : MonoBehaviour
 
         panMovement = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) || Input.mousePosition.y >= Screen.height - ScreenEdgeBorderThickness)
         {
             panMovement += Vector3.forward * panSpeed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) || Input.mousePosition.y <= ScreenEdgeBorderThickness)
         {
             panMovement -= Vector3.forward * panSpeed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.mousePosition.x <= ScreenEdgeBorderThickness)
         {
             panMovement += Vector3.left * panSpeed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || Input.mousePosition.x >= Screen.width - ScreenEdgeBorderThickness)
         {
             panMovement += Vector3.right * panSpeed * Time.deltaTime;
             //pos.x += panSpeed * Time.deltaTime;
@@ -115,9 +114,11 @@ public class CameraRTSController : MonoBehaviour
                 //yaw rotation
                 var rotation = Vector3.up * Time.deltaTime * rotateSpeed * mouseDelta.x;
 
-                //pitch rotation
-                //rotation += Vector3.left * Time.deltaTime * rotateSpeed * mouseDelta.y;
-                
+                /*
+                pitch rotation
+                rotation += Vector3.left * Time.deltaTime * rotateSpeed * mouseDelta.y;
+                */
+
                 // Make sure z rotation stays locked
                 rotation.z = 0;
                 transform.Rotate(rotation, Space.World);

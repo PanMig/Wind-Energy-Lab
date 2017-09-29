@@ -20,39 +20,22 @@ public class TurbineInputManager : MonoBehaviour {
 		InitializePopUpText();
 	}
 
-	void Update(){
-		//used for highlighting the turbine when is damaged.
-		if(turbine.IsDamaged()){
-			HighlightTurbine(turbine.IsDamaged());
-		}
-	}
-
-
 	//when user clicks the turbine.
 	void OnMouseDown () {
 		//clicks while turbine is rotating.
-		if(turbine.IsRotating() == true && turbine.IsDamaged() == false){
+		if(turbine.IsRotating() == true){
 			turbine.DisableTurbine();
 		}
 		//clicks while is not rotating.
-		else if(turbine.IsRotating() == false && turbine.IsDamaged() == false){
+		else if(turbine.IsRotating() == false){
 			turbine.EnableTurbine();
-		}
-		//clicks while turbine is damaged.
-		else if(turbine.IsDamaged() == true){
-			turbine.repairTurbine();
 		}
 	}
 
 	
 	//when mouse is hovered over a wind turbine the turbine is highlighted.
-	void HighlightTurbine(bool isDamaged){
-		if(isDamaged == false){
-			outliner.SetUnDamagedMat(displayPopUpText);	
-		}
-		else{
-			outliner.SetDamagedMat(displayPopUpText);
-		}
+	void HighlightTurbine(){
+	    outliner.SetUnDamagedMat(displayPopUpText);	
 	}
 
 	//when mouse is over a wind turbine without being clicked.
@@ -60,14 +43,14 @@ public class TurbineInputManager : MonoBehaviour {
 		PlaceCanvasToMouse();
 		displayPopUpText = true;
 		DisplayPopUpText();
-		HighlightTurbine(turbine.IsDamaged());
+		HighlightTurbine();
 	}
 
 	//when mouse is not over a wind turbine (specifically on the collider of the turbine).
 	void OnMouseExit(){
 		displayPopUpText = false;
 		DisplayPopUpText();
-		HighlightTurbine(turbine.IsDamaged());
+		HighlightTurbine();
 	}
 
 
@@ -84,14 +67,10 @@ public class TurbineInputManager : MonoBehaviour {
 				popUpText.color = Color.red;
 				popUpText.text = "Turn off";
 			}
-			else if(turbine.IsRotating() == false && turbine.IsDamaged() == false){
+			else if(turbine.IsRotating() == false){
 				popUpText.color = Color.blue;
 				popUpText.text = "Turn on";
 				
-			}
-			else {
-				popUpText.text = "repair";
-				popUpText.color = Color.black;
 			}
 			popUpText.enabled = true;
 			backgroundImage.enabled = true;
@@ -109,5 +88,80 @@ public class TurbineInputManager : MonoBehaviour {
 		canvasPos.y = mousePos.y+20;
 		PopUpCanvas.GetComponentInChildren<Image>().transform.position = canvasPos;
 	}
+
+
+    #region Deprecated method of input with damage
+    /*
+    void Update()
+    {
+        //used for highlighting the turbine when is damaged.
+        if (turbine.IsDamaged())
+        {
+            HighlightTurbine(turbine.IsDamaged());
+        }
+    }
+
+
+    //when user clicks the turbine.
+    void OnMouseDown()
+    {
+        //clicks while turbine is rotating.
+        if (turbine.IsRotating() == true && turbine.IsDamaged() == false)
+        {
+            turbine.DisableTurbine();
+        }
+        //clicks while is not rotating.
+        else if (turbine.IsRotating() == false && turbine.IsDamaged() == false)
+        {
+            turbine.EnableTurbine();
+        }
+        //clicks while turbine is damaged.
+        else if (turbine.IsDamaged() == true)
+        {
+            turbine.repairTurbine();
+        }
+    }
+
+
+    //when mouse is over a wind turbine without being clicked.
+    void OnMouseEnter()
+    {
+        PlaceCanvasToMouse();
+        displayPopUpText = true;
+        DisplayPopUpText();
+        HighlightTurbine(turbine.IsDamaged());
+    }
+
+    void DisplayPopUpText()
+    {
+        if (displayPopUpText == true)
+        {
+            if (turbine.IsRotating() == true)
+            {
+                popUpText.color = Color.red;
+                popUpText.text = "Turn off";
+            }
+            else if (turbine.IsRotating() == false && turbine.IsDamaged() == false)
+            {
+                popUpText.color = Color.blue;
+                popUpText.text = "Turn on";
+
+            }
+            else
+            {
+                popUpText.text = "repair";
+                popUpText.color = Color.black;
+            }
+            popUpText.enabled = true;
+            backgroundImage.enabled = true;
+        }
+        else
+        {
+            popUpText.enabled = false;
+            backgroundImage.enabled = false;
+        }
+    }
+    */
+    #endregion
 
 }

@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TurbineAnimCtrl : MonoBehaviour {
-	Animator animator;
-	public bool isRotating = true; //defines if the turbine is rotating or not
+
+    Animator animator;
+	public bool isRotating = false; //defines if the turbine is rotating or not
 
     // Use this for initialization
     void Start () {
 		animator = GetComponent<Animator>();
-		
 		/*  
 		The turbine game object uses the animator component to have movement (rotate).
 		In the animator window there are two states in which the animatios takes place.
 		- Idle where there is NO rotation
 		- WindTurbineRotate where there is rotation.
-		To transit between this to states we use the "Rotate" parameter, which is defined
-		below as true which means that the turbine will rotate when it first appears in the game.   
+		To transit between this to states we use the "Rotate" parameter.   
 		*/
-		animator.SetBool("Rotate",true);
+		animator.SetBool("Rotate",false);
+        isRotating = false;
 	}
 
 	/* 

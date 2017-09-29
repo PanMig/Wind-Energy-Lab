@@ -13,6 +13,7 @@ TagManager:
   - Level Manager
   - lv
   - GameManager
+  - PauseText
   layers:
   - Default
   - TransparentFX

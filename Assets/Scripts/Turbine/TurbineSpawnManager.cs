@@ -18,7 +18,7 @@ public class TurbineSpawnManager : MonoBehaviour
 
     void Awake()
     {
-        maxNumberOfTurbines = GM_TurbineSelection.numberOfTurbines;
+        maxNumberOfTurbines = TurbineSelector.numberOfTurbines;
         if (maxNumberOfTurbines == 0) maxNumberOfTurbines = 10;
     }
 
@@ -37,7 +37,6 @@ public class TurbineSpawnManager : MonoBehaviour
                 posIncrement, spawnPoint.position.y, spawnPoint.position.z);
                 Instantiate(turbinePrefab, spawnPoint.position, spawnPoint.rotation); // adds turbines to the specified transform point (spawnPoint).
                 numberOfTurbines++;
-                numberOfTurbinesOperating++;
             }
         }
 
