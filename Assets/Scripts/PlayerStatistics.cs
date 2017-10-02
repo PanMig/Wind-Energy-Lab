@@ -14,7 +14,7 @@ public class PlayerStatistics : MonoBehaviour {
         {
             simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
             InitializeCountValues();
-            InvokeRepeating("CalculatePowerUsageStatistics", 60.0f, 1.0f);
+            InvokeRepeating("CalculatePowerUsageStatistics",0.0f, 1.0f);
         }
 	}
 

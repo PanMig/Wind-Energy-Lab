@@ -543,7 +543,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "<b><i>AREA-3</i></b>\n\nArea-3 is near seashore. It has easy access due
     to port. Its windclass is Low (windspeeds 7.5 m/sec). Here you have 8 places to
-    explore.\r\n\n<b><i>Characteristics :</b></i>\n\n- Wind speed = 5.5 - 7.5 m/s\n\n-
+    explore.\r\n\n<b><i>Characteristics :</b></i>\n\n- Average Wind speed = 7.5 m/s\n\n-
     Access cost = 1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
@@ -611,10 +611,10 @@ MonoBehaviour:
   m_margin: {x: -51.344086, y: -77.39154, z: -50.251648, w: -106.778046}
   m_textInfo:
     textComponent: {fileID: 477119010}
-    characterCount: 213
+    characterCount: 215
     spriteCount: 0
-    spaceCount: 44
-    wordCount: 43
+    spaceCount: 43
+    wordCount: 41
     linkCount: 0
     lineCount: 12
     pageCount: 1
@@ -788,24 +788,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114477574951747836, guid: 1be462b9370ba9d4bb42c35b88dd1db3,
           type: 2}
-        m_MethodName: IncrementCost
+        m_MethodName: SetArea
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114477574951747836, guid: 1be462b9370ba9d4bb42c35b88dd1db3,
-          type: 2}
-        m_MethodName: LoadNextLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1375,24 +1363,24 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114477574951747836, guid: 1be462b9370ba9d4bb42c35b88dd1db3,
           type: 2}
-        m_MethodName: IncrementCost
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114477574951747836, guid: 1be462b9370ba9d4bb42c35b88dd1db3,
-          type: 2}
         m_MethodName: LoadNextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114477574951747836, guid: 1be462b9370ba9d4bb42c35b88dd1db3,
+          type: 2}
+        m_MethodName: SetArea
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1635,48 +1623,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1446431366}
---- !u!1001 &1504664933
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4617013906306766, guid: 61833f29815110046a4304bf36e0fcda, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 972.7356
-      objectReference: {fileID: 0}
-    - target: {fileID: 4617013906306766, guid: 61833f29815110046a4304bf36e0fcda, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 296.33627
-      objectReference: {fileID: 0}
-    - target: {fileID: 4617013906306766, guid: 61833f29815110046a4304bf36e0fcda, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 872
-      objectReference: {fileID: 0}
-    - target: {fileID: 4617013906306766, guid: 61833f29815110046a4304bf36e0fcda, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4617013906306766, guid: 61833f29815110046a4304bf36e0fcda, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4617013906306766, guid: 61833f29815110046a4304bf36e0fcda, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4617013906306766, guid: 61833f29815110046a4304bf36e0fcda, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4617013906306766, guid: 61833f29815110046a4304bf36e0fcda, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 61833f29815110046a4304bf36e0fcda, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1648115944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,8 +1679,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "<b><i>AREA-2</i></b>\n\nArea-2 is near plain land. It has not difficult
     access. Its windclass is Medium (windspeeds 8.5 m/sec). Here you have 5 places
-    to explore.\r\n\n<b><i>Characteristics :</b></i>\n\n- Wind speed = 7.5 - 8.5 m/s\n\n-
-    Access cost = 2"
+    to explore.\r\n\n<b><i>Characteristics :</b></i>\n\n- Average Wind speed = 8.5
+    m/s\n\n- Access cost = 2"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
@@ -1801,10 +1747,10 @@ MonoBehaviour:
   m_margin: {x: -51.344086, y: -77.39154, z: -50.251648, w: -106.778046}
   m_textInfo:
     textComponent: {fileID: 1648115946}
-    characterCount: 215
+    characterCount: 217
     spriteCount: 0
-    spaceCount: 43
-    wordCount: 42
+    spaceCount: 42
+    wordCount: 40
     linkCount: 0
     lineCount: 12
     pageCount: 1
@@ -2257,24 +2203,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114477574951747836, guid: 1be462b9370ba9d4bb42c35b88dd1db3,
           type: 2}
-        m_MethodName: IncrementCost
+        m_MethodName: SetArea
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114477574951747836, guid: 1be462b9370ba9d4bb42c35b88dd1db3,
-          type: 2}
-        m_MethodName: LoadNextLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2541,7 +2475,7 @@ MonoBehaviour:
     <b><i>Characteristics :</b></i>
 
 
-    - Wind speed = 8.5 - 10 m/s
+    - Average Wind speed = 10 m/s
 
 
     - Access cost = 3'
@@ -2611,10 +2545,10 @@ MonoBehaviour:
   m_margin: {x: -51.344086, y: -77.39154, z: -50.251648, w: -106.778046}
   m_textInfo:
     textComponent: {fileID: 2063605924}
-    characterCount: 192
+    characterCount: 194
     spriteCount: 0
-    spaceCount: 40
-    wordCount: 37
+    spaceCount: 39
+    wordCount: 35
     linkCount: 0
     lineCount: 12
     pageCount: 1

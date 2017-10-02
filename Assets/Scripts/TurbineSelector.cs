@@ -35,21 +35,25 @@ public class TurbineSelector : MonoBehaviour {
             rotorDiameter = 128;
             turbineDefaultPower = 6.0f;
             turbinePower = turbineDefaultPower;
+            GameManager.cost += 5;
         }
         else if (index == 1)
         {
             rotorDiameter = 128;
             turbineDefaultPower = 6.0f;
+            GameManager.cost += 5;
         }
         else if (index == 2)
         {
             rotorDiameter = 90;
             turbineDefaultPower = 3.0f;
+            GameManager.cost += 3;
         }
         else if (index == 3)
         {
             rotorDiameter = 52;
             turbineDefaultPower = 0.9f;
+            GameManager.cost += 1;
         }
     }
 

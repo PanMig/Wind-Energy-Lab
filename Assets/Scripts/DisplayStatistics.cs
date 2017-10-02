@@ -1,12 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class DisplayStatistics : MonoBehaviour {
 
-	public Text underPowerUsageText;
-	public Text correctPowerUsageText;
-	public Text overPowerUsageText;
 	public Text usage;
+	public Text Cost;
     private int underPowerMin;
     private int correctPowerMin;
     private int overPowerMin;
@@ -17,10 +16,18 @@ public class DisplayStatistics : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		ConvertSecondToMin();
-		DisplayPlayerStatistics();
+		DisplayUsage();
+		DisplayCost();
 	}
 
-	void ConvertSecondToMin(){
+    private void DisplayCost()
+    {
+        String cost = GameManager.cost.ToString();
+        Cost.text = "General cost is : " + cost + " $";
+    }
+
+    void ConvertSecondToMin()
+    {
 		underPowerMin = PlayerStatistics.underPowerSec/60;
 		underPowerSec = PlayerStatistics.underPowerSec%60;
 		correctPowerMin = PlayerStatistics.correctPowerSec/60;
@@ -29,11 +36,8 @@ public class DisplayStatistics : MonoBehaviour {
 		overPowerSec = PlayerStatistics.overPowerSec%60;
 	}
 	
-	void DisplayPlayerStatistics(){
-		underPowerUsageText.text = "Under power :  " + underPowerMin.ToString() + " minutes and " + underPowerSec.ToString() + " seconds" ;
-		correctPowerUsageText.text = "Correct power :  " + correctPowerMin.ToString() + " minutes and " + correctPowerSec.ToString() + " seconds" ;
-		overPowerUsageText.text = "Over power :  " + overPowerMin.ToString() + " minutes and " + overPowerSec.ToString() + " seconds" ;
-
+	void DisplayUsage()
+    {
 		// set text msg based on power usage.
 		if (underPowerMin > correctPowerMin && underPowerMin > overPowerMin){
 			usage.text = "The wind farm was mostly working in under Power, not very efficient.";		

@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 
-public class InputFieldHandler : MonoBehaviour {
+public class InputHandler : MonoBehaviour {
 
     public Text msgText;
 
