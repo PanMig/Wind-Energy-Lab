@@ -53,7 +53,7 @@ public class Simulation : MonoBehaviour {
 		powerOutputsideImage.enabled = false;
 
         turbineDefaultOutput = TurbineSelector.turbineDefaultPower;
-        currentPowerReqs = 6;
+        CalculatePowerRequirements();
         currentWindSpeed = 10;
 		startTime = Time.time;
 
@@ -62,8 +62,8 @@ public class Simulation : MonoBehaviour {
 
 	void Awake() {
 		float firstExecution = 0.0f;
-		InvokeRepeating("CalculateWindSpeed",firstExecution,5.0f);
-		InvokeRepeating("CalculatePowerRequirements",firstExecution,30.0f);
+		InvokeRepeating("CalculateWindSpeed",firstExecution,15.0f);
+		//InvokeRepeating("CalculatePowerRequirements",firstExecution,30.0f);
 	}
 	
 	// Update is called once per frame
