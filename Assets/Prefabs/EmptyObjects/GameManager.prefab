@@ -54,7 +54,8 @@ MonoBehaviour:
   playerName: 
   playerSurname: 
   playerSchoolName: 
-  simulationDurationTime: 3
+  simulationDurationTime: 5
   endGame: 0
   Areachoice: 0
   SubAreachoice: 0
+  type: 0

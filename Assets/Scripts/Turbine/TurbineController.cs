@@ -43,10 +43,10 @@ public class TurbineController : MonoBehaviour {
 
 			//used for disables rotation when wind is low
 			if(simulator.currentWindSpeed < 3 && IsRotating() == true){
-				DisableOnWindLow();
+				//DisableOnWindLow();
 			}
 			if(simulator.currentWindSpeed > 3 && IsRotating() == false && lowWindDisabled == true){
-				EnableOnWindHigh();
+				//EnableOnWindHigh();
 			}
 		}
 	}

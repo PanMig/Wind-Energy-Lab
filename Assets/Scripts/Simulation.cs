@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 
 public class Simulation : MonoBehaviour {
-	[Header ("Text fields")]
+
+    [Header ("Text fields")]
 	public Text windText;
 	public Text timeText;
 	public Text powerReqText;
@@ -22,7 +23,8 @@ public class Simulation : MonoBehaviour {
 	[Header ("Simulation variables")]
 
 	public int currentWindSpeed;
-    private int currentPowerReqs;
+    public int currentPowerReqs;
+    private int randomWindValue;
 
     /* =====================================
 			time simulation fields
@@ -38,13 +40,21 @@ public class Simulation : MonoBehaviour {
 		power Output simulation fields
 	======================================*/
     private float turbineDefaultOutput;
-    private float totalPowerOutput;
-    //private int[] singleTurbineOutput = {0,0,0,0,0,1,2,3,4,5,6,6,6,6,6};
-    private float[] singleTurbineOutput = new float[15];
+    public  float totalPowerOutput;
     public TurbineSpawnManager spawnManager;
 
     public string powerUsage = "-Under power"; //TODO : maybe this can be changed to a enum, but it will less readable to the next developer that gets the source code.
     enum DisplayedTextValue { wind ,powerReqs,powerOutput,powerUsage}
+
+    //arrays wind
+    private int[] wind = new int[15];
+    private int[] windClass1 = { 1, 2, 3, 4, 5, 6, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+
+    //arrays turbine output
+    private float[] singleTurbineOutput = new float[15];
+    private float[] turbineAOutput = {0.0f,  0.01f,0.02f,0.05f,0.09f,0.19f,0.38f,0.19f,0.38f,0.75f,1.50f,3.0f,6.0f,6.0f,6.0f,6.0f};
+    private float[] turbineBOutput = {0.0f,  0.01f,0.01f,0.02f,0.05f,0.09f,0.19f,0.09f,0.19f,0.38f,0.75f,1.5f,3.0f,3.0f,3.0f,3.0f};
+    private float[] turbineCOutput = {0.0f,  0.0f,0.0f,0.01f,0.01f,0.03f,0.06f,0.03f,0.06f,0.11f,0.23f,0.45f,0.9f,0.9f,0.9f,0.9f};
 
 
 
@@ -52,18 +62,16 @@ public class Simulation : MonoBehaviour {
 		powerOutputSideText.enabled = false;
 		powerOutputsideImage.enabled = false;
 
-        turbineDefaultOutput = TurbineSelector.turbineDefaultPower;
         CalculatePowerRequirements();
         currentWindSpeed = 10;
 		startTime = Time.time;
-
-        InitializeTurbineOutputArray();
-	}
+        InitializeWindArray();
+        InitializeOutputArray();
+    }
 
 	void Awake() {
 		float firstExecution = 0.0f;
-		InvokeRepeating("CalculateWindSpeed",firstExecution,15.0f);
-		//InvokeRepeating("CalculatePowerRequirements",firstExecution,30.0f);
+        InvokeRepeating("CalculateWindSpeed", firstExecution, 10.0f);
 	}
 	
 	// Update is called once per frame
@@ -78,25 +86,26 @@ public class Simulation : MonoBehaviour {
 		CalculatePowerUsage();
 	}
 
-    void InitializeTurbineOutputArray() {
-
-        float j = 0;
-        if (turbineDefaultOutput == 6) j = 1;
-        else if (turbineDefaultOutput == 3) j = 0.5f;
-        else if (turbineDefaultOutput == 0.9f) j = 0.25f;
-        int i;
-        for (i = 14; i > 0; i--)
+    void InitializeWindArray() {
+        if(GameManager.instance.Areachoice == GameManager.MainArea.mountains)
         {
-            if (i <= 9)
-            {
-                if (turbineDefaultOutput >= 6) { singleTurbineOutput[i] = turbineDefaultOutput - j; j++; }
-                else if (turbineDefaultOutput == 3) { singleTurbineOutput[i] = turbineDefaultOutput - j; j += 0.5f; }
-                else if (turbineDefaultOutput == 0.9f) { singleTurbineOutput[i] = turbineDefaultOutput - j; j += 0.25f; }
-            }
-            else {
-                singleTurbineOutput[i] = turbineDefaultOutput;
-            } 
-            singleTurbineOutput[i] = Mathf.Clamp(singleTurbineOutput[i], 0,turbineDefaultOutput);
+            wind = windClass1;
+        }
+    }
+
+    void InitializeOutputArray()
+    {
+        if (GameManager.instance.Type == TurbineSelector.TurbineType.A)
+        {
+            singleTurbineOutput = turbineAOutput;
+        }
+        else if (GameManager.instance.Type == TurbineSelector.TurbineType.B)
+        {
+            singleTurbineOutput = turbineBOutput;
+        }
+        else if (GameManager.instance.Type == TurbineSelector.TurbineType.C)
+        {
+            singleTurbineOutput = turbineCOutput;
         }
     }
 
@@ -107,14 +116,16 @@ public class Simulation : MonoBehaviour {
 		time = Time.time - startTime ;
 		minutes = ((int) (time/60)).ToString();
 		minutesCount = ((int) (time/60));
-		seconds = (time%60);
+		seconds = (time % 60);
 		secondstr = ((int)seconds).ToString();
-		timeText.text = minutes + ":" +secondstr ;
+		timeText.text = minutes + ":" + secondstr ;
 	}
 
     void CalculateWindSpeed()
     {
-        currentWindSpeed = RandomGaussianGenerator.GenerateNormalRandom(10.0f, 1.67f, 5, 15);
+         randomWindValue = Random.Range(0, 14);
+        //currentWindSpeed = RandomGaussianGenerator.GenerateNormalRandom(10.0f, 1.0f, 1, 13);
+        currentWindSpeed = wind[randomWindValue];
         DisplayText(DisplayedTextValue.wind);
     }
 
@@ -126,7 +137,7 @@ public class Simulation : MonoBehaviour {
 
     void CalculatePowerOutput()
     {
-        totalPowerOutput = spawnManager.numberOfTurbinesOperating * singleTurbineOutput[currentWindSpeed];
+        totalPowerOutput = spawnManager.numberOfTurbinesOperating * singleTurbineOutput[randomWindValue+1];
         DisplayText(DisplayedTextValue.powerOutput);
     }
 
@@ -156,7 +167,7 @@ public class Simulation : MonoBehaviour {
 	that each turbine is producing (text above the power output)*/
     public IEnumerator calculateAddedPower()
     {
-        float addedAmount = singleTurbineOutput[currentWindSpeed];
+        float addedAmount = singleTurbineOutput[randomWindValue + 1];
         powerOutputSideText.text = " + " + addedAmount.ToString();
         powerOutputSideText.enabled = true;
         powerOutputsideImage.enabled = true;
@@ -167,7 +178,7 @@ public class Simulation : MonoBehaviour {
 
     public IEnumerator calculateSubstractedPower()
     {
-        float substractedAmount = singleTurbineOutput[currentWindSpeed];
+        float substractedAmount = singleTurbineOutput[randomWindValue + 1];
         powerOutputSideText.text = " - " + substractedAmount.ToString();
         powerOutputSideText.enabled = true;
         powerOutputsideImage.enabled = true;

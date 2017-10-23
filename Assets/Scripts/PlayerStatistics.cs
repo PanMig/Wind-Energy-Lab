@@ -7,6 +7,7 @@ public class PlayerStatistics : MonoBehaviour {
 	public static int underPowerSec;
     public static int correctPowerSec;
     public static int overPowerSec;
+    public static float profitAmount = 0;
 
     // Use this for initialization
     void Start () {
@@ -40,6 +41,7 @@ public class PlayerStatistics : MonoBehaviour {
         else
         {
             overPowerSec++;
+            profitAmount += simulator.totalPowerOutput - simulator.currentPowerReqs;
         }
 	}
 

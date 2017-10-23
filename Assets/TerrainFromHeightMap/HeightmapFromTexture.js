@@ -1,4 +1,4 @@
-﻿@MenuItem ("Terrain/Heightmap From Texture")
+﻿/*@MenuItem ("Terrain/Heightmap From Texture")
  
 static function ApplyHeightmap () {
 	var heightmap : Texture2D = Selection.activeObject as Texture2D;
@@ -72,3 +72,4 @@ static function ApplyHeightmap () {
 	}
 	terrain.SetHeights(0, 0, heightmapData);
 }
+*/

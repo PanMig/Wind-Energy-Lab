@@ -6,19 +6,21 @@ public class DisplayStatistics : MonoBehaviour {
 
 	public Text usage;
 	public Text Cost;
+	public Text Profit;
     private int underPowerMin;
     private int correctPowerMin;
     private int overPowerMin;
-    private int underPowerSec;
-    private int correctPowerSec;
-    private int overPowerSec;
+    float underPowerPercent;
+    float correctPowerPercent;
+    float overPowerPercent;
 
     // Use this for initialization
     void Start () {
-		ConvertSecondToMin();
 		DisplayUsage();
 		DisplayCost();
-	}
+        DisplayProfit();
+
+    }
 
     private void DisplayCost()
     {
@@ -29,34 +31,25 @@ public class DisplayStatistics : MonoBehaviour {
     void ConvertSecondToMin()
     {
 		underPowerMin = PlayerStatistics.underPowerSec/60;
-		underPowerSec = PlayerStatistics.underPowerSec%60;
 		correctPowerMin = PlayerStatistics.correctPowerSec/60;
-		correctPowerSec = PlayerStatistics.correctPowerSec%60;
 		overPowerMin = PlayerStatistics.overPowerSec/60;
-		overPowerSec = PlayerStatistics.overPowerSec%60;
 	}
 	
 	void DisplayUsage()
     {
-		// set text msg based on power usage.
-		if (underPowerMin > correctPowerMin && underPowerMin > overPowerMin){
-			usage.text = "The wind farm was mostly working in under Power, not very efficient.";		
-		}
-		else if (overPowerMin > correctPowerMin && overPowerMin > underPowerMin){
-			usage.text = "The wind farm was mostly working in over Power, not very efficient.";	
-		}
-		else if (correctPowerMin > underPowerMin && correctPowerMin > overPowerMin){
-			usage.text = "The wind farm was mostly working in correct Power, very efficient.";
-		}
-		else if (underPowerSec > correctPowerSec && underPowerSec > overPowerSec){
-			usage.text = "The wind farm was mostly working in under Power, not very efficient.";		
-		}
-		else if(overPowerSec > correctPowerSec && overPowerSec > underPowerSec){
-			usage.text = "The wind farm was mostly working in over Power, not very efficient.";	
-		}
-		else {
-			usage.text = "The wind farm was mostly working in correct Power, very efficient.";
-		}
-	}
+        float sumOfTime = PlayerStatistics.underPowerSec + PlayerStatistics.correctPowerSec + PlayerStatistics.overPowerSec;
+        underPowerPercent = (PlayerStatistics.underPowerSec / sumOfTime) * 100.0f;
+        correctPowerPercent = (PlayerStatistics.correctPowerSec / sumOfTime) * 100.0f;
+        overPowerPercent = (PlayerStatistics.overPowerSec / sumOfTime) * 100.0f;
+        usage.text = "Under power : " + underPowerPercent.ToString("F2") + " % " + "\n" +
+                     "Correct power : " + correctPowerPercent.ToString("F2") + " % " + "\n" +
+                     "Over power : " + overPowerPercent.ToString("F2") + " % ";
+    }
+
+    void DisplayProfit()
+    {
+        Profit.text = "You could sell the excess of power your Wind Farm generated and earn  " + (PlayerStatistics.profitAmount * 0.1f).ToString() + " $ "+
+            "per year of operation."; 
+    }
 
 }

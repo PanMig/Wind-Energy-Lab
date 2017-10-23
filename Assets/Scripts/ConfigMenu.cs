@@ -25,6 +25,6 @@ public class ConfigMenu : MonoBehaviour {
     {
         if (index == 0) simulator.simulationSpeed = 1;
         else if (index == 1) simulator.simulationSpeed = 3;
-        else simulator.simulationSpeed = 4;
+        else simulator.simulationSpeed = 1;
     }
 }

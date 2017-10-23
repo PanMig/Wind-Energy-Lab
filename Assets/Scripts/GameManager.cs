@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     public static int cost = 0;
     public static int replayIterations = 0;
-    public enum MainArea { mountains, fields, seashore }
 
     //PLayer Information
     public string playerName;
@@ -20,8 +19,13 @@ public class GameManager : MonoBehaviour
     public bool endGame = false;
 
     //Area information
+    public enum MainArea { mountains, fields, seashore }
     public MainArea Areachoice;
     public int SubAreachoice;
+
+    //TurbineTypeInformation
+    [SerializeField] private TurbineSelector.TurbineType type;
+    public TurbineSelector.TurbineType Type { get { return type; } set { type = value; } }
 
     private bool printMsg = false;
 
@@ -89,7 +93,6 @@ public class GameManager : MonoBehaviour
     public void IncrementCost(int areaCost)
     {
         cost += areaCost;
-        print(cost);
     }
 
 
@@ -170,6 +173,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    //used only for displaying the replay iterations message.
     void OnGUI()
     {
         if (printMsg)
