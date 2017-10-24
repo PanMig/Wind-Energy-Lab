@@ -42,6 +42,9 @@ GameObject:
   - component: {fileID: 114601736475230320}
   - component: {fileID: 114273953244927758}
   - component: {fileID: 54012381347438250}
+  - component: {fileID: 114892011687855244}
+  - component: {fileID: 114548625963755906}
+  - component: {fileID: 114149742220288624}
   m_Layer: 0
   m_Name: TurbineMountainPrefab
   m_TagString: Turbine
@@ -320,6 +323,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRotating: 1
+--- !u!114 &114149742220288624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1490337103480528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e165e3e61b5a4d488ab384acd3cdc44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114273953244927758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -358,6 +372,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114548625963755906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1490337103480528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1633cbc35e6d8bf4fa837a628f86a3b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRepaired: 0
 --- !u!114 &114601736475230320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -412,6 +438,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114892011687855244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1490337103480528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3621cc0710bc6a54db6c8e333b67b532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDamaged: 0
 --- !u!114 &114951765532260528
 MonoBehaviour:
   m_ObjectHideFlags: 1

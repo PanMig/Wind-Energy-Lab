@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ParticlesController : MonoBehaviour {
-
-    //!deprecated class
 	
-    /*
+
 	private TurbineController turbine;
 	private Transform turbinePosition;
 	private bool isEmiting = false;
@@ -38,7 +34,7 @@ public class ParticlesController : MonoBehaviour {
 		obj = ObjectPooler.current.GetPooledObject();
 		if(obj == null)  return;
 
-		obj.transform.position = new Vector3 (turbinePosition.position.x,turbinePosition.position.y + 30,turbinePosition.position.z);
+		obj.transform.position = new Vector3 (turbinePosition.position.x,turbinePosition.position.y + 54,turbinePosition.position.z);
 		obj.SetActive(true);
 	}
 
@@ -47,5 +43,4 @@ public class ParticlesController : MonoBehaviour {
 		isEmiting = false;
 	}
 
-    */
 }

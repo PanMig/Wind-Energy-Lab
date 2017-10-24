@@ -37,7 +37,7 @@ public class MapPointer : MonoBehaviour {
 	void OnMouseEnter()
 	{
 		this.spriteRend.sprite = pointerSprites[1];
-        PlacePanelNextToSprite();
+        //PlacePanelNextToSprite();
         EnableInfoPanel(true);
         
 	}
@@ -58,7 +58,9 @@ public class MapPointer : MonoBehaviour {
     {
         mousePos = Input.mousePosition;
         panelPos.x = mousePos.x;
-        panelPos.y = mousePos.y + 180.0f;
+        panelPos.y = mousePos.y + 170.0f;
+        panelPos.x = Mathf.Clamp(panelPos.x, 0, Screen.width);
+        panelPos.y = Mathf.Clamp(panelPos.y, 0, Screen.height);
         infoPanel.transform.position = panelPos;
     }
 

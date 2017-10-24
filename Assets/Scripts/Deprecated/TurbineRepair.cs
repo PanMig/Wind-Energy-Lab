@@ -2,8 +2,7 @@
 
 public class TurbineRepair : MonoBehaviour {
 
-    //! Deprecated class
-    /* 
+
 	private TurbineController turbine;
     public bool isRepaired = false;
 
@@ -20,5 +19,4 @@ public class TurbineRepair : MonoBehaviour {
 			isRepaired = true;
 		}
 	}
-    */
 }
