@@ -11,7 +11,7 @@ public class PlayerStatistics : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 2)
+        if (SceneManager.GetActiveScene().name != "EndScene")
         {
             simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
             InitializeCountValues();

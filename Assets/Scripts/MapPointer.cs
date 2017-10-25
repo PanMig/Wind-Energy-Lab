@@ -51,7 +51,7 @@ public class MapPointer : MonoBehaviour {
     private void OnMouseDown()
     {
         gm.IncrementCost(cost);
-        GameManager.instance.LoadNextLevel();
+        GameManager.instance.LoadLevel("TurbineSelection");
     }
 
     void PlacePanelNextToSprite()

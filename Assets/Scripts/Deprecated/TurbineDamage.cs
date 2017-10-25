@@ -57,7 +57,6 @@ public class TurbineDamage : MonoBehaviour
                 turbineUsage = 1.0f;
             }
             float damagePropability = turbineUsage * propabilityMultiplier;
-            print(damagePropability);
             if (damagePropability > 0.85)
             {
                 damageTurbine();

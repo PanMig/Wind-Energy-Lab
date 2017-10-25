@@ -21,17 +21,20 @@ EditorBuildSettings:
     path: 
     guid: ef6d3646d1d2225499a7cb7df8632bf1
   - enabled: 1
-    path: Assets/scenes/Stage2.unity
+    path: Assets/scenes/Stage2(Mountains).unity
     guid: 4bfe49472ff90944cb5ac4802f47fac4
   - enabled: 1
-    path: Assets/scenes/Stage2.5(TurbineType).unity
-    guid: 9d5322024ea4fa8449d478021cc984c7
+    path: Assets/scenes/Stage2(Plains).unity
+    guid: 11e584a6a6822a74dabdc1d77fc4c450
   - enabled: 1
     path: Assets/scenes/Stage3(Mountains).unity
     guid: 3880ff298f98892468db031c6f790cd1
   - enabled: 1
+    path: Assets/scenes/Stage3(Plains).unity
+    guid: c8657946eb2051c44bea6f7a10c356ba
+  - enabled: 1
+    path: Assets/scenes/Stage2.5(TurbineType).unity
+    guid: 9d5322024ea4fa8449d478021cc984c7
+  - enabled: 1
     path: Assets/scenes/EndScene.unity
     guid: 71da6991e2934ba49995d7af139e61d2
-  - enabled: 0
-    path: 
-    guid: 920976037e34fb3479ef3be2b25d32bc

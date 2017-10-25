@@ -526,7 +526,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -52.637, y: -53.65}
+  m_AnchoredPosition: {x: -52.637005, y: -53.65}
   m_SizeDelta: {x: 105.32, y: 41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &231395813
@@ -1473,7 +1473,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0010986, y: -122.1}
+  m_AnchoredPosition: {x: -0.0010986, y: -122.100006}
   m_SizeDelta: {x: 103.7, y: 29.299988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1557937140
@@ -1517,14 +1517,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114477574951747836, guid: 1be462b9370ba9d4bb42c35b88dd1db3,
           type: 2}
-        m_MethodName: LoadNextLevel
-        m_Mode: 1
+        m_MethodName: LoadLevel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Stage1
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1594,7 +1594,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -52.644, y: -2.65}
+  m_AnchoredPosition: {x: -52.643997, y: -2.65}
   m_SizeDelta: {x: 105.31, y: 41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1585257482

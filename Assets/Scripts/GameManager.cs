@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TurbineSelector.TurbineType type;
     public TurbineSelector.TurbineType Type { get { return type; } set { type = value; } }
 
+    [SerializeField] private int windclass;
+    public int Windclass { get { return windclass; } set { windclass = value ; } }
+
     private bool printMsg = false;
 
 
@@ -116,9 +119,41 @@ public class GameManager : MonoBehaviour
 
     #region Level Management
 
-    public void LoadNextLevel()
+    public void LoadSimulationLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if(instance.Areachoice == MainArea.mountains)
+        {
+            SceneManager.LoadScene("Stage3(Mountains)");
+        }
+        else if(instance.Areachoice == MainArea.fields)
+        {
+            SceneManager.LoadScene("Stage3(Plains)");
+        }
+        else if (instance.Areachoice == MainArea.seashore)
+        {
+            SceneManager.LoadScene("Stage3(Seashore)");
+        }
+    }
+
+    public void LoadSubAreaLevel()
+    {
+        if (instance.Areachoice == MainArea.mountains)
+        {
+            SceneManager.LoadScene("Stage2(Mountains)");
+        }
+        else if (instance.Areachoice == MainArea.fields)
+        {
+            SceneManager.LoadScene("Stage2(Plains)");
+        }
+        else if (instance.Areachoice == MainArea.seashore)
+        {
+            SceneManager.LoadScene("Stage2(Seashore)");
+        }
+    }
+
+    public void LoadLevel(string levelName)
+    {
+        SceneManager.LoadScene(levelName);
     }
 
     public void ExitGame()
@@ -131,7 +166,7 @@ public class GameManager : MonoBehaviour
 
         if (replayIterations <= 3)
         {
-            SceneManager.LoadScene("Stage2");
+            instance.LoadSubAreaLevel();
             replayIterations++;
             ReArrangeCost(Areachoice);
 

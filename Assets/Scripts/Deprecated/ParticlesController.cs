@@ -34,7 +34,7 @@ public class ParticlesController : MonoBehaviour {
 		obj = ObjectPooler.current.GetPooledObject();
 		if(obj == null)  return;
 
-		obj.transform.position = new Vector3 (turbinePosition.position.x,turbinePosition.position.y + 54,turbinePosition.position.z);
+		obj.transform.position = new Vector3 (turbinePosition.position.x,turbinePosition.position.y + 48,turbinePosition.position.z);
 		obj.SetActive(true);
 	}
 
