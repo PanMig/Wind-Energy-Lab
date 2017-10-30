@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/scenes/Stage3(Plains).unity
     guid: c8657946eb2051c44bea6f7a10c356ba
   - enabled: 1
-    path: Assets/scenes/Stage2.5(TurbineType).unity
+    path: Assets/scenes/TurbineSelection.unity
     guid: 9d5322024ea4fa8449d478021cc984c7
   - enabled: 1
     path: Assets/scenes/EndScene.unity
