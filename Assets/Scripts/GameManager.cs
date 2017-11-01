@@ -21,7 +21,9 @@ public class GameManager : MonoBehaviour
     //Area information
     public enum MainArea { mountains, fields, seashore }
     public MainArea Areachoice;
-    public int SubAreachoice;
+
+    public enum SubArea { archaiological, HVLines, other }
+    public SubArea SubAreachoice;
 
     //TurbineTypeInformation
     [SerializeField] private TurbineSelector.TurbineType type;
@@ -86,7 +88,18 @@ public class GameManager : MonoBehaviour
 
     public void SetSubArea(int choice)
     {
-        SubAreachoice = choice;
+        if (choice == 1)
+        {
+            instance.SubAreachoice = SubArea.archaiological;
+        }
+        else if (choice == 2)
+        {
+            instance.SubAreachoice = SubArea.HVLines;
+        }
+        else
+        {
+            instance.SubAreachoice = SubArea.other;
+        }
     }
 
     #endregion

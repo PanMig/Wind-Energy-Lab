@@ -18,6 +18,7 @@ public class MapPointer : MonoBehaviour {
 
     private GameManager gm;
     [SerializeField] private int cost;
+    [SerializeField] private int subAreaType;
 
     void Start()
 	{
@@ -38,8 +39,7 @@ public class MapPointer : MonoBehaviour {
 	{
 		this.spriteRend.sprite = pointerSprites[1];
         //PlacePanelNextToSprite();
-        EnableInfoPanel(true);
-        
+        EnableInfoPanel(true);  
 	}
 
 	void OnMouseExit()
@@ -51,8 +51,10 @@ public class MapPointer : MonoBehaviour {
     private void OnMouseDown()
     {
         gm.IncrementCost(cost);
+        GameManager.instance.SetSubArea(subAreaType);
         GameManager.instance.LoadLevel("TurbineSelection");
     }
+
 
     void PlacePanelNextToSprite()
     {
