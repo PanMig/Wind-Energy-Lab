@@ -40,7 +40,6 @@ public class Simulation : MonoBehaviour
     /* =====================================
 		power Output simulation fields
 	======================================*/
-    private float turbineDefaultOutput;
     public float totalPowerOutput;
     public TurbineSpawnManager spawnManager;
 
@@ -56,7 +55,7 @@ public class Simulation : MonoBehaviour
     //arrays turbine output
     private float[] singleTurbineOutput = new float[15];
 
-    //power array has index 0 always set to 0.0f otherwize always the match between wind and output arrays will not be the same.
+    //!power array has index 0 always set to 0.0f otherwize always the match between wind and output arrays will not be the same.
     //TURBINES MOUNTAINS
     private float[] turbineOutput_A = {0.0f, 0.01f, 0.02f, 0.05f, 0.09f, 0.19f, 0.38f, 0.19f, 0.38f, 0.75f, 1.50f, 3.0f, 6.0f, 6.0f, 6.0f, 6.0f };
     private float[] turbineOutput_B = {0.0f, 0.01f, 0.01f, 0.02f, 0.05f, 0.09f, 0.19f, 0.09f, 0.19f, 0.38f, 0.75f, 1.5f, 3.0f, 3.0f, 3.0f, 3.0f };
@@ -66,6 +65,12 @@ public class Simulation : MonoBehaviour
     private float[] turbineOutput_D = {0.0f, 0.02f, 0.05f, 0.09f, 0.19f, 0.38f, 0.09f, 0.19f, 0.38f, 0.09f, 0.75f, 1.5f, 3.0f, 3.0f, 3.0f, 3.0f };
     private float[] turbineOutput_E = {0.0f, 0.02f, 0.03f, 0.06f, 0.13f, 0.25f, 0.06f, 0.13f, 0.25f, 0.06f, 0.5f, 1.0f, 2.0f, 2.0f, 2.0f, 2.0f };
     private float[] turbineOutput_F = {0.0f, 0.01f, 0.01f, 0.03f, 0.05f, 0.11f, 0.03f, 0.05f, 0.11f, 0.03f, 0.21f, 0.43f, 0.85f, 0.85f, 0.85f, 0.85f };
+
+    //TURBINES SEASHORE
+    private float[] turbineOutput_G = {0.0f, 0.05f, 0.09f, 0.19f, 0.38f, 0.09f, 0.19f, 0.38f, 0.09f, 0.19f, 0.75f, 1.5f, 3.0f, 3.0f, 3.0f, 3.0f };
+    private float[] turbineOutput_H = {0.0f, 0.03f, 0.06f, 0.13f, 0.25f, 0.06f, 0.13f, 0.25f, 0.06f, 0.13f, 0.5f, 1.0f, 2.0f, 2.0f, 2.0f, 2.0f };
+    private float[] turbineOutput_I = {0.0f, 0.01f, 0.03f, 0.05f, 0.11f, 0.03f, 0.05f, 0.11f, 0.03f, 0.05f, 0.21f, 0.43f, 0.85f, 0.85f, 0.85f, 0.85f };
+
 
 
 
@@ -84,8 +89,7 @@ public class Simulation : MonoBehaviour
 
     void Awake()
     {
-        float firstExecution = 0.0f;
-        InvokeRepeating("CalculateWindSpeed", firstExecution, 10.0f);
+        InvokeRepeating("CalculateWindSpeed",0.0f, 10.0f);
     }
 
     // Update is called once per frame
@@ -116,6 +120,10 @@ public class Simulation : MonoBehaviour
         {
             wind = windClass3;
         }
+        else
+        {
+            wind = windClass1;
+        }
     }
 
     void InitializeOutputArray()
@@ -143,6 +151,18 @@ public class Simulation : MonoBehaviour
         else if (GameManager.instance.Type == TurbineSelector.TurbineType.F)
         {
             singleTurbineOutput = turbineOutput_F;
+        }
+        else if (GameManager.instance.Type == TurbineSelector.TurbineType.G)
+        {
+            singleTurbineOutput = turbineOutput_G;
+        }
+        else if (GameManager.instance.Type == TurbineSelector.TurbineType.H)
+        {
+            singleTurbineOutput = turbineOutput_H;
+        }
+        else if (GameManager.instance.Type == TurbineSelector.TurbineType.I)
+        {
+            singleTurbineOutput = turbineOutput_I;
         }
     }
 
@@ -176,7 +196,7 @@ public class Simulation : MonoBehaviour
     //it matches the generated power arrays with wind class arrays.
     void CalculatePowerOutput()
     {
-        totalPowerOutput = spawnManager.numberOfTurbinesOperating * singleTurbineOutput[randomWindValue + 1];
+        totalPowerOutput = spawnManager.GetNumOfTurbinesOperating() * singleTurbineOutput[randomWindValue + 1]; //we increment by one because the first value of output array is zero.
         DisplayText(DisplayedTextValue.powerOutput);
     }
 
@@ -189,7 +209,7 @@ public class Simulation : MonoBehaviour
             powerUsage = "-Under power";
             powerUsageText.color = Color.red;
         }
-        else if ((totalPowerOutput - currentPowerReqs) > 1)
+        else if ((totalPowerOutput - currentPowerReqs) > 2)
         {
             powerUsage = "-Over power";
             powerUsageText.color = Color.blue;
@@ -244,7 +264,7 @@ public class Simulation : MonoBehaviour
         }
         else if (textValue == DisplayedTextValue.powerOutput)
         {
-            powerOutputText.text = totalPowerOutput.ToString();
+            powerOutputText.text = totalPowerOutput.ToString("F2");
         }
         else if (textValue == DisplayedTextValue.powerReqs)
         {
@@ -253,10 +273,6 @@ public class Simulation : MonoBehaviour
         else if (textValue == DisplayedTextValue.powerUsage)
         {
             powerUsageText.text = powerUsage;
-        }
-        else
-        {
-            Debug.Log("wrong input at DisplayText() , check given parameters");
         }
     }
 
@@ -267,11 +283,11 @@ public class Simulation : MonoBehaviour
 
     public void EndSimulation()
     {
-        if (minutesCount >= GameManager.instance.simulationDurationTime || GameManager.instance.endGame == true)
+        if (minutesCount >= GameManager.instance.simulationDurationTime || GameManager.instance.endSimulation == true)
         {
             minutesCount = 0;
-            GameManager.instance.endGame = false;
-            GameManager.instance.LoadLevel("EndScene");
+            GameManager.instance.endSimulation = false;
+            GameManager.instance.LoadLevel("StatsScene");
             Resources.UnloadUnusedAssets(); //removes unused assets to free memory
         }
     }

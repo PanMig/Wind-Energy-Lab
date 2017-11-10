@@ -11,34 +11,30 @@ public class TurbineSpawnManager : MonoBehaviour
     [Space]
     [Header("Counters")]
     public float posIncrement;
-    public int numberOfTurbines = 0;
     public int numberOfTurbinesOperating = 0;
-    private int maxNumberOfTurbines ; //public to be changed from the inspector
+    public int numberOfDamagedTurbines = 0;
 
 
     void Awake()
     {
-        maxNumberOfTurbines = TurbineSelector.numberOfTurbines;
-        if (maxNumberOfTurbines == 0) maxNumberOfTurbines = 10;
-    }
-
-    void Update()
-    {
+        if (GameManager.instance.maxNumberOfTurbines == 0) GameManager.instance.maxNumberOfTurbines = 10;
         SpawnTurbines();
     }
 
+
     void SpawnTurbines()
     {
-        if (numberOfTurbines < maxNumberOfTurbines)
+        for (int i = 0; i < GameManager.instance.maxNumberOfTurbines; i++)
         {
-            for (int i = 0; i < maxNumberOfTurbines; i++)
-            {
-                spawnPoint.position = new Vector3(spawnPoint.position.x +
-                posIncrement, spawnPoint.position.y, spawnPoint.position.z);
-                Instantiate(turbinePrefab, spawnPoint.position, spawnPoint.rotation); // adds turbines to the specified transform point (spawnPoint).
-                numberOfTurbines++;
-            }
+            spawnPoint.position = new Vector3(spawnPoint.position.x +
+            posIncrement, spawnPoint.position.y, spawnPoint.position.z);
+            Instantiate(turbinePrefab, spawnPoint.position, spawnPoint.rotation); // adds turbines to the specified transform point (spawnPoint).
         }
+    }
 
+
+    public int GetNumOfTurbinesOperating()
+    {
+        return numberOfTurbinesOperating;
     }
 }

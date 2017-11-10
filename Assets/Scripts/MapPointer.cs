@@ -11,23 +11,16 @@ public class MapPointer : MonoBehaviour {
     [Space]
     public Sprite[] pointerSprites;
 	SpriteRenderer spriteRend;
-    LevelManager levelManager;
-    private Vector2 spritePos;
     private Vector2 panelPos;
     private Vector3 mousePos;
 
-    private GameManager gm;
     [SerializeField] private int cost;
     [SerializeField] private int subAreaType;
 
     void Start()
 	{
-        gm = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 		spriteRend = GetComponent<SpriteRenderer>();
 		this.spriteRend.sprite = pointerSprites[0];
-        
-        //get sprite position
-        spritePos = GetComponent<Transform>().position;
 
         //panel 
         textPro = infoPanel.GetComponentInChildren<TextMeshProUGUI>();
@@ -50,7 +43,8 @@ public class MapPointer : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        gm.IncrementCost(cost);
+        GameManager.instance.IncrementCost(cost);
+        GameManager.instance.areaInstallationCost = GameManager.cost;
         GameManager.instance.SetSubArea(subAreaType);
         GameManager.instance.LoadLevel("TurbineSelection");
     }

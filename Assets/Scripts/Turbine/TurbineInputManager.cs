@@ -7,7 +7,7 @@ public class TurbineInputManager : MonoBehaviour
     public Canvas PopUpCanvas;
     private Text popUpText;
     private Image backgroundImage;
-    private HighlightObject outliner; //used to highlight the turbine with a color on mouse over
+    private HighlightObject materializer; //used to highlight the turbine with a color on mouse over (sets differrent materials).
     private TurbineController turbine;
     private bool displayPopUpText = false;
     private Vector2 mousePos;
@@ -16,7 +16,7 @@ public class TurbineInputManager : MonoBehaviour
     void Start()
     {
         turbine = GetComponent<TurbineController>();
-        outliner = GetComponentInChildren<HighlightObject>();
+        materializer = GetComponentInChildren<HighlightObject>();
         InitializePopUpText();
     }
 
@@ -29,6 +29,18 @@ public class TurbineInputManager : MonoBehaviour
         }
     }
 
+    //when mouse is hovered over a wind turbine the turbine is highlighted.
+    void HighlightTurbine(bool isDamaged)
+    {
+        if (isDamaged == false)
+        {
+            materializer.SetUnDamagedMat(displayPopUpText);
+        }
+        else
+        {
+            materializer.SetDamagedMat(displayPopUpText);
+        }
+    }
 
     //when user clicks the turbine.
     void OnMouseDown()
@@ -46,21 +58,7 @@ public class TurbineInputManager : MonoBehaviour
         //clicks while turbine is damaged.
         else if (turbine.IsDamaged() == true)
         {
-            turbine.repairTurbine();
-        }
-    }
-
-
-    //when mouse is hovered over a wind turbine the turbine is highlighted.
-    void HighlightTurbine(bool isDamaged)
-    {
-        if (isDamaged == false)
-        {
-            outliner.SetUnDamagedMat(displayPopUpText);
-        }
-        else
-        {
-            outliner.SetDamagedMat(displayPopUpText);
+            turbine.RepairTurbine();
         }
     }
 
@@ -120,7 +118,7 @@ public class TurbineInputManager : MonoBehaviour
         }
     }
 
-    // used to move the text next to the selected turbine.
+    // Used to move the text next to the selected turbine.
     void PlaceCanvasToMouse()
     {
         mousePos = Input.mousePosition;

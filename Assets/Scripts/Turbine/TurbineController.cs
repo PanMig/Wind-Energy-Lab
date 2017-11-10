@@ -8,28 +8,30 @@ public class TurbineController : MonoBehaviour
     private TurbineSpawnManager turbineSpawner;
     private TurbineInputManager inputManager;
     private Simulation simulator;
-    private bool lowWindDisabled = false; //shows if turbine should stop rotating when wind under 4 m/s.
     private PauseSimulation gameManager;
-    private bool scriptsEnabled = true;
     private TurbineDamage turbineDmg;
     private TurbineRepair repair;
-    public static int damagedTurbines = 0;
+    private Damager damager;
+    private bool lowWindDisabled = false; //shows if turbine should stop rotating when wind under 4 m/s.        
+    private bool scriptsEnabled = true; //used in the update function to minimize the times it calls the pause function.
 
 
-    // Use this for initialization
     void Start()
     {
+        /* "Gameobject.Find" is used cause there are many turbines gameobjects in the scene and their properties musr be inserted through script.
+        We use FindWithTag to improve perfomance by minimizing the searching operations. */
+
         inputManager = GetComponent<TurbineInputManager>();
         turbineAnim = GetComponentInChildren<TurbineAnimCtrl>();
         turbineSpawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<TurbineSpawnManager>();
         simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
         gameManager = GameObject.FindGameObjectWithTag("Simulator").GetComponent<PauseSimulation>();
+        damager = GameObject.FindGameObjectWithTag("Damager").GetComponent<Damager>();
         turbineDmg = GetComponent<TurbineDamage>();
         repair = GetComponent<TurbineRepair>();
     }
 
 
-    //updates every frame (do not insert callbacks without conditions, caused the will be called every frame and will decrease perfromance).
     void Update()
     {
         //checks if game is paused or not
@@ -44,40 +46,8 @@ public class TurbineController : MonoBehaviour
 
             //sets the speed of the rotation based on the wind rotation
             turbineAnim.SetRotationSpeed(simulator.currentWindSpeed);
-
-            //used for disables rotation when wind is low
-            if (simulator.currentWindSpeed < 3 && IsRotating() == true)
-            {
-                //DisableOnWindLow();
-            }
-            if (simulator.currentWindSpeed > 3 && IsRotating() == false && lowWindDisabled == true)
-            {
-                //EnableOnWindHigh();
-            }
         }
     }
-
-
-    /* 
-	make turbines stop rotating when wind is below 4 m/s.
-	*/
-    public void DisableOnWindLow()
-    {
-        DisableTurbine();
-        lowWindDisabled = true;
-    }
-
-
-    /* 
-	make turbines rotate again when wind is not below
-	the low speed.
-	*/
-    public void EnableOnWindHigh()
-    {
-        EnableTurbine();
-        lowWindDisabled = false;
-    }
-
 
     public bool IsRotating()
     {
@@ -94,6 +64,7 @@ public class TurbineController : MonoBehaviour
 
         turbineAnim.DisableRotation();
         turbineSpawner.numberOfTurbinesOperating--;
+        damager.RemoveTurbineFromList(gameObject); //removes the turbine game object from the list of "ready for damage" list.
     }
 
     public void EnableTurbine()
@@ -103,20 +74,10 @@ public class TurbineController : MonoBehaviour
 
         turbineAnim.EnableRotation();
         turbineSpawner.numberOfTurbinesOperating++;
+        damager.AddTurbineToList(gameObject); //adds the turbine game object to the list of "ready for damage" list.
     }
 
     #endregion
-
-    public int getTotalNumberOfTurbines()
-    {
-        return turbineSpawner.numberOfTurbines;
-    }
-
-    public int getNumberOfTurbinesOperating()
-    {
-        return turbineSpawner.numberOfTurbinesOperating;
-    }
-
 
     #region Disable scripts on pause
 
@@ -154,7 +115,6 @@ public class TurbineController : MonoBehaviour
 
     #endregion
 
-
     #region Damage / repair
 
     public bool IsDamaged()
@@ -162,27 +122,44 @@ public class TurbineController : MonoBehaviour
         return turbineDmg.isDamaged;
     }
 
-    public void setDamage(bool isDamaged)
+    public void SetDamage(bool isDamaged)
     {
         turbineDmg.isDamaged = isDamaged;
     }
 
-    public void repairTurbine()
+    public void RepairTurbine()
     {
         repair.turbineRepair();
-        damagedTurbines--;
     }
 
-    public bool isRepaired()
+    public bool IsRepaired()
     {
         return repair.isRepaired;
     }
 
-    public void setRepair(bool repairBool)
+    //used only when a turbine gets damaged so to be able to be repaired again.
+    public void SetRepair(bool repairBool)
     {
         repair.isRepaired = repairBool;
     }
     #endregion
 
+
+    // OBSOLETE FUNCTION : not destroyed cause they may be used again.
+
+    // make turbines stop rotating when wind is below 4 m/s.
+    public void DisableOnWindLow()
+    {
+        DisableTurbine();
+        lowWindDisabled = true;
+    }
+
+
+    // make turbines rotate again when wind is not below the low speed.
+    public void EnableOnWindHigh()
+    {
+        EnableTurbine();
+        lowWindDisabled = false;
+    }
 
 }

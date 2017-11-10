@@ -1,48 +1,45 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class PlayerStatistics : MonoBehaviour {
+public class PlayerStatistics : MonoBehaviour
+{
 
-	private Simulation simulator;
-	public static int underPowerSec;
-    public static int correctPowerSec;
-    public static int overPowerSec;
-    public static float profitAmount = 0;
+    private Simulation simulator;
 
     // Use this for initialization
-    void Start () {
-        if (SceneManager.GetActiveScene().name != "EndScene")
-        {
-            simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
-            InitializeCountValues();
-            InvokeRepeating("CalculatePowerUsageStatistics",0.0f, 1.0f);
-        }
-	}
-
-	void InitializeCountValues() {
-        underPowerSec = 0;
-		correctPowerSec = 0;
-        overPowerSec = 0;
+    void Start()
+    {
+        simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
+        InitializeCountValues();
+        InvokeRepeating("CalculatePowerUsageStatistics", 0.0f, 1.0f);
     }
 
-	/*
+    void InitializeCountValues()
+    {
+        GameManager.instance.underPowerSec = 0;
+        GameManager.instance.correctPowerSec = 0;
+        GameManager.instance.overPowerSec = 0;
+        GameManager.instance.profit = 0;
+    }
+
+    /*
 	It holds to static variables the seconds that the player has spent in each power output scenario respectively.
 	These values are later used in the end scene to calculate and display the usage of the wind farm, concerning the time spent in each scenario. 
 	*/
- 	void CalculatePowerUsageStatistics(){
+    void CalculatePowerUsageStatistics()
+    {
         if (string.Equals(simulator.powerUsage, "-Under power"))
         {
-            underPowerSec++;
+            GameManager.instance.underPowerSec++;
         }
         else if (string.Equals(simulator.powerUsage, "-Correct power"))
         {
-            correctPowerSec++;
+            GameManager.instance.correctPowerSec++;
         }
         else
         {
-            overPowerSec++;
-            profitAmount += simulator.totalPowerOutput - simulator.currentPowerReqs;
+            GameManager.instance.overPowerSec++;
+            GameManager.instance.profit += simulator.totalPowerOutput - simulator.currentPowerReqs;
         }
-	}
+    }
 
 }

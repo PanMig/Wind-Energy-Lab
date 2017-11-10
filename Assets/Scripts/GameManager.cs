@@ -16,7 +16,16 @@ public class GameManager : MonoBehaviour
 
     //simulation information
     public int simulationDurationTime;
-    public bool endGame = false;
+    public int maxNumberOfTurbines = 0;
+    public bool endSimulation = false;
+
+    //usage statistics
+    public int underPowerSec;
+    public int correctPowerSec;
+    public int overPowerSec;
+    public float profit = 0;
+    public float score = 0;
+    public int areaInstallationCost = 0; // defines the cost sum of area and subarea.
 
     //Area information
     public enum MainArea { mountains, fields, seashore }
@@ -25,14 +34,13 @@ public class GameManager : MonoBehaviour
     public enum SubArea { archaiological, HVLines, other }
     public SubArea SubAreachoice;
 
-    //TurbineTypeInformation
+    //Turbine Type Information
     [SerializeField] private TurbineSelector.TurbineType type;
     public TurbineSelector.TurbineType Type { get { return type; } set { type = value; } }
 
     [SerializeField] private int windclass;
     public int Windclass { get { return windclass; } set { windclass = value ; } }
 
-    private bool printMsg = false;
 
 
     void Awake()
@@ -60,9 +68,9 @@ public class GameManager : MonoBehaviour
         playerSchoolName = null;
     }
 
-    public void EndGame()
+    public void EndSimulation()
     {
-        instance.endGame = true;
+        instance.endSimulation = true;
     }
 
     #region AreaManagement
@@ -71,17 +79,14 @@ public class GameManager : MonoBehaviour
     {
         if (choice == 1)
         {
-            cost = 3;
             instance.Areachoice = MainArea.mountains;
         }
         else if (choice == 2)
         {
-            cost = 2;
             instance.Areachoice = MainArea.fields;
         }
         else
         {
-            cost = 1;
             instance.Areachoice = MainArea.seashore;
         }
     }
@@ -109,23 +114,6 @@ public class GameManager : MonoBehaviour
     public void IncrementCost(int areaCost)
     {
         cost += areaCost;
-    }
-
-
-    public void ReArrangeCost(MainArea choice)
-    {
-        if (choice == MainArea.mountains)
-        {
-            cost = 3;
-        }
-        else if (choice == MainArea.fields)
-        {
-            cost = 2;
-        }
-        else
-        {
-            cost = 1;
-        }
     }
 
     #endregion
@@ -177,16 +165,12 @@ public class GameManager : MonoBehaviour
     public void ReplayGame()
     {
 
-        if (replayIterations <= 3)
+        if (replayIterations < 3)
         {
             instance.LoadSubAreaLevel();
             replayIterations++;
-            ReArrangeCost(Areachoice);
+            cost = 0;
 
-        }
-        else
-        {
-            instance.printMsg = true;
         }
     }
 
@@ -220,14 +204,5 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
-
-    //used only for displaying the replay iterations message.
-    void OnGUI()
-    {
-        if (printMsg)
-        {
-            GUI.Label(new Rect(Screen.width / 2 - 500, Screen.height - 100, 1500, 100), "<color=white><size=50>Maximum replay iterations has been reached</size></color>");
-        }
-    }
 
 }

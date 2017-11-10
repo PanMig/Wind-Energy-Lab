@@ -36,5 +36,17 @@ EditorBuildSettings:
     path: Assets/scenes/TurbineSelection.unity
     guid: 9d5322024ea4fa8449d478021cc984c7
   - enabled: 1
-    path: Assets/scenes/EndScene.unity
+    path: Assets/scenes/Stage2(Seashore).unity
+    guid: 0f5805b9a1e959c43a5f4641ee6c1e8a
+  - enabled: 1
+    path: Assets/scenes/StatsScene.unity
     guid: 71da6991e2934ba49995d7af139e61d2
+  - enabled: 1
+    path: Assets/scenes/Stage3(Seashore).unity
+    guid: 8a4cd63e20342c9458c03065f21a0bcd
+  - enabled: 1
+    path: Assets/scenes/SurprizeScene.unity
+    guid: d98ee3b48dfb4db48888aaa0917d6bf8
+  - enabled: 1
+    path: Assets/scenes/EndScene.unity
+    guid: 14fb8320556b35b4f88655170971f0a7
