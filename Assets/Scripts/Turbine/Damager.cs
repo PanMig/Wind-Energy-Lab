@@ -4,7 +4,6 @@ using UnityEngine;
 public class Damager : MonoBehaviour {
 
     [SerializeField] private List<GameObject> rotatingTurbines = new List<GameObject>();
-    //[SerializeField] private GameObject[] turbiness = new GameObject[20];
     private TurbineSpawnManager spawner;
     int randomCell = 0;
 

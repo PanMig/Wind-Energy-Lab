@@ -35,7 +35,7 @@ public class SurprizeSceneCtrl : MonoBehaviour {
     public void Scenario1()
     {
         text.text = "Five years have passed since the establishment of your wind farm." +
-                    "The power consumption of the village is lower than initially planned due to most of its residents left.\n" +
+                    " The power consumption of the village is lower than initially planned due to most of its residents left.\n" +
                     "What do you consider to be the most appropriate option from the list below?\n" +
                     "Remember that based on the selected option a negative or positive score is calculated respectively.";
 
@@ -47,7 +47,7 @@ public class SurprizeSceneCtrl : MonoBehaviour {
 
     public void Scenario2()
     {
-        text.text = "In this scenario things had gone opposite. The power consumption of the village area" +
+        text.text = "In this scenario things had gone opposite. The power consumption of the village " +
                     "has been increased because of a large hotel resort establishement in the area.\nHow you will react?";
 
         title.text = "Scenario 2";

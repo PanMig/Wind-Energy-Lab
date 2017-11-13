@@ -83,19 +83,19 @@ public class DisplayStatistics : MonoBehaviour {
                 if (GameManager.instance.Windclass == 1) GameManager.instance.score += 1;
                 if (GameManager.instance.areaInstallationCost <= 3) GameManager.instance.score += 5;
                 else if (GameManager.instance.areaInstallationCost > 3 && GameManager.instance.areaInstallationCost <= 5) GameManager.instance.score += 3;
-                else if (GameManager.instance.areaInstallationCost >= 3) GameManager.instance.score += 2;
+                else if (GameManager.instance.areaInstallationCost > 5) GameManager.instance.score += 2;
                 break;
             case (GameManager.MainArea.fields):
                 if (GameManager.instance.Windclass == 2) GameManager.instance.score += 1;
                 if (GameManager.instance.areaInstallationCost <= 2) GameManager.instance.score += 5;
                 else if (GameManager.instance.areaInstallationCost > 2 && GameManager.instance.areaInstallationCost <= 4) GameManager.instance.score += 3;
-                else if (GameManager.instance.areaInstallationCost > 4 && GameManager.instance.areaInstallationCost <= 6) GameManager.instance.score += 2;
+                else if (GameManager.instance.areaInstallationCost > 4 ) GameManager.instance.score += 2;
                 break;
             case (GameManager.MainArea.seashore):
                 if (GameManager.instance.Windclass == 3) GameManager.instance.score += 1;
                 if (GameManager.instance.areaInstallationCost <= 3) GameManager.instance.score += 5;
                 else if (GameManager.instance.areaInstallationCost > 3 && GameManager.instance.areaInstallationCost <= 5) GameManager.instance.score += 3;
-                else if (GameManager.instance.areaInstallationCost > 5 && GameManager.instance.areaInstallationCost <= 7) GameManager.instance.score += 2;
+                else if (GameManager.instance.areaInstallationCost > 5) GameManager.instance.score += 2;
                 break;
 
         }

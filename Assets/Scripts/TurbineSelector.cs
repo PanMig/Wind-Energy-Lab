@@ -1,23 +1,20 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class TurbineSelector : MonoBehaviour
 {
-
-    //public static int numberOfTurbines = 0;
     private int numberOfTurbines = 0;
     private int availiableSpace;
     private int rotorDiameter;
+    [SerializeField] private int turbineCost = 0;
     public enum TurbineType { A, B, C, D, E, F, G, H, I }
-    public Text text; //displays msg on screen. 
+    [SerializeField] private GameObject btn;
 
-
-    private void Start()
+    private void Awake()
     {
         availiableSpace = 2000;
         GameManager.instance.Windclass = 1;
         rotorDiameter = 128;
-        text.enabled = false;
+        btn.SetActive(false);
     }
 
     public void SetWindClass(int index)
@@ -36,68 +33,80 @@ public class TurbineSelector : MonoBehaviour
         {
             availiableSpace = 3000;
             GameManager.instance.Windclass = 3;
-
         }
     }
 
 
     public void SetRotorDiameter(int index)
     {
-        if (index == 0 || index == 1)
+        btn.SetActive(true);
+        if (GameManager.instance.Windclass == 1)
         {
-            rotorDiameter = 128;
-            GameManager.cost += 5;
-            GameManager.instance.Type = TurbineType.A;
+            if (index == 1)
+            {
+                rotorDiameter = 128;
+                turbineCost = 5;
+                GameManager.instance.Type = TurbineType.A;
+            }
+            else if (index == 2)
+            {
+                rotorDiameter = 90;
+                turbineCost = 3;
+                GameManager.instance.Type = TurbineType.B;
+            }
+            else if (index == 3)
+            {
+                rotorDiameter = 52;
+                turbineCost = 1;
+                GameManager.instance.Type = TurbineType.C;
+            }
         }
-        else if (index == 2)
+        else if (GameManager.instance.Windclass == 2)
         {
-            rotorDiameter = 90;
-            GameManager.cost += 3;
-            GameManager.instance.Type = TurbineType.B;
+            if (index == 1)
+            {
+                rotorDiameter = 90;
+                turbineCost = 3;
+                GameManager.instance.Type = TurbineType.D;
+            }
+            else if (index == 2)
+            {
+                rotorDiameter = 90;
+                turbineCost = 2;
+                GameManager.instance.Type = TurbineType.E;
+            }
+            else if (index == 3)
+            {
+                rotorDiameter = 60;
+                turbineCost = 1;
+                GameManager.instance.Type = TurbineType.F;
+            }
         }
-        else if (index == 3)
+        else if (GameManager.instance.Windclass == 3)
         {
-            rotorDiameter = 52;
-            GameManager.cost += 1;
-            GameManager.instance.Type = TurbineType.C;
+            if (index == 1)
+            {
+                rotorDiameter = 126;
+                turbineCost = 4;
+                GameManager.instance.Type = TurbineType.G;
+            }
+            else if (index == 2)
+            {
+                rotorDiameter = 90;
+                turbineCost = 2;
+                GameManager.instance.Type = TurbineType.H;
+            }
+            else if (index == 3)
+            {
+                rotorDiameter = 60;
+                turbineCost = 1;
+                GameManager.instance.Type = TurbineType.I;
+            }
         }
-        else if (index == 4)
+        if (index == 0)
         {
-            rotorDiameter = 90;
-            GameManager.cost += 3;
-            GameManager.instance.Type = TurbineType.D;
+            btn.SetActive(false);
         }
-        else if (index == 5)
-        {
-            rotorDiameter = 90;
-            GameManager.cost += 2;
-            GameManager.instance.Type = TurbineType.E;
-        }
-        else if (index == 6)
-        {
-            rotorDiameter = 60;
-            GameManager.cost += 1;
-            GameManager.instance.Type = TurbineType.F;
-        }
-        else if(index == 7)
-        {
-            rotorDiameter = 126;
-            GameManager.cost += 4;
-            GameManager.instance.Type = TurbineType.G;
-        }
-        else if (index == 8)
-        {
-            rotorDiameter = 90;
-            GameManager.cost += 2;
-            GameManager.instance.Type = TurbineType.H;
-        }
-        else if (index == 9)
-        {
-            rotorDiameter = 60;
-            GameManager.cost += 1;
-            GameManager.instance.Type = TurbineType.I;
-        }
-
     }
 
     public void CalculateMaxNumberOfTurbines()
@@ -105,44 +114,8 @@ public class TurbineSelector : MonoBehaviour
         double number = availiableSpace / (3 * rotorDiameter);
         numberOfTurbines = (int)number;
         GameManager.instance.maxNumberOfTurbines = numberOfTurbines;
+        GameManager.cost = GameManager.instance.areaInstallationCost + turbineCost;
+        // load next level
+        GameManager.instance.LoadSimulationLevel();
     }
-
-    // checks if the turbine choosen belongs to the correct wind class type.
-    public void CheckPlayersSubmission()
-    {
-        if (GameManager.instance.Windclass == 1)
-        {
-            if (GameManager.instance.Type == TurbineType.A || GameManager.instance.Type == TurbineType.B || GameManager.instance.Type == TurbineType.C)
-            {
-                GameManager.instance.LoadSimulationLevel();
-            }
-            else
-            {
-                text.enabled = true;
-            }
-        }
-        else if (GameManager.instance.Windclass == 2)
-        {
-            if (GameManager.instance.Type == TurbineType.D || GameManager.instance.Type == TurbineType.E || GameManager.instance.Type == TurbineType.F)
-            {
-                GameManager.instance.LoadSimulationLevel();
-            }
-            else
-            {
-                text.enabled = true;
-            }
-        }
-        else if (GameManager.instance.Windclass == 3)
-        {
-            if (GameManager.instance.Type == TurbineType.G || GameManager.instance.Type == TurbineType.H || GameManager.instance.Type == TurbineType.I)
-            {
-                GameManager.instance.LoadSimulationLevel();
-            }
-            else
-            {
-                text.enabled = true;
-            }
-        }
-    }
-
 }
