@@ -17,6 +17,7 @@ public class TurbineRepair : MonoBehaviour {
 			turbine.SetDamage(false);
 			turbine.EnableTurbine();
 			isRepaired = true;
+
 		}
 	}
 }

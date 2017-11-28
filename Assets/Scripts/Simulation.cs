@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using goedle_sdk;
 
 
 public class Simulation : MonoBehaviour
@@ -97,6 +98,7 @@ public class Simulation : MonoBehaviour
     {
         CalculateTime();
         EndSimulation();
+        GoedleAnalytics.track("game.state", "currentWindSpeed", currentWindSpeed.ToString());
     }
 
     //it is not called every frame, but every fixed frame (helps performance).

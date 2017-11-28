@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using goedle_sdk;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
         playerName = null;
         playerSurname = null;
         playerSchoolName = null;
+        GoedleAnalytics.track("launch");
     }
 
     public void EndSimulation()
@@ -181,6 +184,7 @@ public class GameManager : MonoBehaviour
     public void SetName(string text)
     {
         instance.playerName = text;
+        GoedleAnalytics.trackTraits("first_name",instance.playerName);
     }
     public string GetName()
     {
@@ -197,6 +201,7 @@ public class GameManager : MonoBehaviour
     public void SetSchoolName(string text)
     {
         instance.playerSchoolName = text;
+        GoedleAnalytics.track("group", "school", instance.playerSchoolName);
     }
     public string ReturnSchoolName()
     {
