@@ -66,7 +66,6 @@ public class TurbineController : MonoBehaviour
         turbineAnim.DisableRotation();
         turbineSpawner.numberOfTurbinesOperating--;
         damager.RemoveTurbineFromList(gameObject); //removes the turbine game object from the list of "ready for damage" list.
-        GoedleAnalytics.track("disable.turbine","TestTurbine");
     }
 
     public void EnableTurbine()

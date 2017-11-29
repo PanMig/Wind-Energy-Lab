@@ -428,20 +428,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 90407057}
   m_TextComponent: {fileID: 2147237573}
   m_Placeholder: {fileID: 520857995}
-  m_ContentType: 5
+  m_ContentType: 4
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 6
+  m_KeyboardType: 1
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 4
+  m_CharacterValidation: 3
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114477574951747836, guid: 1be462b9370ba9d4bb42c35b88dd1db3,
           type: 2}
-        m_MethodName: SetSurname
+        m_MethodName: SetClass
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1729,7 +1729,6 @@ GameObject:
   - component: {fileID: 2017143698}
   - component: {fileID: 2017143697}
   - component: {fileID: 2017143696}
-  - component: {fileID: 2017143695}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1737,13 +1736,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2017143695
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2017143694}
-  m_Enabled: 1
 --- !u!124 &2017143696
 Behaviour:
   m_ObjectHideFlags: 0

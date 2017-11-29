@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using goedle_sdk;
 
 public class DisplayStatistics : MonoBehaviour {
 
@@ -35,6 +36,8 @@ public class DisplayStatistics : MonoBehaviour {
 	
 	void DisplayUsage()
     {
+        GoedleAnalytics.track("show.statistics");
+
         float sumOfTime = GameManager.instance.underPowerSec + GameManager.instance.correctPowerSec + GameManager.instance.overPowerSec;
         underPowerPercent = (GameManager.instance.underPowerSec / sumOfTime) * 100.0f;
         correctPowerPercent = (GameManager.instance.correctPowerSec / sumOfTime) * 100.0f;
@@ -46,7 +49,7 @@ public class DisplayStatistics : MonoBehaviour {
 
     void DisplayProfit()
     {
-        profit.text = "You could sell the excess of power your Wind Farm generated and earn  " + (GameManager.instance.profit * 0.1f).ToString("F2") + " $ "+
+        profit.text = "You could sell the excess of power your Wind Farm generated and earn  " + (GameManager.instance.profit * 0.001f).ToString("F2") + " $ "+
             "per year of operation."; 
     }
 

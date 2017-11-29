@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using goedle_sdk;
 
 public class TurbineInputManager : MonoBehaviour
 {
@@ -49,16 +50,20 @@ public class TurbineInputManager : MonoBehaviour
         if (turbine.IsRotating() == true && turbine.IsDamaged() == false)
         {
             turbine.DisableTurbine();
+            GoedleAnalytics.track("disable.turbine");
+
         }
         //clicks while is not rotating.
         else if (turbine.IsRotating() == false && turbine.IsDamaged() == false)
         {
             turbine.EnableTurbine();
+            GoedleAnalytics.track("enable.turbine");
         }
         //clicks while turbine is damaged.
         else if (turbine.IsDamaged() == true)
         {
             turbine.RepairTurbine();
+            GoedleAnalytics.track("repair.turbine");
         }
     }
 

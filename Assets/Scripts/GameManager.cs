@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     //PLayer Information
     public string playerName;
-    public string playerSurname;
+    public string playerClass;
     public string playerSchoolName;
 
     //simulation information
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         playerName = null;
-        playerSurname = null;
+        playerClass = null;
         playerSchoolName = null;
         GoedleAnalytics.track("launch");
     }
@@ -125,6 +125,8 @@ public class GameManager : MonoBehaviour
 
     public void LoadSimulationLevel()
     {
+        GoedleAnalytics.track("start.simulation");
+
         if(instance.Areachoice == MainArea.mountains)
         {
             SceneManager.LoadScene("Stage3(Mountains)");
@@ -167,13 +169,11 @@ public class GameManager : MonoBehaviour
 
     public void ReplayGame()
     {
-
         if (replayIterations < 3)
         {
             instance.LoadSubAreaLevel();
             replayIterations++;
             cost = 0;
-
         }
     }
 
@@ -190,13 +190,14 @@ public class GameManager : MonoBehaviour
     {
         return instance.playerName;
     }
-    public void SetSurname(string text)
+    public void SetClass(string text)
     {
-        instance.playerSurname = text;
+        instance.playerClass = text;
+        GoedleAnalytics.track("group", "class", instance.playerClass);
     }
-    public string GetSurname()
+    public string GetClass()
     {
-        return instance.playerSurname;
+        return instance.playerClass;
     }
     public void SetSchoolName(string text)
     {

@@ -1,5 +1,6 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
+using goedle_sdk;
 
 public class ConfigMenu : MonoBehaviour {
 
@@ -14,6 +15,7 @@ public class ConfigMenu : MonoBehaviour {
 	public void EnableCanvas()
     {
         canvas.enabled = true;
+        GoedleAnalytics.track("press.uiButton", "configure Button");
     }
 
     public void DisableCanvas()

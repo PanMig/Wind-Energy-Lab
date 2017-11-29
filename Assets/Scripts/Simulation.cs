@@ -72,7 +72,9 @@ public class Simulation : MonoBehaviour
     private float[] turbineOutput_H = {0.0f, 0.03f, 0.06f, 0.13f, 0.25f, 0.06f, 0.13f, 0.25f, 0.06f, 0.13f, 0.5f, 1.0f, 2.0f, 2.0f, 2.0f, 2.0f };
     private float[] turbineOutput_I = {0.0f, 0.01f, 0.03f, 0.05f, 0.11f, 0.03f, 0.05f, 0.11f, 0.03f, 0.05f, 0.21f, 0.43f, 0.85f, 0.85f, 0.85f, 0.85f };
 
-
+    //used for analytics goodle.sdk
+    private float nextActionTime = 0.0f;
+    private float period = 10.0f;
 
 
 
@@ -98,7 +100,16 @@ public class Simulation : MonoBehaviour
     {
         CalculateTime();
         EndSimulation();
-        GoedleAnalytics.track("game.state", "currentWindSpeed", currentWindSpeed.ToString());
+        // Sending game state every 15 seconds
+        if (Time.time > nextActionTime)
+        {
+            nextActionTime += period;
+            GoedleAnalytics.track("game.state", "currentWindSpeed", currentWindSpeed.ToString());
+            GoedleAnalytics.track("game.state", "currentPowerReqs", currentPowerReqs.ToString());
+            GoedleAnalytics.track("game.state", "powerUsage", powerUsage.ToString());
+            GoedleAnalytics.track("game.state", "numberOfTurbines", GameManager.instance.maxNumberOfTurbines.ToString());
+            GoedleAnalytics.track("game.state", "numberOfTurbinesOperating", spawnManager.numberOfTurbinesOperating.ToString());
+        }
     }
 
     //it is not called every frame, but every fixed frame (helps performance).
