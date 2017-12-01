@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
     public static int cost = 0;
     public static int replayIterations = 0;
+    public static float score = 0;
 
     //PLayer Information
     public string playerName;
@@ -26,7 +27,7 @@ public class GameManager : MonoBehaviour
     public int correctPowerSec;
     public int overPowerSec;
     public float profit = 0;
-    public float score = 0;
+    
     public int areaInstallationCost = 0; // defines the cost sum of area and subarea.
 
     //Area information
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
 
     public void EndSimulation()
     {
+        GoedleAnalytics.track("press.uiButton", "exit Button");
         instance.endSimulation = true;
     }
 
@@ -83,14 +85,17 @@ public class GameManager : MonoBehaviour
         if (choice == 1)
         {
             instance.Areachoice = MainArea.mountains;
+            GoedleAnalytics.track("press.uiButton", "Mountains button");
         }
         else if (choice == 2)
         {
             instance.Areachoice = MainArea.fields;
+            GoedleAnalytics.track("press.uiButton", "Fields button");
         }
         else
         {
             instance.Areachoice = MainArea.seashore;
+            GoedleAnalytics.track("press.uiButton", "Seashore button");
         }
     }
 
@@ -125,19 +130,20 @@ public class GameManager : MonoBehaviour
 
     public void LoadSimulationLevel()
     {
-        GoedleAnalytics.track("start.simulation");
-
         if(instance.Areachoice == MainArea.mountains)
         {
             SceneManager.LoadScene("Stage3(Mountains)");
+            GoedleAnalytics.track("select.scene","Stage3(Mountains)");
         }
         else if(instance.Areachoice == MainArea.fields)
         {
             SceneManager.LoadScene("Stage3(Plains)");
+            GoedleAnalytics.track("select.scene", "Stage3(Plains)");
         }
         else if (instance.Areachoice == MainArea.seashore)
         {
             SceneManager.LoadScene("Stage3(Seashore)");
+            GoedleAnalytics.track("select.scene", "Stage3(Seashore)");
         }
     }
 
@@ -146,20 +152,24 @@ public class GameManager : MonoBehaviour
         if (instance.Areachoice == MainArea.mountains)
         {
             SceneManager.LoadScene("Stage2(Mountains)");
+            GoedleAnalytics.track("select.scene", "Stage2(Mountains)");
         }
         else if (instance.Areachoice == MainArea.fields)
         {
             SceneManager.LoadScene("Stage2(Plains)");
+            GoedleAnalytics.track("select.scene", "Stage2(Plains)");
         }
         else if (instance.Areachoice == MainArea.seashore)
         {
             SceneManager.LoadScene("Stage2(Seashore)");
+            GoedleAnalytics.track("select.scene", "Stage2(Seashore)");
         }
     }
 
     public void LoadLevel(string levelName)
     {
         SceneManager.LoadScene(levelName);
+        GoedleAnalytics.track("select.scene", levelName);
     }
 
     public void ExitGame()
@@ -169,6 +179,7 @@ public class GameManager : MonoBehaviour
 
     public void ReplayGame()
     {
+        GoedleAnalytics.track("press.uiButton", "replay Button");
         if (replayIterations < 3)
         {
             instance.LoadSubAreaLevel();

@@ -546,8 +546,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "<b>AREA-3</b>\n\nArea-3 is near seashore. It has easy access due to port.
-    Its windclass is Low (windspeeds 7.5 m/sec). Here you have 8 places to explore.\r\n\n<b>Characteristics
-    :</b>\n\n- Average Wind speed = 7.5 m/s\n\n- Access cost = 1"
+    Its windclass is Low (windspeeds 7.5 m/s). Here you have 8 places to explore.\r\n\n<b>Characteristics
+    :</b>\n\n- Average Wind speed = 7.5 m/s\n\n- Access cost = 1 $"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
@@ -616,7 +616,7 @@ MonoBehaviour:
     textComponent: {fileID: 477119010}
     characterCount: 215
     spriteCount: 0
-    spaceCount: 43
+    spaceCount: 44
     wordCount: 41
     linkCount: 0
     lineCount: 13
@@ -1692,8 +1692,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "<b>AREA-2</b>\n\nArea-2 is near plain land. It has not difficult access.
-    Its windclass is Medium (windspeeds 8.5 m/sec). Here you have 5 places to explore.\r\n\n<b>Characteristics
-    :</b>\n\n- Average Wind speed = 8.5 m/s\n\n- Access cost = 2"
+    Its windclass is Medium (windspeeds 8.5 m/s). Here you have 5 places to explore.\r\n\n<b>Characteristics
+    :</b>\n\n- Average Wind speed = 8.5 m/s\n\n- Access cost = 2 $"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
@@ -1762,7 +1762,7 @@ MonoBehaviour:
     textComponent: {fileID: 1648115946}
     characterCount: 217
     spriteCount: 0
-    spaceCount: 42
+    spaceCount: 43
     wordCount: 40
     linkCount: 0
     lineCount: 13
@@ -2503,7 +2503,7 @@ MonoBehaviour:
     - Average Wind speed = 10 m/s
 
 
-    - Access cost = 3'
+    - Access cost = 3 $'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
@@ -2570,9 +2570,9 @@ MonoBehaviour:
   m_margin: {x: -5.36409, y: 1.4838257, z: 0.6706543, w: 0.5312195}
   m_textInfo:
     textComponent: {fileID: 2063605924}
-    characterCount: 194
+    characterCount: 196
     spriteCount: 0
-    spaceCount: 39
+    spaceCount: 40
     wordCount: 35
     linkCount: 0
     lineCount: 12

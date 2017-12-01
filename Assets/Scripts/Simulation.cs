@@ -88,6 +88,7 @@ public class Simulation : MonoBehaviour
         startTime = Time.time;
         InitializeWindArray();
         InitializeOutputArray();
+        GoedleAnalytics.track("start.simulation");
     }
 
     void Awake()

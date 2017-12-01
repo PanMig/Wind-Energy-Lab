@@ -4,12 +4,13 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using goedle_sdk;
 
-public class DisplayStatistics : MonoBehaviour {
+public class DisplayStatistics : MonoBehaviour
+{
 
-	public Text usage;
-	public Text Cost;
-	public Text profit;
-	public Text score;
+    public Text usage;
+    public Text Cost;
+    public Text profit;
+    public Text score;
     private int underPowerMin;
     private int correctPowerMin;
     private int overPowerMin;
@@ -18,11 +19,12 @@ public class DisplayStatistics : MonoBehaviour {
     float overPowerPercent;
 
     // Use this for initialization
-    void Start () {
-		DisplayUsage();
-		DisplayCost();
+    void Start()
+    {
+        DisplayUsage();
+        DisplayCost();
         DisplayProfit();
-        if(SceneManager.GetActiveScene().name == "EndScene")
+        if (SceneManager.GetActiveScene().name == "EndScene")
         {
             DisplayScore();
         }
@@ -33,8 +35,8 @@ public class DisplayStatistics : MonoBehaviour {
         String cost = GameManager.cost.ToString();
         Cost.text = "Your Wind Farm costed : " + cost + " $";
     }
-	
-	void DisplayUsage()
+
+    void DisplayUsage()
     {
         GoedleAnalytics.track("show.statistics");
 
@@ -49,58 +51,76 @@ public class DisplayStatistics : MonoBehaviour {
 
     void DisplayProfit()
     {
-        profit.text = "You could sell the excess of power your Wind Farm generated and earn  " + (GameManager.instance.profit * 0.001f).ToString("F2") + " $ "+
-            "per year of operation."; 
+        profit.text = "You could sell the excess of power your Wind Farm generated and earn  " + (GameManager.instance.profit * 0.001f).ToString("F2") + " $ " +
+            "per year of operation.";
     }
 
     void DisplayScore()
     {
-        CalculateScore();
-        GameManager.instance.score = GameManager.instance.score * 10;
+        CalculateAreaScore();
+        CalculateTurbineScore();
 
-        //display score
-        score.text = "Your score mark is : " + GameManager.instance.score.ToString() + " %";
-    }
-
-
-    void CalculateScore()
-    {
-        // score based on usage
-        if (GameManager.instance.underPowerSec > GameManager.instance.correctPowerSec && GameManager.instance.underPowerSec > GameManager.instance.overPowerSec)
+        if (GameManager.score <= 4)
         {
-            GameManager.instance.score += 1;
+            score.text = "With the selections you made throughout the game you earned " + GameManager.score.ToString() +
+            " out of 10. Consider to read the instructions more carefully and try again.";
         }
-        else if (GameManager.instance.correctPowerSec > GameManager.instance.underPowerSec && GameManager.instance.correctPowerSec > GameManager.instance.overPowerSec)
+        else if (GameManager.score > 4 && GameManager.score <= 7)
         {
-            GameManager.instance.score += 3;
+            score.text = "Very good! With the selections you made throughout the game you earned " + GameManager.score.ToString() +
+            " out of 10. Surely you can improve your problem-solving skills by rethinking if there are better options you can choose next time.";
         }
         else
         {
-            GameManager.instance.score += 2;
+            score.text = "Congratulations! With the selections you made throughout the game you earned " + GameManager.score.ToString() +
+            " out of 10. This means that you have high problem-solving skills.";
         }
+        //display score
+    }
 
-        // score based on cost
-        switch (GameManager.instance.Areachoice)
+
+    void CalculateAreaScore()
+    {
+        //AREAS AND SUBAREAS
+        if (GameManager.instance.Areachoice == GameManager.MainArea.mountains)
         {
-            case GameManager.MainArea.mountains:
-                if (GameManager.instance.Windclass == 1) GameManager.instance.score += 1;
-                if (GameManager.instance.areaInstallationCost <= 3) GameManager.instance.score += 5;
-                else if (GameManager.instance.areaInstallationCost > 3 && GameManager.instance.areaInstallationCost <= 5) GameManager.instance.score += 3;
-                else if (GameManager.instance.areaInstallationCost > 5) GameManager.instance.score += 2;
-                break;
-            case (GameManager.MainArea.fields):
-                if (GameManager.instance.Windclass == 2) GameManager.instance.score += 1;
-                if (GameManager.instance.areaInstallationCost <= 2) GameManager.instance.score += 5;
-                else if (GameManager.instance.areaInstallationCost > 2 && GameManager.instance.areaInstallationCost <= 4) GameManager.instance.score += 3;
-                else if (GameManager.instance.areaInstallationCost > 4 ) GameManager.instance.score += 2;
-                break;
-            case (GameManager.MainArea.seashore):
-                if (GameManager.instance.Windclass == 3) GameManager.instance.score += 1;
-                if (GameManager.instance.areaInstallationCost <= 3) GameManager.instance.score += 5;
-                else if (GameManager.instance.areaInstallationCost > 3 && GameManager.instance.areaInstallationCost <= 5) GameManager.instance.score += 3;
-                else if (GameManager.instance.areaInstallationCost > 5) GameManager.instance.score += 2;
-                break;
+            GameManager.score += 2;
+            if (GameManager.instance.areaInstallationCost == 3) GameManager.score += 2;
+            else if (GameManager.instance.areaInstallationCost == 5) GameManager.score += 1;
+            else GameManager.score += 0;
+        }
+        else if (GameManager.instance.Areachoice == GameManager.MainArea.fields)
+        {
+            GameManager.score += 1;
+            if (GameManager.instance.areaInstallationCost == 2) GameManager.score += 2;
+            else if (GameManager.instance.areaInstallationCost == 4) GameManager.score += 1;
+            else GameManager.score += 0;
+        }
+        else
+        {
+            if (GameManager.instance.areaInstallationCost <= 3) GameManager.score += 2;
+            else if (GameManager.instance.areaInstallationCost == 5) GameManager.score += 1;
+            else GameManager.score += 0;
+        }
+    }
 
+    void CalculateTurbineScore()
+    {
+        if (GameManager.instance.Type == TurbineSelector.TurbineType.A ||
+            GameManager.instance.Type == TurbineSelector.TurbineType.D ||
+            GameManager.instance.Type == TurbineSelector.TurbineType.G)
+        {
+            GameManager.score += 2;
+        }
+        else if (GameManager.instance.Type == TurbineSelector.TurbineType.B ||
+                GameManager.instance.Type == TurbineSelector.TurbineType.E ||
+                GameManager.instance.Type == TurbineSelector.TurbineType.H)
+        {
+            GameManager.score += 1;
+        }
+        else
+        {
+            GameManager.score += 0;
         }
     }
 

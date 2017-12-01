@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using goedle_sdk;
+
 
 public class TurbineSelector : MonoBehaviour
 {
@@ -8,37 +11,43 @@ public class TurbineSelector : MonoBehaviour
     [SerializeField] private int turbineCost = 0;
     public enum TurbineType { A, B, C, D, E, F, G, H, I }
     [SerializeField] private GameObject btn;
+    [SerializeField] private Text windClassText;
 
     private void Awake()
     {
         availiableSpace = 2000;
-        GameManager.instance.Windclass = 1;
         rotorDiameter = 128;
         btn.SetActive(false);
+        SetWindClass();
     }
 
-    public void SetWindClass(int index)
+    public void SetWindClass()
     {
-        if (index == 0)
+        if (GameManager.instance.Areachoice == GameManager.MainArea.mountains)
         {
             availiableSpace = 2000;
             GameManager.instance.Windclass = 1;
+            windClassText.text = "Wind class I";
         }
-        else if (index == 1)
+        else if (GameManager.instance.Areachoice == GameManager.MainArea.fields)
         {
             availiableSpace = 2000;
             GameManager.instance.Windclass = 2;
+            windClassText.text = "Wind class II";
+
         }
         else
         {
             availiableSpace = 3000;
             GameManager.instance.Windclass = 3;
+            windClassText.text = "Wind class III";
         }
     }
 
 
     public void SetRotorDiameter(int index)
     {
+        GoedleAnalytics.track("press.uiButton", "Turbine dropdown");
         btn.SetActive(true);
         if (GameManager.instance.Windclass == 1)
         {
@@ -111,6 +120,7 @@ public class TurbineSelector : MonoBehaviour
 
     public void CalculateMaxNumberOfTurbines()
     {
+        GoedleAnalytics.track("press.uiButton", "turbine selection procced button");
         double number = availiableSpace / (3 * rotorDiameter);
         numberOfTurbines = (int)number;
         GameManager.instance.maxNumberOfTurbines = numberOfTurbines;

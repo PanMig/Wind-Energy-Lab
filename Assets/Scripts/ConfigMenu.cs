@@ -25,8 +25,16 @@ public class ConfigMenu : MonoBehaviour {
 
     public void SetsimulationSpeed(int index)
     {
-        if (index == 0) simulator.simulationSpeed = 1;
-        else if (index == 1) simulator.simulationSpeed = 3;
+        if (index == 0)
+        {
+            simulator.simulationSpeed = 1;
+            GoedleAnalytics.track("press.uiButton", "normal speed button");
+        }
+        else if (index == 1)
+        {
+             simulator.simulationSpeed = 3;
+            GoedleAnalytics.track("press.uiButton", "fast speed button");
+        }
         else simulator.simulationSpeed = 1;
     }
 }

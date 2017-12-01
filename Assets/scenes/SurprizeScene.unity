@@ -230,7 +230,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 11016636}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 228.285, z: 0}
+  m_LocalPosition: {x: -0.000030517578, y: 228.275, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1385015788}
@@ -239,8 +239,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 1.14e-13, y: 15.910004}
-  m_SizeDelta: {x: 148.47, y: 31.82}
+  m_AnchoredPosition: {x: -0.000030518, y: 15.9}
+  m_SizeDelta: {x: 294.7, y: 31.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &11016638
 MonoBehaviour:
@@ -358,7 +358,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 1
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -888,7 +888,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1385015787}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.27000046, y: -0.000005722046, z: 0}
+  m_LocalPosition: {x: 0.75, y: -0.000005722046, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 11016637}
@@ -896,8 +896,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.26999998, y: -0.000005275}
-  m_SizeDelta: {x: 120.29, y: 28}
+  m_AnchoredPosition: {x: 0.75, y: -0.000005275}
+  m_SizeDelta: {x: 241.73, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1385015789
 MonoBehaviour:
@@ -920,7 +920,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 22
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -931,7 +931,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: FUTURE SCENARIO 2
 --- !u!222 &1385015790
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1083,7 +1083,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 5
-          m_FloatArgument: 0.5
+          m_FloatArgument: 2
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2

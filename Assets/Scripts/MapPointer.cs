@@ -1,6 +1,8 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using goedle_sdk;
+
 
 public class MapPointer : MonoBehaviour {
 
@@ -47,6 +49,7 @@ public class MapPointer : MonoBehaviour {
         GameManager.instance.areaInstallationCost = GameManager.cost;
         GameManager.instance.SetSubArea(subAreaType);
         GameManager.instance.LoadLevel("TurbineSelection");
+        GoedleAnalytics.track("press.uiButton",gameObject.name);
     }
 
 
