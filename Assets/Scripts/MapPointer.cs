@@ -49,7 +49,7 @@ public class MapPointer : MonoBehaviour {
         GameManager.instance.areaInstallationCost = GameManager.cost;
         GameManager.instance.SetSubArea(subAreaType);
         GameManager.instance.LoadLevel("TurbineSelection");
-        GoedleAnalytics.track("press.uiButton",gameObject.name);
+        GoedleAnalytics.track("select.turbine",gameObject.name);
     }
 
 

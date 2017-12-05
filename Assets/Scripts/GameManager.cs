@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
 
     public void EndSimulation()
     {
-        GoedleAnalytics.track("press.uiButton", "exit Button");
+        GoedleAnalytics.track("end.simulation");
         instance.endSimulation = true;
     }
 
@@ -85,17 +85,17 @@ public class GameManager : MonoBehaviour
         if (choice == 1)
         {
             instance.Areachoice = MainArea.mountains;
-            GoedleAnalytics.track("press.uiButton", "Mountains button");
+            GoedleAnalytics.track("choose.environment", "mountains");
         }
         else if (choice == 2)
         {
             instance.Areachoice = MainArea.fields;
-            GoedleAnalytics.track("press.uiButton", "Fields button");
+            GoedleAnalytics.track("choose.environment", "fields");
         }
         else
         {
             instance.Areachoice = MainArea.seashore;
-            GoedleAnalytics.track("press.uiButton", "Seashore button");
+            GoedleAnalytics.track("choose.environment", "seashore");
         }
     }
 
@@ -133,17 +133,17 @@ public class GameManager : MonoBehaviour
         if(instance.Areachoice == MainArea.mountains)
         {
             SceneManager.LoadScene("Stage3(Mountains)");
-            GoedleAnalytics.track("select.scene","Stage3(Mountains)");
+            GoedleAnalytics.track("select.scene","stage3", "Mountains");
         }
         else if(instance.Areachoice == MainArea.fields)
         {
             SceneManager.LoadScene("Stage3(Plains)");
-            GoedleAnalytics.track("select.scene", "Stage3(Plains)");
+            GoedleAnalytics.track("select.scene", "stage3", "plains");
         }
         else if (instance.Areachoice == MainArea.seashore)
         {
             SceneManager.LoadScene("Stage3(Seashore)");
-            GoedleAnalytics.track("select.scene", "Stage3(Seashore)");
+            GoedleAnalytics.track("select.scene", "stage3", "seashore");
         }
     }
 
@@ -152,17 +152,17 @@ public class GameManager : MonoBehaviour
         if (instance.Areachoice == MainArea.mountains)
         {
             SceneManager.LoadScene("Stage2(Mountains)");
-            GoedleAnalytics.track("select.scene", "Stage2(Mountains)");
+            GoedleAnalytics.track("select.scene", "stage2", "Mountains");
         }
         else if (instance.Areachoice == MainArea.fields)
         {
             SceneManager.LoadScene("Stage2(Plains)");
-            GoedleAnalytics.track("select.scene", "Stage2(Plains)");
+            GoedleAnalytics.track("select.scene", "stage2", "Plains");
         }
         else if (instance.Areachoice == MainArea.seashore)
         {
             SceneManager.LoadScene("Stage2(Seashore)");
-            GoedleAnalytics.track("select.scene", "Stage2(Seashore)");
+            GoedleAnalytics.track("select.scene", "stage2", "Seashore");
         }
     }
 
@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
 
     public void ReplayGame()
     {
-        GoedleAnalytics.track("press.uiButton", "replay Button");
+        GoedleAnalytics.track("replay.simulation");
         if (replayIterations < 3)
         {
             instance.LoadSubAreaLevel();
