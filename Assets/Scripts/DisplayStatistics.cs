@@ -75,7 +75,6 @@ public class DisplayStatistics : MonoBehaviour
             score.text = "Congratulations! With the selections you made throughout the game you earned " + GameManager.score.ToString() +
             " out of 10. This means that you have high problem-solving skills.";
         }
-        //display score
     }
 
 
