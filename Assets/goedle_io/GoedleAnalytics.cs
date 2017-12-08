@@ -50,8 +50,6 @@ namespace goedle_sdk
         /*! \endcond */
 
 
-
-
         /// <summary>
         /// Tracks an event.
         /// </summary>

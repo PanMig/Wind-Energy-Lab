@@ -15,6 +15,12 @@ TagManager:
   - GameManager
   - PauseText
   - Damager
+  - access cost
+  - archaiological penalty
+  - natural penalty
+  - hv cost
+  - total
+  - subareaIndex
   layers:
   - Default
   - TransparentFX

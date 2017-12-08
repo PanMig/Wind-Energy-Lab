@@ -37,13 +37,14 @@ public class GameManager : MonoBehaviour
     public enum SubArea { archaiological, HVLines, other }
     public SubArea SubAreachoice;
 
+    public string Language;
+
     //Turbine Type Information
     [SerializeField] private TurbineSelector.TurbineType type;
     public TurbineSelector.TurbineType Type { get { return type; } set { type = value; } }
 
     [SerializeField] private int windclass;
     public int Windclass { get { return windclass; } set { windclass = value ; } }
-
 
 
     void Awake()
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
         playerName = null;
         playerClass = null;
         playerSchoolName = null;
+        LocalizationService.Instance.Localization = "Greek";
         GoedleAnalytics.track("launch");
     }
 
@@ -76,6 +78,18 @@ public class GameManager : MonoBehaviour
     {
         GoedleAnalytics.track("press.uiButton", "exit Button");
         instance.endSimulation = true;
+    }
+
+    public void SetLanguage(string lang)
+    {
+        if(lang.Equals("English"))
+        {
+            LocalizationService.Instance.Localization = "English";
+        }
+        else if (lang.Equals("Greek"))
+        {
+            LocalizationService.Instance.Localization = "Greek";
+        }
     }
 
     #region AreaManagement

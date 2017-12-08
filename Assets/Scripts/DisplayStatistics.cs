@@ -7,7 +7,9 @@ using goedle_sdk;
 public class DisplayStatistics : MonoBehaviour
 {
 
-    public Text usage;
+    public Text underPower;
+    public Text correctPower;
+    public Text overPower;
     public Text Cost;
     public Text profit;
     public Text score;
@@ -33,26 +35,24 @@ public class DisplayStatistics : MonoBehaviour
     private void DisplayCost()
     {
         String cost = GameManager.cost.ToString();
-        Cost.text = "Your Wind Farm costed : " + cost + " $";
+        Cost.text = cost + " $";
     }
 
     void DisplayUsage()
     {
-        GoedleAnalytics.track("show.statistics");
-
         float sumOfTime = GameManager.instance.underPowerSec + GameManager.instance.correctPowerSec + GameManager.instance.overPowerSec;
         underPowerPercent = (GameManager.instance.underPowerSec / sumOfTime) * 100.0f;
         correctPowerPercent = (GameManager.instance.correctPowerSec / sumOfTime) * 100.0f;
         overPowerPercent = (GameManager.instance.overPowerSec / sumOfTime) * 100.0f;
-        usage.text = "Under power : " + underPowerPercent.ToString("F2") + " % " + "\n" +
-                     "Correct power : " + correctPowerPercent.ToString("F2") + " % " + "\n" +
-                     "Over power : " + overPowerPercent.ToString("F2") + " % ";
+        underPower.text = underPowerPercent.ToString("F2") + " % ";
+        correctPower.text = correctPowerPercent.ToString("F2") + " % ";
+        overPower.text = overPowerPercent.ToString("F2") + " % ";
+
     }
 
     void DisplayProfit()
     {
-        profit.text = "You could sell the excess of power your Wind Farm generated and earn  " + (GameManager.instance.profit * 0.001f).ToString("F2") + " $ " +
-            "per year of operation.";
+        profit.text = (GameManager.instance.profit * 0.001f).ToString("F2") + " $ ";
     }
 
     void DisplayScore()
