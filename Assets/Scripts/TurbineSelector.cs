@@ -34,7 +34,6 @@ public class TurbineSelector : MonoBehaviour
             availiableSpace = 2000;
             GameManager.instance.Windclass = 2;
             windClassText.text = "Wind class II";
-
         }
         else
         {
@@ -42,12 +41,12 @@ public class TurbineSelector : MonoBehaviour
             GameManager.instance.Windclass = 3;
             windClassText.text = "Wind class III";
         }
+        GoedleAnalytics.track("select.wind_class", GameManager.instance.Windclass.ToString());
     }
 
 
     public void SetRotorDiameter(int index)
     {
-        GoedleAnalytics.track("press.uiButton", "Turbine dropdown");
         btn.SetActive(true);
         if (GameManager.instance.Windclass == 1)
         {
@@ -116,11 +115,11 @@ public class TurbineSelector : MonoBehaviour
         {
             btn.SetActive(false);
         }
+        GoedleAnalytics.track("select.turbine_type", GameManager.instance.Type.ToString());
     }
 
     public void CalculateMaxNumberOfTurbines()
     {
-        GoedleAnalytics.track("press.uiButton", "turbine selection procced button");
         double number = availiableSpace / (3 * rotorDiameter);
         numberOfTurbines = (int)number;
         GameManager.instance.maxNumberOfTurbines = numberOfTurbines;

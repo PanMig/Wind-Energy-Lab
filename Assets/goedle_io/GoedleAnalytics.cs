@@ -32,22 +32,30 @@ namespace goedle_sdk
         /*! \cond PRIVATE */
         #region settings
         [Header("Project")]
-        [Tooltip("The app_key of the goedle.io project.")]
+        [Tooltip("The APP Key of the goedle.io project.")]
         public string app_key = "";
-        [Tooltip("The api_key of the goedle.io project.")]
+        [Tooltip("The API Key of the goedle.io project.")]
         public string api_key = "";
 		[Tooltip("Enable (True)/ Disable (False) tracking with goedle.io, default is True")]
 		public bool ENABLE_GOEDLE = true;
-		[Tooltip("You can specify an app_version here.")]
+		[Tooltip("You can specify an app version here.")]
 		public string APP_VERSION = "";
-		[Tooltip("You should specify an app_name here.")]
+		[Tooltip("You should specify an app name here.")]
 		public string APP_NAME = "";
         [Tooltip("Enable (True) / Disable(False) additional tracking with Google Analytics")]
         public bool ENABLE_GA = true;
         [Tooltip("Google Analytics Tracking Id")]
-        public string GA_TRACKIND_ID = "";
+        public string GA_TRACKIND_ID = null;
+        [Tooltip("Google Analytics Custom Dimension Event Listener. This is for group call support.")]
+        public string GA_CD_EVENT = null;
+        [Tooltip("Google Analytics Number of Custom Dimension for Group type. (To set this you need a configured custom dimension in Google Analytics)")]
+        public int GA_CD_1 = 0;
+        [Tooltip("Google Analytics Number of Custom Dimension for Group member. (To set this you need a configured custom dimension in Google Analytics)")]
+        public int GA_CD_2 = 0;
         #endregion
         /*! \endcond */
+
+
 
 
         /// <summary>
@@ -98,10 +106,23 @@ namespace goedle_sdk
 		public static void trackTraits(string traitKey, string traitValue)
 		{
 			#if !ENABLE_GOEDLE
-				instance.track(null, null, null, traitKey, traitValue);
+				instance.trackTraits(null, null, null, traitKey, traitValue);
 			#endif
 		}
 
+
+		/// <summary>
+		/// Group tracking function for a user.
+		/// </summary>
+		/// <param name="group_type">The entity type, like school or company</param>
+		/// <param name="group_member">The name or identifier for the entity, like department number, class number</param>
+
+		public static void trackGroup(string group_type, string group_member)
+		{
+			#if !ENABLE_GOEDLE
+			instance.trackGroup(group_type, group_member);
+			#endif
+		}
 
 		/// <summary>
 		/// set user id function for a user.
@@ -162,7 +183,7 @@ namespace goedle_sdk
 			
 			
 			if (tracking_enabled && gio_interface  == null) {				
-				gio_interface = new goedle_sdk.detail.GoedleAnalytics (api_key, app_key, user_id.ToString("D"), app_version, GA_TRACKIND_ID, app_name);
+				gio_interface = new goedle_sdk.detail.GoedleAnalytics (api_key, app_key, user_id.ToString("D"), app_version, GA_TRACKIND_ID, app_name, GA_CD_1, GA_CD_2, GA_CD_EVENT );
             }
         }
 

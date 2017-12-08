@@ -35,6 +35,7 @@ public class DisplayStatistics : MonoBehaviour
     private void DisplayCost()
     {
         String cost = GameManager.cost.ToString();
+        GoedleAnalytics.track("game.result", "cost", cost);
         Cost.text = cost + " $";
     }
 
@@ -48,11 +49,17 @@ public class DisplayStatistics : MonoBehaviour
         correctPower.text = correctPowerPercent.ToString("F2") + " % ";
         overPower.text = overPowerPercent.ToString("F2") + " % ";
 
+        //analytics
+        GoedleAnalytics.track("game.result", "underpower",underPower.text);
+        GoedleAnalytics.track("game.result", "correct_power", correctPower.text);
+        GoedleAnalytics.track("game.result", "overpower", overPower.text);
+
     }
 
     void DisplayProfit()
     {
         profit.text = (GameManager.instance.profit * 0.001f).ToString("F2") + " $ ";
+        GoedleAnalytics.track("game.result", "profit",profit.text);
     }
 
     void DisplayScore()
@@ -75,6 +82,7 @@ public class DisplayStatistics : MonoBehaviour
             score.text = "Congratulations! With the selections you made throughout the game you earned " + GameManager.score.ToString() +
             " out of 10. This means that you have high problem-solving skills.";
         }
+        GoedleAnalytics.track("game.result", "score",GameManager.score.ToString());
     }
 
 

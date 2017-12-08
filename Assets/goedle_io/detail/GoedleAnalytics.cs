@@ -16,10 +16,13 @@ namespace goedle_sdk.detail
 		private string app_version = null;
 		private string ga_tracking_id = null;
 		private string app_name = null;
+		private int cd1;
+		private int cd2;
+		private string cd_event = null;
 		//private string locale = null;
 
 
-		public GoedleAnalytics (string api_key, string app_key, string user_id, string app_version, string ga_tracking_id, string app_name)//, string locale)
+		public GoedleAnalytics (string api_key, string app_key, string user_id, string app_version, string ga_tracking_id, string app_name, int cd1, int cd2, string cd_event)//, string locale)
 		{
 			this.api_key = api_key;
 			this.app_key = app_key;
@@ -27,6 +30,9 @@ namespace goedle_sdk.detail
 			this.app_version = app_version;
 			this.ga_tracking_id = ga_tracking_id;
 			this.app_name = app_name;
+			this.cd1 = cd1;
+			this.cd2 = cd2;
+			this.cd_event = cd_event;
 			//this.locale = GoedleLanguageMapping.GetLanguageCode (locale);
 			track_launch ();
 		}
@@ -34,7 +40,7 @@ namespace goedle_sdk.detail
 		public void set_user_id(string user_id){
 			this.anonymous_id = this.user_id;
 			this.user_id = user_id;
-			track (GoedleConstants.IDENTIFY, null, null, false, null, null, this.anonymous_id);
+			track (GoedleConstants.IDENTIFY, null, null, false, null, null);
 		}
 
 		public void set_app_version(string app_version){
@@ -43,11 +49,11 @@ namespace goedle_sdk.detail
 
 		public void track_launch ()
 		{
-			track (GoedleConstants.EVENT_NAME_INIT, null, null, true, null, null, null);
+			track (GoedleConstants.EVENT_NAME_INIT, null, null, true, null, null);
 		}
 
 
-		public void track (string event_name, string event_id, string event_value, bool launch, string trait_key, string trait_value, string anonymous_id)
+		public void track (string event_name, string event_id, string event_value, bool launch, string trait_key, string trait_value)
 		{
 			GoedleHttpClient outer = new GoedleHttpClient ();
 			bool ga_active = !String.IsNullOrEmpty (this.ga_tracking_id);
@@ -58,8 +64,8 @@ namespace goedle_sdk.detail
 			GoedleAtom rt = null;
 			if (launch == true) {
 				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, event_id, event_value, timezone, app_version);
-			} else if (event_name == "identify" && !string.IsNullOrEmpty (anonymous_id)) {
-				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, anonymous_id, app_version, ga_active);
+			} else if (event_name == "identify" && !string.IsNullOrEmpty (this.anonymous_id)) {
+				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, this.anonymous_id, app_version, ga_active);
 			} else if (event_name == "identify") {
 				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, event_id, event_value, app_version, trait_key, trait_value);
 			} else {
@@ -76,11 +82,10 @@ namespace goedle_sdk.detail
 			string type = "event";
 
 			if (ga_active)
-				trackGoogleAnalytics (event_name, event_id, event_value, anonymous_id, type);
-		
+				trackGoogleAnalytics (event_name, event_id, event_value, type);
 		}
 
-		public void trackGoogleAnalytics (string event_name, string event_id, string event_value, string anonymous_id, string type){
+		public void trackGoogleAnalytics (string event_name, string event_id, string event_value, string type){
 			GoogleWrappedHttpClient outer = new GoogleWrappedHttpClient ();
 			if (string.IsNullOrEmpty(event_name)) throw new ArgumentNullException("Event is null");
 			// the request body we want to send
@@ -90,13 +95,13 @@ namespace goedle_sdk.detail
 							   {"av", this.app_version},
 								{"an", this.app_name},
                                { "tid", this.ga_tracking_id },
-                               { "cid", this.user_id },
+								{ "cid", this.user_id },
                                { "t", type },
-                               // For now we don't have a category, in the future this could be sth. like gamestate, interaction, flow_controll
 								{ "ec", getSceneName() },
                                { "ea", event_name },
 								//{"ul", this.locale},
                            };
+
 
             // This is the Event label in Google Analytics
                            
@@ -108,18 +113,22 @@ namespace goedle_sdk.detail
             {
                 postData.Add("ev", event_value);
             }
-			if (event_name == "identify" && !String.IsNullOrEmpty(anonymous_id) )
+
+			if (!String.IsNullOrEmpty(this.anonymous_id) )
                         {
 							postData.Add("uid", this.user_id);
-							outer.send (postData);
 							// For mapping after identify
 							// Otherwise we will lost the old client id
 							postData.Remove ("cid");
 							postData.Add("cid", this.anonymous_id);
-							outer.send (postData);
                         }
-			else
-				outer.send (postData);
+			if (this.cd_event == "group" && event_name == "group" && cd1 != 0 && cd2 != 0 && cd1 != cd2){
+							postData.Remove ("el");
+							postData.Remove ("ev");
+							postData.Add(String.Concat("cd", cd1), event_id);
+							postData.Add(String.Concat("cd", cd2), event_value);
+            }
+			outer.send (postData);
 		}
 
 		public bool IsFloatOrInt(string value) {
@@ -131,32 +140,37 @@ namespace goedle_sdk.detail
 
 		public void track (string event_name)
 		{
-			track (event_name, null, null, false, null, null, null);
+			track (event_name, null, null, false, null, null);
 		}
 			
 
 		public void track (string event_name, string event_id)
 		{
-			track (event_name, event_id, null, false, null, null, null);
+			track (event_name, event_id, null, false, null, null);
 		}
 
 		public void track (string event_name, int event_id_i)
 		{
 			string event_id = event_id_i.ToString();
 
-			track (event_name, event_id, null, false, null, null, null);
+			track (event_name, event_id, null, false, null, null);
 		}
 
 		public void track (string event_name, string event_id, string event_value)
 		{
-			track (event_name, event_id, event_value, false, null, null, null);
+			track (event_name, event_id, event_value, false, null, null);
 
 		}
 
-
-		public void track (string event_name, string event_id, string event_value, string trait_key, string trait_value)
+		public void trackGroup (string group_type, string group_member)
 		{
-			track (GoedleConstants.IDENTIFY, null, null, false, trait_key, trait_value, null);
+			track ("group", group_type, group_member, false, null, null);
+		}
+
+
+		public void trackTraits (string event_name, string event_id, string event_value, string trait_key, string trait_value)
+		{
+			track (GoedleConstants.IDENTIFY, null, null, false, trait_key, trait_value);
 		}
 
 

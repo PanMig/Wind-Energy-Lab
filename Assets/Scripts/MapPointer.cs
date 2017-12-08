@@ -79,6 +79,7 @@ public class MapPointer : MonoBehaviour {
         GameManager.instance.areaInstallationCost = GameManager.cost;
         GameManager.instance.SetSubArea(subAreaType);
         GameManager.instance.LoadLevel("TurbineSelection");
+        GoedleAnalytics.track("click.map_pointer", subAreaIndex.ToString());
     }
 
 
