@@ -90,6 +90,7 @@ public class GameManager : MonoBehaviour
         {
             LocalizationService.Instance.Localization = "Greek";
         }
+        GoedleAnalytics.track("change.language",LocalizationService.Instance.Localization.ToString());
     }
 
     #region AreaManagement
@@ -150,7 +151,7 @@ public class GameManager : MonoBehaviour
         if(instance.Areachoice == MainArea.mountains)
         {
             SceneManager.LoadScene("Stage3(Mountains)");
-            GoedleAnalytics.track("select.scene", "stage3", "Mountains");
+            GoedleAnalytics.track("select.scene", "stage3", "mountains");
         }
         else if(instance.Areachoice == MainArea.fields)
         {
@@ -169,17 +170,17 @@ public class GameManager : MonoBehaviour
         if (instance.Areachoice == MainArea.mountains)
         {
             SceneManager.LoadScene("Stage2(Mountains)");
-            GoedleAnalytics.track("select.scene", "stage2", "Mountains");
+            GoedleAnalytics.track("select.scene", "stage2", "mountains");
         }
         else if (instance.Areachoice == MainArea.fields)
         {
             SceneManager.LoadScene("Stage2(Plains)");
-            GoedleAnalytics.track("select.scene", "stage2", "Plains");
+            GoedleAnalytics.track("select.scene", "stage2", "plains");
         }
         else if (instance.Areachoice == MainArea.seashore)
         {
             SceneManager.LoadScene("Stage2(Seashore)");
-            GoedleAnalytics.track("select.scene", "stage2", "Seashore");
+            GoedleAnalytics.track("select.scene", "stage2", "seashore");
         }
     }
 

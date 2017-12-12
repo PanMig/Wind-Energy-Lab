@@ -15,7 +15,7 @@ public class ConfigMenu : MonoBehaviour {
 	public void EnableCanvas()
     {
         canvas.enabled = true;
-        GoedleAnalytics.track("open", "config.menu");
+        GoedleAnalytics.track("configure.open", "menu");
     }
 
     public void DisableCanvas()
@@ -28,12 +28,12 @@ public class ConfigMenu : MonoBehaviour {
         if (index == 0)
         {
             simulator.simulationSpeed = 1;
-            GoedleAnalytics.track("configure", "wind_speed", "normal_speed");
+            GoedleAnalytics.track("configure.wind_speed", "wind_speed");
         }
         else if (index == 1)
         {
              simulator.simulationSpeed = 3;
-            GoedleAnalytics.track("configure", "wind_speed", "fast_speed");
+            GoedleAnalytics.track("configure.wind_speed", "fast_speed");
         }
         else simulator.simulationSpeed = 1;
     }

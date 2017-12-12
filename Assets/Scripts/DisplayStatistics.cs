@@ -35,7 +35,7 @@ public class DisplayStatistics : MonoBehaviour
     private void DisplayCost()
     {
         String cost = GameManager.cost.ToString();
-        GoedleAnalytics.track("game.result", "cost", cost);
+        GoedleAnalytics.track("game.result", "cost", GameManager.cost.ToString());
         Cost.text = cost + " $";
     }
 
@@ -59,7 +59,7 @@ public class DisplayStatistics : MonoBehaviour
     void DisplayProfit()
     {
         profit.text = (GameManager.instance.profit * 0.001f).ToString("F2") + " $ ";
-        GoedleAnalytics.track("game.result", "profit",profit.ToString());
+        GoedleAnalytics.track("game.result", "profit",GameManager.instance.profit.ToString("F2"));
     }
 
     void DisplayScore()
@@ -71,16 +71,28 @@ public class DisplayStatistics : MonoBehaviour
         {
             score.text = "With the selections you made throughout the game you earned " + GameManager.score.ToString() +
             " out of 10. Consider to read the instructions more carefully and try again.";
+
+            //score localization / implementation
+            score.text = LocalizationService.Instance.GetTextByKeyWithLocalize("score(bronze_1)", LocalizationService.Instance.Localization) + GameManager.score.ToString()
+                        + LocalizationService.Instance.GetTextByKeyWithLocalize("score(bronze_2)", LocalizationService.Instance.Localization);
         }
         else if (GameManager.score > 4 && GameManager.score <= 7)
         {
             score.text = "Very good! With the selections you made throughout the game you earned " + GameManager.score.ToString() +
             " out of 10. Surely you can improve your problem-solving skills by rethinking if there are better options you can choose next time.";
+
+            //score localization / implementation
+            score.text = LocalizationService.Instance.GetTextByKeyWithLocalize("score(xalkino_1)", LocalizationService.Instance.Localization) + GameManager.score.ToString()
+                    + LocalizationService.Instance.GetTextByKeyWithLocalize("score(xalkino_2)", LocalizationService.Instance.Localization);
         }
         else
         {
             score.text = "Congratulations! With the selections you made throughout the game you earned " + GameManager.score.ToString() +
             " out of 10. This means that you have high problem-solving skills.";
+
+            //score localization / implementation
+            score.text = LocalizationService.Instance.GetTextByKeyWithLocalize("score(gold_1)", LocalizationService.Instance.Localization) + GameManager.score.ToString()
+                    + LocalizationService.Instance.GetTextByKeyWithLocalize("score(gold_2)", LocalizationService.Instance.Localization);
         }
         GoedleAnalytics.track("game.result", "score",GameManager.score.ToString());
     }

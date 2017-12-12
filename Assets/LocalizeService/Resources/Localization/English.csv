@@ -49,18 +49,28 @@ normal speed,normal
 fast speed,fast
 exit sim,"exit simulation"
 
+
 //Stats scene
 title(stats),"Congratulations, you managed to install and operate a Wind Farm just like a real one!\nHere is what you achieved."
 efficiency,Efficiency
 cost,Cost
 score,Score
 profit,Profit
-under power,Under power :
-correct power,Correct power :
-over power,Over power :
+under power,-Under power:
+correct power,-Correct power:
+over power,-Over power:
 replay,replay
 cost(text),Your wind farm costed :
 profit(text),You could sell the excess of power your wind farm generated and earn(per year) :
+//score values
+score(bronze_1),"With the selections you made throughout the game you earned "
+score(bronze_2)," out of 10. Consider to read the instructions more carefully and try again."
+
+score(xalkino_1),"Very good! With the selections you made throughout the game you earned "
+score(xalkino_2)," out of 10. Surely you can improve your problem-solving skills by rethinking if there are better options you can choose next time."
+
+score(gold_1),"Congratulations! With the selections you made throughout the game you earned "
+score(gold_2)," out of 10. This means that you have high problem-solving skills."
 
 
 
