@@ -46,12 +46,10 @@ Also, there is a number of other scripts that execute various behaviors of diffe
 
 # Demo
 You can try and test an early "Windows" version of the game in the following link:
-http://160.40.51.31:8080/WindEnergyLab/
-
+http://www.envisage-h2020.eu/virtual-labs/
 
 # Contact
 - Panagiotis migkotzidis (panagiotismigo@gmail.com)
 - Spiros Nikolopoulos (nikolopo@iti.gr)
-- Giannis Chantas (gchantas@iti.gr)
 - Dimitrios Ververidis (ververid@iti.gr)
 
