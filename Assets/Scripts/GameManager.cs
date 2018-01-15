@@ -203,7 +203,19 @@ public class GameManager : MonoBehaviour
             instance.LoadSubAreaLevel();
             replayIterations++;
             cost = 0;
+            instance.profit = 0;
         }
+    }
+
+    public void RestartGame()
+    {
+        cost = 0;
+        score = 0;  
+        areaInstallationCost = 0;
+        instance.profit = 0;
+        replayIterations = 0;
+        maxNumberOfTurbines = 0;
+        endSimulation = false;
     }
 
     #endregion

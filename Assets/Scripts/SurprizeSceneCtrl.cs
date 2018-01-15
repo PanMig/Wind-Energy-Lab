@@ -59,14 +59,14 @@ public class SurprizeSceneCtrl : MonoBehaviour {
             GameManager.score += score;
             if (score == 2) GoedleAnalytics.track("choose.answer", "Scenario_1", score.ToString());
             else if(score == 1) GoedleAnalytics.track("choose.answer", "Scenario_1", score.ToString());
-            else GoedleAnalytics.track("choose.answer", "Scenario_1", score.ToString());
+            else GoedleAnalytics.track("choose.answer", "Scenario_1","0");
         }
         else if(state == States.scenario2)
         {
             GameManager.score += score;
             if (score == 2) GoedleAnalytics.track("choose.answer", "Scenario_2", score.ToString());
             else if (score == 1) GoedleAnalytics.track("choose.answer", "Scenario_2", score.ToString());
-            else GoedleAnalytics.track("choose.answer", "Scenario_2", score.ToString());
+            else GoedleAnalytics.track("choose.answer", "Scenario_2","0");
 
             //final scene
             GameManager.instance.LoadLevel("EndScene");

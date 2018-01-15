@@ -28,12 +28,12 @@ public class ConfigMenu : MonoBehaviour {
         if (index == 0)
         {
             simulator.simulationSpeed = 1;
-            GoedleAnalytics.track("configure.wind_speed", "wind_speed");
+            GoedleAnalytics.track("configure.simulation_speed", "normal_speed");
         }
         else if (index == 1)
         {
              simulator.simulationSpeed = 3;
-            GoedleAnalytics.track("configure.wind_speed", "fast_speed");
+            GoedleAnalytics.track("configure.simulation_speed", "fast_speed");
         }
         else simulator.simulationSpeed = 1;
     }

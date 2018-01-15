@@ -52,14 +52,14 @@ public class DisplayStatistics : MonoBehaviour
         //analytics
         GoedleAnalytics.track("game.result", "underpower",underPowerPercent.ToString());
         GoedleAnalytics.track("game.result", "correct_power",correctPowerPercent.ToString());
-        GoedleAnalytics.track("game.result", "overpower", overPower.ToString());
+        GoedleAnalytics.track("game.result", "overpower", overPowerPercent.ToString());
 
     }
 
     void DisplayProfit()
     {
         profit.text = (GameManager.instance.profit * 0.001f).ToString("F2") + " $ ";
-        GoedleAnalytics.track("game.result", "profit",GameManager.instance.profit.ToString("F2"));
+        GoedleAnalytics.track("game.result", "profit", (GameManager.instance.profit * 0.001f).ToString("F2"));
     }
 
     void DisplayScore()
