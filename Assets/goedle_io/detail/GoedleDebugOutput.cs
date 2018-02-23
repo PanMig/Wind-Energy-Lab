@@ -21,7 +21,7 @@ public static class UnitySystemConsoleRedirector
 
 		public override void Flush()
 		{
-			//Debug.Log(buffer.ToString());
+			Debug.Log(buffer.ToString());
 			buffer.Length = 0;
 		}
 

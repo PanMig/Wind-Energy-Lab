@@ -88,7 +88,7 @@ public class Simulation : MonoBehaviour
         startTime = Time.time;
         InitializeWindArray();
         InitializeOutputArray();
-        GoedleAnalytics.track("start.simulation");
+		GoedleAnalytics.instance.track("start.simulation");
     }
 
     void Awake()
@@ -105,11 +105,11 @@ public class Simulation : MonoBehaviour
         if (Time.time > nextActionTime)
         {
             nextActionTime += period;
-            GoedleAnalytics.track("game.state", "currentWindSpeed", currentWindSpeed.ToString());
-            GoedleAnalytics.track("game.state", "currentPowerReqs", currentPowerReqs.ToString());
-            GoedleAnalytics.track("game.state", "powerUsage", powerUsage.ToString());
-            GoedleAnalytics.track("game.state", "numberOfTurbines", GameManager.instance.maxNumberOfTurbines.ToString());
-            GoedleAnalytics.track("game.state", "numberOfTurbinesOperating", spawnManager.numberOfTurbinesOperating.ToString());
+			GoedleAnalytics.instance.track("game.state", "currentWindSpeed", currentWindSpeed.ToString());
+			GoedleAnalytics.instance.track("game.state", "currentPowerReqs", currentPowerReqs.ToString());
+			GoedleAnalytics.instance.track("game.state", "powerUsage", powerUsage.ToString());
+			GoedleAnalytics.instance.track("game.state", "numberOfTurbines", GameManager.instance.maxNumberOfTurbines.ToString());
+			GoedleAnalytics.instance.track("game.state", "numberOfTurbinesOperating", spawnManager.numberOfTurbinesOperating.ToString());
         }
     }
 

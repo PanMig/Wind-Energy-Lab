@@ -11,9 +11,12 @@
 */
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 using System.Text;
 using System.Collections.Generic;
+using System.Collections;
+using SimpleJSON;
 
 namespace goedle_sdk
 {
@@ -32,23 +35,32 @@ namespace goedle_sdk
         /*! \cond PRIVATE */
         #region settings
         [Header("Project")]
-        [Tooltip("The app_key of the goedle.io project.")]
+        [Tooltip("The APP Key of the goedle.io project.")]
         public string app_key = "";
-        [Tooltip("The api_key of the goedle.io project.")]
+        [Tooltip("The API Key of the goedle.io project.")]
         public string api_key = "";
 		[Tooltip("Enable (True)/ Disable (False) tracking with goedle.io, default is True")]
 		public bool ENABLE_GOEDLE = true;
-		[Tooltip("You can specify an app_version here.")]
+		[Tooltip("You can specify an app version here.")]
 		public string APP_VERSION = "";
-		[Tooltip("You should specify an app_name here.")]
+		[Tooltip("You should specify an app name here.")]
 		public string APP_NAME = "";
         [Tooltip("Enable (True) / Disable(False) additional tracking with Google Analytics")]
         public bool ENABLE_GA = true;
         [Tooltip("Google Analytics Tracking Id")]
-        public string GA_TRACKIND_ID = "";
+        public string GA_TRACKIND_ID = null;
+        [Tooltip("Google Analytics Custom Dimension Event Listener. This is for group call support.")]
+        public string GA_CD_EVENT = null;
+        [Tooltip("Google Analytics Number of Custom Dimension for Group type. (To set this you need a configured custom dimension in Google Analytics)")]
+        public int GA_CD_1 = 0;
+        [Tooltip("Google Analytics Number of Custom Dimension for Group member. (To set this you need a configured custom dimension in Google Analytics)")]
+        public int GA_CD_2 = 0;
         #endregion
         /*! \endcond */
 
+		static bool tracking_enabled = true;
+		private goedle_sdk.detail.GoedleAnalytics gio_interface;
+		public static GoedleAnalytics instance = null;
 
 
 
@@ -56,10 +68,10 @@ namespace goedle_sdk
         /// Tracks an event.
         /// </summary>
         /// <param name="event">the name of the event to send</param>
-        public static void track(string eventName)
+        public void track(string eventName)
         {
 			#if !ENABLE_GOEDLE
-				instance.track(eventName);
+			this.gio_interface.track(eventName);
             #endif
         }
 
@@ -69,10 +81,10 @@ namespace goedle_sdk
 		/// <param name="event">the name of the event to send</param>
 		/// <param name="event_id">the name of the event to send</param>
 
-		public static void track(string eventName, string eventId)
+		public void track(string eventName, string eventId)
 		{
 			#if !ENABLE_GOEDLE
-				instance.track(eventName,eventId);
+			this.gio_interface.track(eventName,eventId);
 			#endif
 		}
 
@@ -83,10 +95,10 @@ namespace goedle_sdk
 		/// <param name="event_id">the id of the event to send</param>
 		/// <param name="event_value">the value of the event to send</param>
 
-		public static void track(string eventName, string eventId, string event_value)
+		public void track(string eventName, string eventId, string event_value)
 		{
 			#if !ENABLE_GOEDLE
-				instance.track(eventName,eventId,event_value);
+				this.gio_interface.track(eventName,eventId,event_value);
 			#endif
 		}
 
@@ -97,23 +109,48 @@ namespace goedle_sdk
 		/// <param name="trait_key">for now only last_name and first_name is supported</param>
 		/// <param name="trait_value">the value of the key</param>
 
-		public static void trackTraits(string traitKey, string traitValue)
+		public void trackTraits(string traitKey, string traitValue)
 		{
 			#if !ENABLE_GOEDLE
-				instance.track(null, null, null, traitKey, traitValue);
+			this.gio_interface.trackTraits(null, null, null, traitKey, traitValue);
 			#endif
 		}
 
+
+		/// <summary>
+		/// Group tracking function for a user.
+		/// </summary>
+		/// <param name="group_type">The entity type, like school or company</param>
+		/// <param name="group_member">The name or identifier for the entity, like department number, class number</param>
+
+		public void trackGroup(string group_type, string group_member)
+		{
+			#if !ENABLE_GOEDLE
+			this.gio_interface.trackGroup(group_type, group_member);
+			#endif
+		}
+
+		/// <summary>
+		/// get a strategy object from goedle.io backend
+		/// </summary>
+
+		public void getStrategy()
+		{
+			Debug.Log ("in getStrategy");
+			#if !ENABLE_GOEDLE
+			this.gio_interface.StartRoutine();
+			#endif
+		}
 
 		/// <summary>
 		/// set user id function for a user.
 		/// </summary>
 		/// <param name="user_id">a custom user id</param>
 
-		public static void setUserId(string user_id)
+		public void setUserId(string user_id)
 		{
 			#if !ENABLE_GOEDLE
-				instance.set_user_id(user_id);
+			this.gio_interface.set_user_id(user_id);
 			#endif
 		}
 
@@ -121,28 +158,46 @@ namespace goedle_sdk
         /// Sets an custom app_version.
         /// </summary>
         /// <param name="app_version">the name of the app_version</param>
-        public static void setAppVersion(string app_version)
+        public void setAppVersion(string app_version)
         {
 			#if !ENABLE_GOEDLE
-                instance.set_app_version(app_version);
+			this.gio_interface.set_app_version(app_version);
             #endif
         }
 
 
 
 		#region internal
-		static goedle_sdk.detail.GoedleAnalytics gio_interface;
-		private static goedle_sdk.detail.GoedleAnalytics instance
+//		private goedle_sdk.detail.GoedleAnalytics instance
+//		{
+//			get
+//			{
+//				return gio_interface;
+//			}
+//		}
+
+		void Awake()
 		{
-			get
+			this.gio_interface = gameObject.AddComponent<goedle_sdk.detail.GoedleAnalytics >() as goedle_sdk.detail.GoedleAnalytics;
+			//Check if instance already exists
+			if (instance == null)
 			{
-				return gio_interface;
+				//if not, set instance to this
+				instance = this;
+
 			}
+			//If instance already exists and it's not this:
+			else if (instance != this)
+			{
+				//Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+				Destroy(gameObject);
+			}
+			//Sets this to not be destroyed when reloading scene
+			DontDestroyOnLoad(gameObject);
 		}
 
-        static bool tracking_enabled = true;
 
-        void Awake()
+        void Start()
         {
             DontDestroyOnLoad(this);
 			#if ENABLE_GOEDLE
@@ -159,18 +214,18 @@ namespace goedle_sdk
 					app_name = Application.productName;
 				else 
 					app_name = app_version;
-
 			//string locale = Application.systemLanguage.ToString();
 			
 			
-			if (tracking_enabled && gio_interface  == null) {				
-				gio_interface = new goedle_sdk.detail.GoedleAnalytics (api_key, app_key, user_id.ToString("D"), app_version, GA_TRACKIND_ID, app_name);
+			if (tracking_enabled && gio_interface  == null) {
+				//gameObject.AddComponent(typeof(GoedleAnalytics)) as GoedleAnalytics;
+				this.gio_interface.start (api_key, app_key, user_id.ToString ("D"), app_version, GA_TRACKIND_ID, app_name, GA_CD_1, GA_CD_2, GA_CD_EVENT);
+				//gio_interface = new goedle_sdk.detail.GoedleAnalytics (api_key, app_key, user_id.ToString("D"), app_version, GA_TRACKIND_ID, app_name, GA_CD_1, GA_CD_2, GA_CD_EVENT );
             }
         }
 
         void OnDestroy()
         {
-
 			// Future Usage
         }
 

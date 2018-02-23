@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
             //if not, set instance to this
             instance = this;
         }
-        //If instance already exists and it's not this:
+        //If instance already exists and it's not this:s
         else if (instance != this)
         {
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
@@ -69,12 +69,14 @@ public class GameManager : MonoBehaviour
         playerName = null;
         playerClass = null;
         playerSchoolName = null;
-        GoedleAnalytics.track("launch");
+		GoedleAnalytics.instance.getStrategy ();
+
+		//Debug.Log (GoedleAnalytics.getStrategy ());
     }
 
     public void EndSimulation()
     {
-        GoedleAnalytics.track("end.simulation");
+		GoedleAnalytics.instance.track("end.simulation");
         instance.endSimulation = true;
     }
 
@@ -85,17 +87,17 @@ public class GameManager : MonoBehaviour
         if (choice == 1)
         {
             instance.Areachoice = MainArea.mountains;
-            GoedleAnalytics.track("choose.environment", "mountains");
+			GoedleAnalytics.instance.track("choose.environment", "mountains");
         }
         else if (choice == 2)
         {
             instance.Areachoice = MainArea.fields;
-            GoedleAnalytics.track("choose.environment", "fields");
+			GoedleAnalytics.instance.track("choose.environment", "fields");
         }
         else
         {
             instance.Areachoice = MainArea.seashore;
-            GoedleAnalytics.track("choose.environment", "seashore");
+			GoedleAnalytics.instance.track("choose.environment", "seashore");
         }
     }
 
@@ -133,17 +135,17 @@ public class GameManager : MonoBehaviour
         if(instance.Areachoice == MainArea.mountains)
         {
             SceneManager.LoadScene("Stage3(Mountains)");
-            GoedleAnalytics.track("select.scene","stage3", "mountains");
+			GoedleAnalytics.instance.track("select.scene","stage3", "mountains");
         }
         else if(instance.Areachoice == MainArea.fields)
         {
             SceneManager.LoadScene("Stage3(Plains)");
-            GoedleAnalytics.track("select.scene", "stage3", "plains");
+			GoedleAnalytics.instance.track("select.scene", "stage3", "plains");
         }
         else if (instance.Areachoice == MainArea.seashore)
         {
             SceneManager.LoadScene("Stage3(Seashore)");
-            GoedleAnalytics.track("select.scene", "stage3", "seashore");
+			GoedleAnalytics.instance.track("select.scene", "stage3", "seashore");
         }
     }
 
@@ -152,24 +154,24 @@ public class GameManager : MonoBehaviour
         if (instance.Areachoice == MainArea.mountains)
         {
             SceneManager.LoadScene("Stage2(Mountains)");
-            GoedleAnalytics.track("select.scene", "stage2", "mountains");
+			GoedleAnalytics.instance.track("select.scene", "stage2", "mountains");
         }
         else if (instance.Areachoice == MainArea.fields)
         {
             SceneManager.LoadScene("Stage2(Plains)");
-            GoedleAnalytics.track("select.scene", "stage2", "plains");
+			GoedleAnalytics.instance.track("select.scene", "stage2", "plains");
         }
         else if (instance.Areachoice == MainArea.seashore)
         {
             SceneManager.LoadScene("Stage2(Seashore)");
-            GoedleAnalytics.track("select.scene", "stage2", "seashore");
+			GoedleAnalytics.instance.track("select.scene", "stage2", "seashore");
         }
     }
 
     public void LoadLevel(string levelName)
     {
         SceneManager.LoadScene(levelName);
-        GoedleAnalytics.track("select.scene", levelName);
+		GoedleAnalytics.instance.track("select.scene", levelName);
     }
 
     public void ExitGame()
@@ -179,7 +181,7 @@ public class GameManager : MonoBehaviour
 
     public void ReplayGame()
     {
-        GoedleAnalytics.track("replay.simulation");
+		GoedleAnalytics.instance.track("replay.simulation");
         if (replayIterations < 3)
         {
             instance.LoadSubAreaLevel();
@@ -195,7 +197,7 @@ public class GameManager : MonoBehaviour
     public void SetName(string text)
     {
         instance.playerName = text;
-        GoedleAnalytics.trackTraits("first_name",instance.playerName);
+		GoedleAnalytics.instance.trackTraits("first_name",instance.playerName);
     }
     public string GetName()
     {
@@ -204,7 +206,7 @@ public class GameManager : MonoBehaviour
     public void SetClass(string text)
     {
         instance.playerClass = text;
-        GoedleAnalytics.track("group", "class", instance.playerClass);
+		GoedleAnalytics.instance.track("group", "class", instance.playerClass);
     }
     public string GetClass()
     {
@@ -213,7 +215,7 @@ public class GameManager : MonoBehaviour
     public void SetSchoolName(string text)
     {
         instance.playerSchoolName = text;
-        GoedleAnalytics.track("group", "school", instance.playerSchoolName);
+		GoedleAnalytics.instance.track("group", "school", instance.playerSchoolName);
     }
     public string ReturnSchoolName()
     {

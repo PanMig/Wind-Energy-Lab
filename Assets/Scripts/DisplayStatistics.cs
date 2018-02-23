@@ -38,7 +38,7 @@ public class DisplayStatistics : MonoBehaviour
 
     void DisplayUsage()
     {
-        GoedleAnalytics.track("show.statistics");
+		GoedleAnalytics.instance.track("show.statistics");
 
         float sumOfTime = GameManager.instance.underPowerSec + GameManager.instance.correctPowerSec + GameManager.instance.overPowerSec;
         underPowerPercent = (GameManager.instance.underPowerSec / sumOfTime) * 100.0f;

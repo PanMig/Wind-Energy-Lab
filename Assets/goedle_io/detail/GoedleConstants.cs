@@ -15,6 +15,9 @@ namespace goedle_sdk.detail
 		public const string TRACK_URL = "https://stream.goedle.io/track";
 		public const int GOOGLE_MP_VERSION = 1;
 		public const string GOOGLE_MP_TRACK_URL = "https://www.google-analytics.com/collect";
+		public const string GOEDLE_APPS_URL = "http://api.goedle.io/apps/";
+		public const string GOEDLE_STRATEGY_URL_PATH = "/strategy/";
+
 	}
 }
 

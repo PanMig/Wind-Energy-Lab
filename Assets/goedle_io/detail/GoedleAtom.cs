@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 namespace goedle_sdk.detail
 {
 	public class GoedleAtom
@@ -18,7 +19,7 @@ namespace goedle_sdk.detail
 		//private string locale;
 		private string event_name = null;
 		private string event_value = null;
-		private int timezone;
+		private int timezone = 0;
 		private string event_id = null;
 		private int build_nr = GoedleConstants.BUILD_NR;
 		private string trait_key = null;
@@ -28,13 +29,19 @@ namespace goedle_sdk.detail
 		private string uuid = null;
 
 		public GoedleAtom (string app_key, 
-		                  string user_id, 
-		                  int ts,
-		                  string event_name,
-		                  string event_id, 
-		                  string event_value,
-		                  int timezone, 
-						  string app_version)
+		                   string user_id, 
+		                   int ts,
+		                   string event_name,
+		                   string event_id, 
+		                   string event_value,
+		                   int timezone, 
+		                   string app_version,
+		                   bool ga_active,
+		                   string anonymous_id,
+		                   string trait_key, 
+		                   string trait_value
+
+		)
 						  //string locale)
 		{
 			//ALWAYS
@@ -45,80 +52,13 @@ namespace goedle_sdk.detail
 				Console.Write ("Maybe the GoedleAPI.init(); isn`t called in the Application class. Or you don't have set the GoedleAPI.setUserId(userId)?");
 			}
 			this.ts = ts;
-
 			this.event_name = event_name;
 			this.app_version = app_version;
 			//this.locale = locale;
 
-			//ONLAUNCH
 			// The Timzone is in seconds and with -1, so we have to transform it
 			this.timezone = timezone;
-			if (!string.IsNullOrEmpty (event_id))
-				this.event_id = event_id;
-			if (!string.IsNullOrEmpty (event_value))
-				this.event_value = event_value;
-
-		}
-
-		public GoedleAtom (string app_key, 
-		                  string user_id, 
-						  int ts, 
-		                  string event_name,
-						  string anonymous_id,
-		                  string app_version,
-						  bool ga_active)
-		{
-
-			this.app_key = app_key;
-			this.user_id = user_id; 
-			this.ts = ts;
-			this.event_name = event_name;
-			if (!string.IsNullOrEmpty (anonymous_id))
-				this.anonymous_id = anonymous_id;
-				// This is for the google analytics case
-				if (ga_active)	
-					this.uuid = anonymous_id;
-			this.timezone = Int32.MaxValue;
-			this.app_version = app_version;
-
-		}
-
-		public GoedleAtom (string app_key, 
-		                  string user_id, 
-						  int ts, 
-		                  string event_name, 
-		                  string event_id, 
-		                  string event_value,
-		                  string app_version)
-		{
-			this.app_key = app_key;
-			this.user_id = user_id; 
-			this.ts = ts;
-			this.event_name = event_name;
-			if (!string.IsNullOrEmpty (event_id))
-				this.event_id = event_id;
-			if (!string.IsNullOrEmpty (event_value))
-				this.event_value = event_value;
-			this.timezone = Int32.MaxValue;
-			this.app_version = app_version;
-
-		}
-
-		public GoedleAtom (string app_key, 
-			string user_id, 
-			int ts, 
-			string event_name, 
-			string event_id, 
-			string event_value,
-			string app_version,
-			string trait_key, 
-			string trait_value)
-		{
-
-			this.app_key = app_key;
-			this.user_id = user_id; 
-			this.ts = ts;
-			this.event_name = event_name;
+	
 			if (!string.IsNullOrEmpty (event_id))
 				this.event_id = event_id;
 			if (!string.IsNullOrEmpty (event_value))
@@ -127,9 +67,16 @@ namespace goedle_sdk.detail
 				this.trait_key = trait_key;
 			if (!string.IsNullOrEmpty (trait_value))
 				this.trait_value = trait_value;
-			this.timezone = Int32.MaxValue;
+
+			// For GA support
+			if (!string.IsNullOrEmpty (anonymous_id))
+				this.anonymous_id = anonymous_id;
+			// This is for the google analytics case
+			if (ga_active)
+				this.uuid = anonymous_id;
 
 		}
+
 
 		public Dictionary<string, object> getGoedleAtomDictionary ()
 		{

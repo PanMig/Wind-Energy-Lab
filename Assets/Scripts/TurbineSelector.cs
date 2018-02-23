@@ -47,7 +47,7 @@ public class TurbineSelector : MonoBehaviour
 
     public void SetRotorDiameter(int index)
     {
-        GoedleAnalytics.track("press.uiButton", "Turbine dropdown");
+		GoedleAnalytics.instance.track("press.uiButton", "Turbine dropdown");
         btn.SetActive(true);
         if (GameManager.instance.Windclass == 1)
         {
@@ -120,7 +120,7 @@ public class TurbineSelector : MonoBehaviour
 
     public void CalculateMaxNumberOfTurbines()
     {
-        GoedleAnalytics.track("press.uiButton", "turbine selection procced button");
+		GoedleAnalytics.instance.track("press.uiButton", "turbine selection procced button");
         double number = availiableSpace / (3 * rotorDiameter);
         numberOfTurbines = (int)number;
         GameManager.instance.maxNumberOfTurbines = numberOfTurbines;
