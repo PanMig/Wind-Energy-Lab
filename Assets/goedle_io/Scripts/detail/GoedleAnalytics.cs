@@ -2,12 +2,12 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Collections.Generic;
-using UnityEngine;
+using SimpleJSON;
 using UnityEngine.SceneManagement;
 
 namespace goedle_sdk.detail
 {
-	public class GoedleAnalytics
+    public class GoedleAnalytics
 	{
 		private string api_key = null;
 		private string app_key = null;
@@ -19,10 +19,10 @@ namespace goedle_sdk.detail
 		private int cd1;
 		private int cd2;
 		private string cd_event = null;
+        private IGoedleHttpClient gio_http_client;
 		//private string locale = null;
 
-
-		public GoedleAnalytics (string api_key, string app_key, string user_id, string app_version, string ga_tracking_id, string app_name, int cd1, int cd2, string cd_event)//, string locale)
+        public GoedleAnalytics (string api_key, string app_key, string user_id, string app_version, string ga_tracking_id, string app_name, int cd1, int cd2, string cd_event, IGoedleHttpClient gio_http_client)//, string locale)
 		{
 			this.api_key = api_key;
 			this.app_key = app_key;
@@ -33,6 +33,7 @@ namespace goedle_sdk.detail
 			this.cd1 = cd1;
 			this.cd2 = cd2;
 			this.cd_event = cd_event;
+            this.gio_http_client = gio_http_client;
 			//this.locale = GoedleLanguageMapping.GetLanguageCode (locale);
 			track_launch ();
 		}
@@ -43,10 +44,6 @@ namespace goedle_sdk.detail
 			track (GoedleConstants.IDENTIFY, null, null, false, null, null);
 		}
 
-		public void set_app_version(string app_version){
-			this.app_version = app_version;
-		}
-
 		public void track_launch ()
 		{
 			track (GoedleConstants.EVENT_NAME_INIT, null, null, true, null, null);
@@ -55,29 +52,19 @@ namespace goedle_sdk.detail
 
 		public void track (string event_name, string event_id, string event_value, bool launch, string trait_key, string trait_value)
 		{
-			GoedleHttpClient outer = new GoedleHttpClient ();
 			bool ga_active = !String.IsNullOrEmpty (this.ga_tracking_id);
 			string[] pass = null;
 			int ts = getTimeStamp ();
 			// -1 because c# returns -1 for UTC +1 , * 1000 from Seconds to Milliseconds
 			int timezone = (int)(((DateTime.UtcNow - DateTime.Now).TotalSeconds) * -1 * 1000);
-			GoedleAtom rt = null;
-			if (launch == true) {
-				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, event_id, event_value, timezone, app_version);
-			} else if (event_name == "identify" && !string.IsNullOrEmpty (this.anonymous_id)) {
-				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, this.anonymous_id, app_version, ga_active);
-			} else if (event_name == "identify") {
-				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, event_id, event_value, app_version, trait_key, trait_value);
-			} else {
-				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, event_id, event_value, app_version);
-			}
+			GoedleAtom rt = new GoedleAtom (this.app_key, this.user_id, ts, event_name, event_id, event_value, timezone, app_version, this.anonymous_id, trait_key, trait_value, ga_active);
 			if (rt == null) {
 				Console.Write ("Data Object is None, there must be an error in the SDK!");
 			} else {
 				pass = encodeToUrlParameter (rt.getGoedleAtomDictionary ());
+                this.gio_http_client.sendPost(pass[0], pass[1]);
 			}
-			outer.send (pass);
-			
+
 			// Sending tp Google Analytics for now we only support the Event tracking
 			string type = "event";
 
@@ -167,32 +154,21 @@ namespace goedle_sdk.detail
 			track ("group", group_type, group_member, false, null, null);
 		}
 
-
 		public void trackTraits (string event_name, string event_id, string event_value, string trait_key, string trait_value)
 		{
 			track (GoedleConstants.IDENTIFY, null, null, false, trait_key, trait_value);
 		}
 
+        public JSONNode getStrategy(){
+            return this.gio_http_client.getStrategy(this.app_key, this.api_key);
+        }
 
-		private string[] encodeToUrlParameter (Dictionary<string, object> goedleAtom)
+        private string[] encodeToUrlParameter (JSONObject goedleAtom)
 		{
-			string hashedAuthData = null;
-			string content = "{";
-			foreach (KeyValuePair<string, object> entry in goedleAtom) {
-				if (entry.Key == "timezone" || entry.Key == "ts" || entry.Key == "build_nr") {
-					content += "\"" + entry.Key + "\" : " + entry.Value + " , ";
-				} else {
-					content += "\"" + entry.Key + "\" : \"" + entry.Value + "\", ";
-				}
-			}
-			int endIndex = content.LastIndexOf (",");
-			content = content.Substring (0, endIndex);
-			content += "}";
-			Encoding enc = Encoding.UTF8;
-			byte[] authData = enc.GetBytes (content + api_key);
-
+            string content = goedleAtom.ToString();
+			byte[] authData = Encoding.UTF8.GetBytes (content + api_key);
 			SHA1 sha = new SHA1CryptoServiceProvider ();
-			hashedAuthData = HexStringFromBytes ((sha.ComputeHash (authData)));
+            string hashedAuthData = HexStringFromBytes ((sha.ComputeHash (authData)));
 			string[] pass = { content, hashedAuthData };
 			return pass;
 		}

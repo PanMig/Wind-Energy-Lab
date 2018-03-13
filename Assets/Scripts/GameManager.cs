@@ -71,7 +71,6 @@ public class GameManager : MonoBehaviour
         playerClass = null;
         playerSchoolName = null;
         LocalizationService.Instance.Localization = "Greek";
-        GoedleAnalytics.track("launch");
     }
 
     public void EndSimulation()

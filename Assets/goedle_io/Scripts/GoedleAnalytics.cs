@@ -12,8 +12,7 @@
 
 using UnityEngine;
 using System;
-using System.Text;
-using System.Collections.Generic;
+using SimpleJSON;
 
 namespace goedle_sdk
 {
@@ -29,6 +28,7 @@ namespace goedle_sdk
 
     public class GoedleAnalytics : MonoBehaviour
     {
+        public static GoedleAnalytics instance = null;
         /*! \cond PRIVATE */
         #region settings
         [Header("Project")]
@@ -65,7 +65,7 @@ namespace goedle_sdk
         public static void track(string eventName)
         {
 			#if !ENABLE_GOEDLE
-				instance.track(eventName);
+                goedle_analytics.track(eventName);
             #endif
         }
 
@@ -78,7 +78,7 @@ namespace goedle_sdk
 		public static void track(string eventName, string eventId)
 		{
 			#if !ENABLE_GOEDLE
-				instance.track(eventName,eventId);
+                goedle_analytics.track(eventName,eventId);
 			#endif
 		}
 
@@ -92,7 +92,7 @@ namespace goedle_sdk
 		public static void track(string eventName, string eventId, string event_value)
 		{
 			#if !ENABLE_GOEDLE
-				instance.track(eventName,eventId,event_value);
+                goedle_analytics.track(eventName,eventId,event_value);
 			#endif
 		}
 
@@ -106,7 +106,7 @@ namespace goedle_sdk
 		public static void trackTraits(string traitKey, string traitValue)
 		{
 			#if !ENABLE_GOEDLE
-				instance.trackTraits(null, null, null, traitKey, traitValue);
+                goedle_analytics.trackTraits(null, null, null, traitKey, traitValue);
 			#endif
 		}
 
@@ -120,7 +120,7 @@ namespace goedle_sdk
 		public static void trackGroup(string group_type, string group_member)
 		{
 			#if !ENABLE_GOEDLE
-			instance.trackGroup(group_type, group_member);
+                goedle_analytics.trackGroup(group_type, group_member);
 			#endif
 		}
 
@@ -132,26 +132,26 @@ namespace goedle_sdk
 		public static void setUserId(string user_id)
 		{
 			#if !ENABLE_GOEDLE
-				instance.set_user_id(user_id);
+                goedle_analytics.set_user_id(user_id);
 			#endif
 		}
 
+
         /// <summary>
-        /// Sets an custom app_version.
+        /// returns the strategies from the goedle api
         /// </summary>
-        /// <param name="app_version">the name of the app_version</param>
-        public static void setAppVersion(string app_version)
+
+        public static JSONNode getStrategy()
         {
-			#if !ENABLE_GOEDLE
-                instance.set_app_version(app_version);
-            #endif
+        #if !ENABLE_GOEDLE
+            return goedle_analytics.getStrategy();
+        #endif
         }
 
 
-
 		#region internal
-		static goedle_sdk.detail.GoedleAnalytics gio_interface;
-		private static goedle_sdk.detail.GoedleAnalytics instance
+        public static detail.GoedleAnalytics gio_interface;
+        public static detail.GoedleAnalytics goedle_analytics
 		{
 			get
 			{
@@ -163,31 +163,52 @@ namespace goedle_sdk
 
         void Awake()
         {
-            DontDestroyOnLoad(this);
-			#if ENABLE_GOEDLE
-            tracking_enabled = false;
-            Debug.LogWarning("Your Unity version does not support native plugins. Disabling goedle.io.");
-            #endif
-			System.Guid user_id = System.Guid.NewGuid();
-			string app_version = APP_VERSION;
-			string app_name = APP_NAME;
-			if (String.IsNullOrEmpty(app_version))
-				app_version = Application.version;
-			if (String.IsNullOrEmpty(app_name))
-				if (String.IsNullOrEmpty(app_name))
-					app_name = Application.productName;
-				else 
-					app_name = app_version;
-
-			//string locale = Application.systemLanguage.ToString();
-			
-			
-			if (tracking_enabled && gio_interface  == null) {				
-				gio_interface = new goedle_sdk.detail.GoedleAnalytics (api_key, app_key, user_id.ToString("D"), app_version, GA_TRACKIND_ID, app_name, GA_CD_1, GA_CD_2, GA_CD_EVENT );
+            //Check if instance already exists
+            if (instance == null)
+            {
+                //if not, set instance to this
+                instance = this;
             }
+            //If instance already exists and it's not this:
+            else if (instance != this)
+            {
+                //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+                Destroy(gameObject);
+            }
+            //Sets this to not be destroyed when reloading scene
+            DontDestroyOnLoad(gameObject);
+            InitGoedle();
         }
 
-        void OnDestroy()
+		private void InitGoedle()
+		{
+            #if ENABLE_GOEDLE
+            tracking_enabled = false;
+            test_flag = false;
+            Debug.LogWarning("Your Unity version does not support native plugins. Disabling goedle.io.");
+            #endif
+            Guid user_id = Guid.NewGuid();
+            string app_version = APP_VERSION;
+            string app_name = APP_NAME;
+            if (String.IsNullOrEmpty(app_version))
+                app_version = Application.version;
+            if (String.IsNullOrEmpty(app_name))
+                if (String.IsNullOrEmpty(app_name))
+                    app_name = Application.productName;
+                else
+                    app_name = app_version;
+
+            //string locale = Application.systemLanguage.ToString();
+            // Build HTTP CLient
+
+            IGoedleHttpClient gio_http_client = new GoedleHttpClient(this);
+            if (tracking_enabled && gio_interface == null)
+            {
+                gio_interface = new detail.GoedleAnalytics(api_key, app_key, user_id.ToString("D"), app_version, GA_TRACKIND_ID, app_name, GA_CD_1, GA_CD_2, GA_CD_EVENT, gio_http_client);
+            }
+		}
+
+		void OnDestroy()
         {
 
 			// Future Usage
@@ -198,3 +219,5 @@ namespace goedle_sdk
     }
 
 }
+
+
