@@ -56,13 +56,8 @@ Also, there is a number of other scripts that execute various behaviors of diffe
 # Demo
 You can try and test the web version of the game in the following link in the 3D games TAB: http://www.envisage-h2020.eu/virtual-labs/
 
-Beware, a zip file will be downloaded. Unzip the file and have both the game file as well as the demo(v_03).data folder in the same directory.
-The are three resolution you can play: 1920*1080, 1336*768, 1280*800, and three quality options: Fantastic, Beautiful, good.
-Choose based on your system.
-
 # Contact
 - Panagiotis migkotzidis (panagiotismigo@gmail.com)
 - Spiros Nikolopoulos (nikolopo@iti.gr)
-- Giannis Chantas (gchantas@iti.gr)
 - Dimitrios Ververidis (ververid@iti.gr)
 
