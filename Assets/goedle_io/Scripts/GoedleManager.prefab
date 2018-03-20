@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   app_key: 1
   api_key: secret
-  ENABLE_GOEDLE: 1
+  ENABLE_GOEDLE: 0
   APP_VERSION: v_test
   APP_NAME: Wind Energy Lab Test
   ENABLE_GA: 0
