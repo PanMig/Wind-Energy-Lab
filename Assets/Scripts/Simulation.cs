@@ -88,12 +88,10 @@ public class Simulation : MonoBehaviour
         startTime = Time.time;
         InitializeWindArray();
         InitializeOutputArray();
-        GoedleAnalytics.track("start.simulation");
-    }
+        //GoedleAnalytics.track("start.simulation");
 
-    void Awake()
-    {
-        InvokeRepeating("CalculateWindSpeed",0.0f, 10.0f);
+        // wind speed
+        InvokeRepeating("CalculateWindSpeed", 0.0f, 10.0f);
     }
 
     // Update is called once per frame
@@ -102,7 +100,7 @@ public class Simulation : MonoBehaviour
         CalculateTime();
         EndSimulation();
         // Sending game state every 15 seconds
-        if (Time.time > nextActionTime)
+        /*if (Time.time > nextActionTime)
         {
             nextActionTime += period;
             GoedleAnalytics.track("game.state", "currentWindSpeed", currentWindSpeed.ToString());
@@ -110,7 +108,7 @@ public class Simulation : MonoBehaviour
             GoedleAnalytics.track("game.state", "powerUsage", powerUsage.ToString());
             GoedleAnalytics.track("game.state", "numberOfTurbines", GameManager.instance.maxNumberOfTurbines.ToString());
             GoedleAnalytics.track("game.state", "numberOfTurbinesOperating", spawnManager.numberOfTurbinesOperating.ToString());
-        }
+        }*/
     }
 
     //it is not called every frame, but every fixed frame (helps performance).
@@ -302,7 +300,7 @@ public class Simulation : MonoBehaviour
             minutesCount = 0;
             GameManager.instance.endSimulation = false;
             GameManager.instance.LoadLevel("StatsScene");
-            Resources.UnloadUnusedAssets(); //removes unused assets to free memory
+            //Resources.UnloadUnusedAssets(); //removes unused assets to free memory
         }
     }
 

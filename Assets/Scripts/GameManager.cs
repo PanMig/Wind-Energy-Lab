@@ -70,12 +70,12 @@ public class GameManager : MonoBehaviour
         playerName = null;
         playerClass = null;
         playerSchoolName = null;
-        LocalizationService.Instance.Localization = "Greek";
+        //LocalizationService.Instance.Localization = "Greek";
     }
 
     public void EndSimulation()
     {
-        GoedleAnalytics.track("end.simulation");
+        //GoedleAnalytics.track("end.simulation");
         instance.endSimulation = true;
     }
 
@@ -196,8 +196,8 @@ public class GameManager : MonoBehaviour
 
     public void ReplayGame()
     {
-        GoedleAnalytics.track("replay.simulation");
-        if (replayIterations < 3)
+        //GoedleAnalytics.track("replay.simulation");
+        if (replayIterations < 6)
         {
             instance.LoadSubAreaLevel();
             replayIterations++;
@@ -220,7 +220,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Player Information
-
+    
     public void SetName(string text)
     {
         instance.playerName = text;
@@ -248,7 +248,7 @@ public class GameManager : MonoBehaviour
     {
         return instance.playerSchoolName;
     }
-
+    
     #endregion
 
 }

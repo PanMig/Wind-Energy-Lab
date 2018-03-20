@@ -88,6 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 0
 --- !u!196 &4
@@ -6566,6 +6567,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 0
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -6734,6 +6736,7 @@ Camera:
   m_TargetEye: 3
   m_HDR: 0
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
@@ -7411,7 +7414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb1b1b182838f0498a18a425c61f2c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turbinePrefab: {fileID: 1118688175235838, guid: 33c5b36302c950a40a78b8d32ed7cdf9,
+  turbinePrefab: {fileID: 1490337103480528, guid: fd57aac2cb52e7f49bbf909f69f8ee8a,
     type: 2}
   spawnPoint: {fileID: 192575071}
   posIncrement: 50
