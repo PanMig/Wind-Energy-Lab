@@ -69,7 +69,7 @@ public class CameraRTSController : MonoBehaviour
         if (Input.GetKey(KeyCode.D) || Input.mousePosition.x >= Screen.width - ScreenEdgeBorderThickness)
         {
             panMovement += Vector3.right * panSpeed * Time.deltaTime;
-            //pos.x += panSpeed * Time.deltaTime;
+
         }
         if (Input.GetKey(KeyCode.Q))
         {

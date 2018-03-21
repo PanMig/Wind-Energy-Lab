@@ -15,9 +15,13 @@ public class TurbineSpawnManager : MonoBehaviour
     public int numberOfDamagedTurbines = 0;
 
 
-    void Awake()
+    void Start()
     {
-        if (GameManager.instance.maxNumberOfTurbines == 0) GameManager.instance.maxNumberOfTurbines = 10;
+        if (GameManager.instance.maxNumberOfTurbines == 0)
+        {
+            GameManager.instance.maxNumberOfTurbines = 10;
+        }
+
         SpawnTurbines();
     }
 
@@ -28,7 +32,7 @@ public class TurbineSpawnManager : MonoBehaviour
         {
             spawnPoint.position = new Vector3(spawnPoint.position.x +
             posIncrement, spawnPoint.position.y, spawnPoint.position.z);
-            Instantiate(turbinePrefab, spawnPoint.position, spawnPoint.rotation); // adds turbines to the specified transform point (spawnPoint).
+            Instantiate(turbinePrefab, spawnPoint.position,spawnPoint.rotation); // adds turbines to the specified transform point (spawnPoint).
         }
     }
 

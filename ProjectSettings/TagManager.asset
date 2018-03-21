@@ -21,6 +21,7 @@ TagManager:
   - hv cost
   - total
   - subareaIndex
+  - SceneLoader
   layers:
   - Default
   - TransparentFX
