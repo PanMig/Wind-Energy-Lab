@@ -16,7 +16,7 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: speedMultiplier
     m_Type: 1
-    m_DefaultFloat: 0.7
+    m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
@@ -100,11 +100,13 @@ AnimatorState:
   m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 372057fe3635a6949b98af178eae148d, type: 2}
   m_Tag: 
   m_SpeedParameter: speedMultiplier
   m_MirrorParameter: Rotate
   m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &1102555237699786996
 AnimatorState:
   serializedVersion: 5
@@ -124,11 +126,13 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: aeb429e6e61e29748872d46fe5c5fb01, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1107 &1107557653724803648
 AnimatorStateMachine:
   serializedVersion: 5

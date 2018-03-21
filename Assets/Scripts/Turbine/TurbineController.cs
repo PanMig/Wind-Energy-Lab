@@ -46,7 +46,7 @@ public class TurbineController : MonoBehaviour
             if (scriptsEnabled == false) UnPauseTurbine(gameManager.gamePaused);
 
             //sets the speed of the rotation based on the wind rotation
-            turbineAnim.SetRotationSpeed(simulator.currentWindSpeed);
+            //turbineAnim.SetRotationSpeed(simulator.currentWindSpeed);
         }
     }
 
