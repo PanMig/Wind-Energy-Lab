@@ -211,7 +211,7 @@ public class GameManager : MonoBehaviour
     public void ReplayGame()
     {
         GoedleAnalytics.track("replay.simulation");
-        if (replayIterations < 6)
+        if (replayIterations <= 5)
         {
             instance.LoadSubAreaLevel();
             replayIterations++;

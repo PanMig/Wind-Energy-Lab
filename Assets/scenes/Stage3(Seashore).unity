@@ -6690,7 +6690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panSpeed: 150
   zoomSpeed: 20
-  zoomLimit: {x: 10, y: 65}
+  zoomLimit: {x: 30, y: 65}
   enableBounds: 1
   heightLimit: {x: 100, y: 220}
   lenghtLimit: {x: -270, y: 700}

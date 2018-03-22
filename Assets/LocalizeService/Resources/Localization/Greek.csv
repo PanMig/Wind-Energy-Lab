@@ -42,7 +42,7 @@ total,Σύνολο :
 
 //Stage 3
 wind,Ταχύτητα ανέμου :
-output,Παραγώμενη ισχύς :
+output,Παραγόμενη ισχύς :
 required,Απαιτούμενη Ισχύς :
 pauseText,Παύση
 configure speed,Ρύθμιση ταχύτητας

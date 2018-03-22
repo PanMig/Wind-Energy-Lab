@@ -52,10 +52,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: 
-  playerSurname: 
+  playerClass: 
   playerSchoolName: 
-  simulationDurationTime: 5
-  endGame: 0
+  simulationDurationTime: 3
+  maxNumberOfTurbines: 0
+  endSimulation: 0
+  underPowerSec: 0
+  correctPowerSec: 0
+  overPowerSec: 0
+  profit: 0
+  areaInstallationCost: 0
   Areachoice: 0
   SubAreachoice: 0
+  Language: 
   type: 0
+  windclass: 0
