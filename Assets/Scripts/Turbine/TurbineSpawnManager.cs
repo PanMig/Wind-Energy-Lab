@@ -15,7 +15,7 @@ public class TurbineSpawnManager : MonoBehaviour
     public int numberOfDamagedTurbines = 0;
 
 
-    void Start()
+    void Awake()
     {
         if (GameManager.instance.maxNumberOfTurbines == 0)
         {

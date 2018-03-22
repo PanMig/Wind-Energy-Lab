@@ -22,14 +22,14 @@ public class TurbineController : MonoBehaviour
         /* "Gameobject.Find" is used cause there are many turbines gameobjects in the scene and their properties musr be inserted through script.
         We use FindWithTag to improve perfomance by minimizing the searching operations. */
 
-        inputManager = GetComponent<TurbineInputManager>();
-        turbineAnim = GetComponentInChildren<TurbineAnimCtrl>();
+        turbineDmg = gameObject.GetComponent<TurbineDamage>();
+        inputManager = gameObject.GetComponent<TurbineInputManager>();
+        turbineAnim = gameObject.GetComponentInChildren<TurbineAnimCtrl>();
         turbineSpawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<TurbineSpawnManager>();
         simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
         gameManager = GameObject.FindGameObjectWithTag("Simulator").GetComponent<PauseSimulation>();
         damager = GameObject.FindGameObjectWithTag("Damager").GetComponent<Damager>();
-        turbineDmg = GetComponent<TurbineDamage>();
-        repair = GetComponent<TurbineRepair>();
+        repair = gameObject.GetComponent<TurbineRepair>();
     }
 
 

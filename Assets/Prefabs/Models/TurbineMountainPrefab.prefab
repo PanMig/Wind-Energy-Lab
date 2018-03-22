@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4983129800955730}
   - component: {fileID: 33464135058505520}
   - component: {fileID: 23995787860908646}
-  - component: {fileID: 65709411496261052}
   m_Layer: 0
   m_Name: Turbine_Main
   m_TagString: Untagged
@@ -41,9 +40,9 @@ GameObject:
   - component: {fileID: 114063247971858786}
   - component: {fileID: 114601736475230320}
   - component: {fileID: 114273953244927758}
-  - component: {fileID: 114892011687855244}
   - component: {fileID: 114548625963755906}
   - component: {fileID: 114149742220288624}
+  - component: {fileID: 114624655960669988}
   m_Layer: 0
   m_Name: TurbineMountainPrefab
   m_TagString: Turbine
@@ -142,7 +141,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1490337103480528}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 437.36823, y: 36.650803, z: 553.0661}
+  m_LocalPosition: {x: 425.4015, y: 186.42133, z: 14.908959}
   m_LocalScale: {x: 4.4409704, y: 4.3607845, z: 4.0169997}
   m_Children:
   - {fileID: 4320559732742180}
@@ -258,18 +257,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.2021239, y: 1.1768786, z: 11.98}
   m_Center: {x: -0.12473079, y: -0.27843925, z: 5.700001}
---- !u!65 &65709411496261052
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1054006666946308}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5138378, y: 1.66174, z: 0.5098804}
-  m_Center: {x: 0.051120605, y: -0.15586968, z: 0.2500598}
 --- !u!95 &95182742927108524
 Animator:
   serializedVersion: 3
@@ -426,7 +413,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114892011687855244
+--- !u!114 &114624655960669988
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
