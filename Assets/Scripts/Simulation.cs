@@ -194,7 +194,6 @@ public class Simulation : MonoBehaviour
     void CalculateWindSpeed()
     {
         randomWindValue = Random.Range(0, 14);
-        //currentWindSpeed = RandomGaussianGenerator.GenerateNormalRandom(10.0f, 1.0f, 1, 13);
         currentWindSpeed = wind[randomWindValue];
         DisplayText(DisplayedTextValue.wind);
     }
