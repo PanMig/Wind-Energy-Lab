@@ -12,9 +12,11 @@ namespace goedle_sdk.detail
         //JSONNode getStrategy(IUnityWebRequests www, string url);
         void sendPost(string url, string content, string authentification);
         void sendGet(string url);
+        void requestStrategy(string url, GoedleAnalytics ga);
         void addUnityHTTPClient(IUnityWebRequests www);
+        JSONNode Strategy { get; set; }
         IEnumerator getRequest(string url);
-        IEnumerator getStrategy(string app_key, string api_key);
+        IEnumerator getJSONResponse(string url, GoedleAnalytics ga);
         IEnumerator postJSONRequest(string url, string content, string authentification);
     }
 
@@ -32,7 +34,22 @@ namespace goedle_sdk.detail
 
     public class GoedleHttpClient: MonoBehaviour, IGoedleHttpClient 
 	{
+        JSONNode strategy = null;
+        
         IUnityWebRequests _www;
+
+        public JSONNode Strategy
+        {
+            get
+              {
+                 return strategy;
+            }
+            set
+              {
+                    strategy = value;
+              }
+       }
+
 
         public GoedleHttpClient(){
         }
@@ -46,17 +63,12 @@ namespace goedle_sdk.detail
             StartCoroutine(getRequest( url));
         }
 
-        /*
-        public JSONNode getStrategy(IUnityWebRequests www, string url)
+
+        public void requestStrategy(string url, GoedleAnalytics ga)
         {
-            CoroutineWithData cd = new CoroutineWithData(this, getJSONRequest(www, url));
-            yield return cd.coroutine;
-            Debug.Log("result is " + cd.result);  //  'success' or 'fail'
-            yield return cd.result;
-            // TODO RETURN JSON from REQUEST
-            //yield return StartCoroutine(getJSONRequest(www, url));
+            StartCoroutine(getJSONResponse(url, ga));
         }
-        */
+
         public void sendPost(string url, string content, string authentification)
         {
             StartCoroutine(postJSONRequest(url, content, authentification));
@@ -83,44 +95,44 @@ namespace goedle_sdk.detail
             }
         }
 
-        /*
-         Returns an JSONNode object this can be accessed via:
-         CoroutineWithData cd = new CoroutineWithData(this, LoadSomeStuff( ) );
-         yield return cd.coroutine;
-         Debug.Log("result is " + cd.result);  //  'JSONNode'
-         CoroutineWithData is in GoedleUtils
-         */
-        public IEnumerator getStrategy(string app_key, string api_key)
+        public IEnumerator getJSONResponse(string url, GoedleAnalytics ga)
         {
-            string url = GoedleUtils.getStrategyUrl(app_key, api_key);
+            
+
             UnityWebRequest client = _www as UnityWebRequest;
-            using (client = new UnityWebRequest(url, "GET"))
+            client = new UnityWebRequest(url, "GET");
+
+            using (client)
             {
+                client.downloadHandler = new DownloadHandlerBuffer();
+
                 yield return client.SendWebRequest();
+
+
                 if (client.isNetworkError || client.isHttpError)
                 {
                     Debug.Log(client.error);
-                        yield return JSON.Parse("{\"error\": \" " + client.error + " \"}");
                 }
                 else
                 {
                     // Show results as text
-                    Debug.Log(client.downloadHandler.text);
-                JSONNode strategy_json;
+                    JSONNode strategy_json;
                     try
                     {
                         strategy_json = JSON.Parse(client.downloadHandler.text);
                     }
-                    catch(Exception e){
-                            strategy_json = "{\"error\": \" " + e.Message + " \"}";
- 
+                    catch (Exception e)
+                    {
+                        strategy_json = JSON.Parse("{\"error\": \" " + e.Message + " \"}");
                     }
-                        yield return strategy_json;
+
+                    Debug.Log(strategy_json["config"].ToString());
+                    ga._strategy = strategy_json;
+
                     // Or retrieve results as binary data
                     //byte[] results = client.downloadHandler.data;
                 }
             }
-
         }
 
         public IEnumerator postJSONRequest( string url, string content ,string authentification)

@@ -53,10 +53,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   app_key: 
   api_key: 
-  ENABLE_GOEDLE: 1
+  ENABLE_GOEDLE: 0
   APP_VERSION: 
   APP_NAME: 
-  ENABLE_GA: 1
+  ENABLE_GA: 0
   GA_TRACKIND_ID: 
   GA_CD_EVENT: 
   GA_CD_1: 0

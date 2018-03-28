@@ -45,4 +45,13 @@ public class UserIdentification : MonoBehaviour
         }
     }
 
+    /*
+    IEnumerator getStrategy()
+    {
+        yield return goedle_sdk.GoedleAnalytics.requestStrategy(maximum_blocking_time);
+        // Apply the new configuration, the request 
+        SimpleJSON.JSONNode strategy = goedle_sdk.GoedleAnalytics.getStrategy();
+        GameManager.instance.strategy = strategy["config"];
+    }*/
+
 }

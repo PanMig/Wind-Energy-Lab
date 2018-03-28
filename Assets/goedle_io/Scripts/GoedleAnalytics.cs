@@ -12,6 +12,7 @@
 
 using UnityEngine;
 using System;
+using System.Linq;
 using SimpleJSON;
 using UnityEngine.Networking;
 namespace goedle_sdk
@@ -151,6 +152,33 @@ namespace goedle_sdk
         #endif
         }
 
+        /// <summary>
+        /// request strategy from goedle.io API
+        /// </summary>
+        public static JSONNode requestStrategy(float maximum_blocking_time)
+        {
+        #if !ENABLE_GOEDLE
+            return gio_interface.requestStrategy(maximum_blocking_time);
+            //Debug.Log(strategy.ToString());
+            //return strategy;
+        #endif
+        }
+
+        /// <summary>
+        /// request strategy from goedle.io API
+        /// </summary>
+        public static JSONNode getStrategy(float maximum_blocking_time)
+        {
+        #if !ENABLE_GOEDLE
+            return gio_interface.requestStrategy(maximum_blocking_time);
+
+            //goedle_analytics.requestStrategy(maximum_blocking_time);
+            //Debug.Log("in wrapper");
+            //Debug.Log(strategy.ToString());
+            //return strategy;
+        #endif
+        }
+
 
 		#region internal
         public static detail.GoedleAnalytics gio_interface;
@@ -170,6 +198,7 @@ namespace goedle_sdk
                 return gio_http_client;
             }
         }
+
 
         static bool tracking_enabled = true;
 

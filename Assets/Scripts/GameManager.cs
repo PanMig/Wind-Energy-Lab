@@ -48,6 +48,9 @@ public class GameManager : MonoBehaviour
 
     private SceneLoader sceneLoader;
 
+    //Content Adaptation Configurations
+    public static string hold_landscape = "Area1";
+    public static SimpleJSON.JSONNode strategy = null;
 
     void Awake()
     {
@@ -92,6 +95,7 @@ public class GameManager : MonoBehaviour
             LocalizationService.Instance.Localization = "Greek";
         }
         GoedleAnalytics.track("change.language",LocalizationService.Instance.Localization.ToString());
+
     }
 
     #region AreaManagement

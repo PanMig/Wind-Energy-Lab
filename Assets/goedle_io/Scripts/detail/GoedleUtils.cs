@@ -56,10 +56,11 @@ namespace goedle_sdk.detail
             float floatValue;
             return Int32.TryParse(value, out intValue) || float.TryParse(value, out floatValue);
         }
-        public static string getStrategyUrl(string app_key, string api_key)
+        public string getStrategyUrl(string app_key)
         {
             // TODO: build strategy url
-            return GoedleConstants.STRATEGY_URL;
+
+            return GoedleConstants.STRATEGY_URL+app_key+GoedleConstants.STRATEGY_PATH;
         }
     }
     public static class UriHelper
@@ -76,26 +77,6 @@ namespace goedle_sdk.detail
                             .Select(parameter => parameter.Split(new[] { '=' }, StringSplitOptions.RemoveEmptyEntries))
                             .GroupBy(parts => parts[0], parts => parts.Length > 2 ? string.Join("=", parts, 1, parts.Length - 1) : (parts.Length > 1 ? parts[1] : ""))
                       .ToDictionary(grouping => grouping.Key, grouping => string.Join(",", grouping.ToArray()));
-        }
-    }
-    public class CoroutineWithData : MonoBehaviour
-    {
-        public Coroutine coroutine { get; private set; }
-        public object result;
-        private IEnumerator target;
-        public CoroutineWithData(MonoBehaviour owner, IEnumerator target)
-        {
-            this.target = target;
-            this.coroutine = owner.StartCoroutine(Run());
-        }
-
-        private IEnumerator Run()
-        {
-            while (target.MoveNext())
-            {
-                result = target.Current;
-                yield return result;
-            }
         }
     }
 }
