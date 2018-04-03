@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 415037012}
   - component: {fileID: 415037014}
   - component: {fileID: 415037013}
+  - component: {fileID: 415037015}
   m_Layer: 0
   m_Name: InfoImage
   m_TagString: Untagged
@@ -275,7 +276,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c54ff1a0bf0f79e4eae28dca65d56f73, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ec46589356b81142b27e72a296c99bf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -289,6 +290,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 415037011}
+--- !u!114 &415037015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 415037011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f2238a0c913484181720793b81d7de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ENG: {fileID: 21300000, guid: c54ff1a0bf0f79e4eae28dca65d56f73, type: 3}
+  GRE: {fileID: 21300000, guid: 6ec46589356b81142b27e72a296c99bf, type: 3}
 --- !u!1 &598932596
 GameObject:
   m_ObjectHideFlags: 0

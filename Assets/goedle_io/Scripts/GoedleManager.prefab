@@ -51,13 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869a1b8b5dd6a4fc1a8d0a76f77e5b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  app_key: 
-  api_key: 
-  ENABLE_GOEDLE: 0
-  APP_VERSION: 
-  APP_NAME: 
+  app_key: 90e167a8ba993ab18f52ec7fdb44fdea
+  api_key: 218f2f9f41d9f86da2fb4bd74eea4ce7
+  ENABLE_GOEDLE: 1
+  APP_VERSION: windLab_v2
+  APP_NAME: Wind energy lab
   ENABLE_GA: 0
-  GA_TRACKIND_ID: 
+  GA_TRACKIND_ID: f461126b1ec2a7be13213bae67dd3f37
   GA_CD_EVENT: 
   GA_CD_1: 0
   GA_CD_2: 0

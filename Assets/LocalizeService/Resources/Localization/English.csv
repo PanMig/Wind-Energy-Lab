@@ -20,9 +20,9 @@ logout, Logout
 title(Mountains), Mountains
 title(Fields), Fields
 title(Seashore), Seashore
-text(Mountains),"<b>AREA-1</b>\n\nArea-1 is near mountains. It has difficult access. Its windclass is High (10 m/s). Here you have 5 places to explore.\n\n<b>Characteristics :</b>\n\n- Average Wind speed = 10 m/s\n\n- Access cost = 3 $"
-text(Fields),"<b>AREA-2</b>\n\nArea-2 is near plain land. It has not difficult access. Its windclass is Medium (windspeeds 8.5 m/s). Here you have 5 places to explore.\n\n<b>Characteristics :</b>\n\n- Average Wind speed = 8.5 m/s\n\n- Access cost = 2 $"
-text(seashore),"<b>AREA-3</b>\n\nArea-3 is near seashore. It has easy access due to port. Its windclass is Low (windspeeds 7.5 m/s). Here you have 8 places to explore.\n\n<b>Characteristics :</b>\n\n- Average Wind speed = 7.5 m/s\n\n- Access cost = 1 $"
+text(Mountains),"<b>AREA-1</b>\n\nArea-1 is near mountains. It has difficult access. Its windclass is High (10 m/s). Here you have 4 places to explore.\n\n<b>Characteristics :</b>\n\n- Average Wind speed = 10 m/s\n\n- Access cost = 3 $"
+text(Fields),"<b>AREA-2</b>\n\nArea-2 is near plain land. It has not difficult access. Its windclass is Medium (windspeeds 8.5 m/s). Here you have 4 places to explore.\n\n<b>Characteristics :</b>\n\n- Average Wind speed = 8.5 m/s\n\n- Access cost = 2 $"
+text(seashore),"<b>AREA-3</b>\n\nArea-3 is near seashore. It has easy access due to port. Its windclass is Low (windspeeds 7.5 m/s). Here you have 4 places to explore.\n\n<b>Characteristics :</b>\n\n- Average Wind speed = 7.5 m/s\n\n- Access cost = 1 $"
 
 //Turbine selection
 title(TurbineSelection),Turbine selection
@@ -87,3 +87,6 @@ title(s2), Future Scenario 2
 opt1(s2),Try to install more wind turbines in the same area
 opt2(s2),Keep the wind farm as is and install a new wind farm(or even solar panels) in a new area
 opt3(s2),Do nothing keep everything as it is
+
+//end scene
+play again, Play again

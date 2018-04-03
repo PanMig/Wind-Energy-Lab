@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public enum SubArea { archaiological, HVLines, other }
     public SubArea SubAreachoice;
 
-    public string Language;
+    //public string Language;
 
     //Turbine Type Information
     [SerializeField] private TurbineSelector.TurbineType type;
@@ -75,12 +75,12 @@ public class GameManager : MonoBehaviour
         playerName = null;
         playerClass = null;
         playerSchoolName = null;
-        //LocalizationService.Instance.Localization = "Greek";
+        LocalizationService.Instance.Localization = "Greek";
     }
 
     public void EndSimulation()
     {
-        //GoedleAnalytics.track("end.simulation");
+        GoedleAnalytics.track("end.simulation");
         instance.endSimulation = true;
     }
 
