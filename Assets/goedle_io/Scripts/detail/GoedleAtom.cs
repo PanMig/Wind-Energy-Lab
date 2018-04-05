@@ -14,19 +14,19 @@ namespace goedle_sdk.detail
 		private string locale;
 		*/
 
-        private string _app_key;
-        private string _user_id;
-        private int _ts;
-        private string _event_name = null;
-        private string _event_value = null;
-        private int _timezone;
-        private string _event_id = null;
-        private string _build_nr = GoedleConstants.BUILD_NR;
-        private string _trait_key = null;
-        private string _trait_value = null;
-        private string _app_version = null;
-        private string _anonymous_id = null;
-        private string _uuid = null;
+		private string app_key;
+		private string user_id;
+		private int ts;
+		private string event_name = null;
+		private string event_value = null;
+		private int timezone;
+		private string event_id = null;
+		private string build_nr = GoedleConstants.BUILD_NR;
+		private string trait_key = null;
+		private string trait_value = null;
+		private string app_version = null;
+		private string anonymous_id = null;
+		private string uuid = null;
 
 		public GoedleAtom (string app_key, 
 		                  string user_id, 
@@ -41,56 +41,56 @@ namespace goedle_sdk.detail
 						  string trait_value,
 						  bool ga_active)
 		{
-            _app_key = app_key;
+			this.app_key = app_key;
 			if (user_id == null) {
 				Console.Write ("Maybe the GoedleAPI.init(); isn`t called in the Application class. Or you don't have set the GoedleAPI.setUserId(userId)?");
 			}else
 			{
-                _user_id = user_id;
+				this.user_id = user_id;
 			}			
-            _ts = ts;
-            _event_name = event_name;
+			this.ts = ts;
+			this.event_name = event_name;
 			if (!string.IsNullOrEmpty (event_id))
-                _event_id = event_id;
+				this.event_id = event_id;
 			if (!string.IsNullOrEmpty (event_value))
-                _event_value = event_value;
+				this.event_value = event_value;
 			if (!string.IsNullOrEmpty (trait_key))
-                _trait_key = trait_key;
+				this.trait_key = trait_key;
 			if (!string.IsNullOrEmpty (trait_value))
-                _trait_value = trait_value;
+				this.trait_value = trait_value;
 			if (!string.IsNullOrEmpty (anonymous_id))
-                _anonymous_id = anonymous_id;
+				this.anonymous_id = anonymous_id;
 				// This is for the google analytics case
 				if (ga_active)	
-                    _uuid = anonymous_id;
-            _timezone = timezone;
-            _app_version = app_version;
+					this.uuid = anonymous_id;
+			this.timezone = timezone;
+			this.app_version = app_version;
 
 		}
 
         public JSONObject getGoedleAtomDictionary ()
 		{
-            JSONObject goedleAtom = new JSONObject();
-            goedleAtom.Add ("app_key", _app_key);
-            goedleAtom.Add ("user_id", _user_id);
-            goedleAtom.Add ("ts", _ts);
-            goedleAtom.Add ("event", _event_name);
-            goedleAtom.Add ("build_nr", _build_nr);
-            goedleAtom.Add ("app_version", _app_version);
-            goedleAtom.Add ("timezone", _timezone);
+            var goedleAtom = new JSONObject();
+            goedleAtom.Add ("app_key", this.app_key);
+			goedleAtom.Add ("user_id", this.user_id);
+			goedleAtom.Add ("ts", this.ts);
+			goedleAtom.Add ("event", this.event_name);
+			goedleAtom.Add ("build_nr", build_nr);
+			goedleAtom.Add ("app_version", this.app_version);
+			goedleAtom.Add ("timezone", this.timezone);
 			/*if (!string.IsNullOrEmpty (this.locale))
 				goedleAtom.Add ("locale", this.locale);*/
-            if (!string.IsNullOrEmpty (_anonymous_id))
-                goedleAtom.Add ("anonymous_id", _anonymous_id);
-            if (!string.IsNullOrEmpty (_uuid))
-                goedleAtom.Add ("uuid", _uuid);
-            if (!string.IsNullOrEmpty (_event_id))
-                goedleAtom.Add ("event_id", _event_id);
-            if (!string.IsNullOrEmpty (_event_value))
-                goedleAtom.Add ("event_value", _event_value);
+			if (!string.IsNullOrEmpty (this.anonymous_id))
+				goedleAtom.Add ("anonymous_id", this.anonymous_id);
+			if (!string.IsNullOrEmpty (this.uuid))
+				goedleAtom.Add ("uuid", this.uuid);
+			if (!string.IsNullOrEmpty (this.event_id))
+				goedleAtom.Add ("event_id", this.event_id);
+			if (!string.IsNullOrEmpty (this.event_value))
+				goedleAtom.Add ("event_value", this.event_value);
 	
-            if (!string.IsNullOrEmpty (_trait_key) && !string.IsNullOrEmpty (_trait_value))
-                goedleAtom.Add (_trait_key, _trait_value);
+			if (!string.IsNullOrEmpty (this.trait_key) && !string.IsNullOrEmpty (this.trait_value))
+				goedleAtom.Add (this.trait_key, this.trait_value);
 			return goedleAtom;
 		}
 	}

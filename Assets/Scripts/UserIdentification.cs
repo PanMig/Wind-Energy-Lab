@@ -41,17 +41,21 @@ public class UserIdentification : MonoBehaviour
             string[] user_ids = inputFields.OfType<InputField>().Select(o => o.ToString()).ToArray();
             string hashed_user_id = GoedleUtils.userHash(user_ids.ToString());
             goedle_sdk.GoedleAnalytics.setUserId(hashed_user_id);
-            GameManager.instance.LoadLevel("Stage1");
+            StartCoroutine(waitOnStrategy());
         }
     }
 
-    /*
-    IEnumerator getStrategy()
+
+    IEnumerator waitOnStrategy()
     {
-        yield return goedle_sdk.GoedleAnalytics.requestStrategy(maximum_blocking_time);
+        int c = 0;
+        while (goedle_sdk.GoedleAnalytics.gio_interface.strategy == null || c < 150)
+        {
+            yield return null;
+            c++;
+        }
         // Apply the new configuration, the request 
-        SimpleJSON.JSONNode strategy = goedle_sdk.GoedleAnalytics.getStrategy();
-        GameManager.instance.strategy = strategy["config"];
-    }*/
+        GameManager.instance.LoadLevel("Stage1");
+    }
 
 }

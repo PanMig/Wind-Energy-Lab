@@ -1,59 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections;
 using SimpleJSON;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 using System.Text;
-
+using System.Threading;
 namespace goedle_sdk.detail
 {
     public class GoedleAnalytics
     {
-        private string _api_key = null;
-        private string _app_key = null;
-        private string _user_id = null;
-        private string _anonymous_id = null;
-        private string _app_version = null;
-        private string _ga_tracking_id = null;
-        private string _app_name = null;
-        private int _cd1;
-        private int _cd2;
-        private string _cd_event = null;
-        public IGoedleHttpClient _gio_http_client { get; set; }
-        private GoedleUtils _goedleUtils = new GoedleUtils();
-
+        private string api_key = null;
+        private string app_key = null;
+        private string user_id = null;
+        private string anonymous_id = null;
+        private string app_version = null;
+        private string ga_tracking_id = null;
+        private string app_name = null;
+        private int cd1;
+        private int cd2;
+        private string cd_event = null;
+        private GoedleHttpClient gio_http_client;
+        public GoedleUtils goedleUtils = new GoedleUtils();
+        public JSONNode strategy = null;
+        IGoedleWebRequest gwr = null;
+        IGoedleUploadHandler guh = null;
+        IGoedleDownloadBuffer gdb = null;
         //private string locale = null;
-        //public static JSONNode _strategy = null;
-        public JSONNode _strategy = null;
 
-
-        public GoedleAnalytics(string api_key, string app_key, string user_id, string app_version, string ga_tracking_id, string app_name, int cd1, int cd2, string cd_event, IGoedleHttpClient gio_http_client)//, string locale)
+        public GoedleAnalytics(string api_key, string app_key, string user_id, string app_version, string ga_tracking_id, string app_name, int cd1, int cd2, string cd_event, GoedleHttpClient gio_http_client, IGoedleWebRequest gwr, IGoedleUploadHandler guh, IGoedleDownloadBuffer gdb)//, string locale)
         {
-            _api_key = api_key;
-            _app_key = app_key;
-            _user_id = user_id;
-            _app_version = app_version;
-            _ga_tracking_id = ga_tracking_id;
-            _app_name = app_name;
-            _cd1 = cd1;
-            _cd2 = cd2;
-            _cd_event = cd_event;
-            _gio_http_client = gio_http_client;
+            this.api_key = api_key;
+            this.app_key = app_key;
+            this.user_id = user_id;
+            this.app_version = app_version;
+            this.ga_tracking_id = ga_tracking_id;
+            this.app_name = app_name;
+            this.cd1 = cd1;
+            this.cd2 = cd2;
+            this.cd_event = cd_event;
+            this.gio_http_client = gio_http_client;
+            this.gwr = gwr;
+            this.guh = guh;
+            this.gdb = gdb;
             //this.locale = GoedleLanguageMapping.GetLanguageCode (locale);
             track_launch();
         }
 
         public void reset_user_id(string user_id)
         {
-            _user_id = user_id;
+            this.user_id = user_id;
         }
 
         public void set_user_id(string user_id)
         {
-            _anonymous_id = _user_id;
-            _user_id = user_id;
+            this.anonymous_id = this.user_id;
+            this.user_id = user_id;
             track(GoedleConstants.IDENTIFY, null, null, false, null, null);
+        }
+
+        // TODO Blocking Time default  
+        public JSONNode requestStrategy(float maximum_blocking_time )
+        {
+            /*
+            Create GoedleWebRequest
+            Create GoedleDownloadManager
+            */
+            GoedleUtils gu = new GoedleUtils();
+            string url = gu.getStrategyUrl(app_key);
+
+            gio_http_client.requestStrategy(url, this, gwr, gdb);
+            DateTime dt = DateTime.Now + TimeSpan.FromSeconds(maximum_blocking_time);
+            int c = 0;
+            do
+            {
+                c++;
+            } while (DateTime.Now < dt || strategy != null);
+            return strategy;
         }
 
         public void track_launch()
@@ -61,31 +83,31 @@ namespace goedle_sdk.detail
             track(GoedleConstants.EVENT_NAME_INIT, null, null, true, null, null);
         }
 
-        public void track(string event_name, string event_id, string event_value, bool launch, string trait_key, string trait_value)
+        public void track(string event_name, string event_id, string event_value, bool launch, string trait_key, string trait_value )
         {
-            bool ga_active = !String.IsNullOrEmpty(_ga_tracking_id);
+            bool ga_active = !String.IsNullOrEmpty(this.ga_tracking_id);
             string authentication = null;
             string content = null;
             int ts = getTimeStamp();
             // -1 because c# returns -1 for UTC +1 , * 1000 from Seconds to Milliseconds
             int timezone = (int)(((DateTime.UtcNow - DateTime.Now).TotalSeconds) * -1 * 1000);
-            GoedleAtom rt = new GoedleAtom(_app_key, _user_id, ts, event_name, event_id, event_value, timezone, _app_version, _anonymous_id, trait_key, trait_value, ga_active);
+            GoedleAtom rt = new GoedleAtom(app_key, user_id, ts, event_name, event_id, event_value, timezone, app_version, anonymous_id, trait_key, trait_value, ga_active);
             if (rt == null)
             {
                 Console.Write("Data Object is None, there must be an error in the SDK!");
+                return;
             }
             else
             {
                 content = rt.getGoedleAtomDictionary().ToString();
-                authentication = _goedleUtils.encodeToUrlParameter(content, _api_key);
+                authentication = goedleUtils.encodeToUrlParameter(content, api_key);
             }
-
             string url = GoedleConstants.TRACK_URL;
-            _gio_http_client.sendPost(url, content, authentication);
+            guh.add(content);
 
+            gio_http_client.sendPost(url, authentication, gwr, guh);
             // Sending tp Google Analytics for now we only support the Event tracking
             string type = "event";
-
             if (ga_active)
                 trackGoogleAnalytics(event_name, event_id, event_value, type);
         }
@@ -116,14 +138,14 @@ namespace goedle_sdk.detail
             // the request body we want to send
             var postData = new Dictionary<string, string>
                            {
-                               { "v", GoedleConstants.GOOGLE_MP_VERSION.ToString() },
-                {"av", _app_version},
-                {"an", _app_name},
-                { "tid", _ga_tracking_id },
-                { "cid", _user_id },
-                               { "t", type },
-                                { "ec", getSceneName() },
-                               { "ea", event_name },
+                               {"v", GoedleConstants.GOOGLE_MP_VERSION.ToString()},
+                               {"av", app_version},
+                               {"an", app_name},
+                               {"tid", ga_tracking_id},
+                               {"cid", user_id},
+                               {"t", type},
+                               {"ec", getSceneName()},
+                               {"ea", event_name},
 								//{"ul", this.locale},
                            };
 
@@ -134,41 +156,27 @@ namespace goedle_sdk.detail
             {
                 postData.Add("el", event_id);
             }
-            if (_goedleUtils.IsFloatOrInt(event_value))
+            if (goedleUtils.IsFloatOrInt(event_value))
             {
                 postData.Add("ev", event_value);
             }
 
-            if (!String.IsNullOrEmpty(_anonymous_id))
+            if (!String.IsNullOrEmpty(anonymous_id))
             {
-                postData.Add("uid", _user_id);
+                postData.Add("uid", user_id);
                 // For mapping after identify
                 // Otherwise we will lost the old client id
                 postData.Remove("cid");
-                postData.Add("cid", _anonymous_id);
+                postData.Add("cid", anonymous_id);
             }
-            if (_cd_event == "group" && event_name == "group" && _cd1 != 0 && _cd2 != 0 && _cd1 != _cd2)
+            if (cd_event == "group" && event_name == "group" && cd1 != 0 && cd2 != 0 && cd1 != cd2)
             {
                 postData.Remove("el");
                 postData.Remove("ev");
-                postData.Add(String.Concat("cd", _cd1), event_id);
-                postData.Add(String.Concat("cd", _cd2), event_value);
+                postData.Add(String.Concat("cd", cd1), event_id);
+                postData.Add(String.Concat("cd", cd2), event_value);
             }
-
-            _gio_http_client.sendGet(buildGAUrlDataString(postData));
-        }
-
-        public JSONNode requestStrategy (float maximum_blocking_time){
-            string url = _goedleUtils.getStrategyUrl(_app_key);
-
-            _gio_http_client.requestStrategy(url, this);
-
-            DateTime dt = DateTime.Now + TimeSpan.FromSeconds(maximum_blocking_time);
-            do {
-
-            } while (DateTime.Now < dt);
-
-            return _strategy;
+            //gio_http_client.sendGet(buildGAUrlDataString(postData));
         }
 
 

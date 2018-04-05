@@ -8,6 +8,9 @@ public class VanishLandscape : MonoBehaviour {
 
     // Use this for initialization
 	void Start () {
+        if (GameManager.strategy != null){
+            hold_landscape = GameManager.strategy["scenario"];
+        }
         if (gameObject.name != hold_landscape)
             moveGameObject(true);
         else

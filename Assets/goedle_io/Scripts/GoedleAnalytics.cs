@@ -12,7 +12,6 @@
 
 using UnityEngine;
 using System;
-using System.Linq;
 using SimpleJSON;
 using UnityEngine.Networking;
 namespace goedle_sdk
@@ -30,8 +29,6 @@ namespace goedle_sdk
     public class GoedleAnalytics : MonoBehaviour
     {
         public static GoedleAnalytics instance = null;
-
-        detail.IUnityWebRequests www = null;
 
         /*! \cond PRIVATE */
         #region settings
@@ -140,6 +137,17 @@ namespace goedle_sdk
 			#endif
 		}
 
+
+        /// <summary>
+        /// request strategy from GIO API
+        /// </summary>s
+        public void requestStrategy(float maxblocking_time) {
+            #if !ENABLE_GOEDLE
+                goedle_analytics.requestStrategy(maxblocking_time);
+            #endif
+        }
+
+
         /// <summary>
         /// Reset user id
         /// </summary>
@@ -149,33 +157,6 @@ namespace goedle_sdk
         #if !ENABLE_GOEDLE
             Guid new_user_id = Guid.NewGuid();
             goedle_analytics.reset_user_id(new_user_id.ToString("D"));
-        #endif
-        }
-
-        /// <summary>
-        /// request strategy from goedle.io API
-        /// </summary>
-        public static JSONNode requestStrategy(float maximum_blocking_time)
-        {
-        #if !ENABLE_GOEDLE
-            return gio_interface.requestStrategy(maximum_blocking_time);
-            //Debug.Log(strategy.ToString());
-            //return strategy;
-        #endif
-        }
-
-        /// <summary>
-        /// request strategy from goedle.io API
-        /// </summary>
-        public static JSONNode getStrategy(float maximum_blocking_time)
-        {
-        #if !ENABLE_GOEDLE
-            return gio_interface.requestStrategy(maximum_blocking_time);
-
-            //goedle_analytics.requestStrategy(maximum_blocking_time);
-            //Debug.Log("in wrapper");
-            //Debug.Log(strategy.ToString());
-            //return strategy;
         #endif
         }
 
@@ -190,8 +171,8 @@ namespace goedle_sdk
 			}
 		}
 
-        public detail.IGoedleHttpClient gio_http_client;
-        public detail.IGoedleHttpClient http_client
+        public detail.GoedleHttpClient gio_http_client;
+        public detail.GoedleHttpClient http_client
         {
             get
             {
@@ -199,13 +180,12 @@ namespace goedle_sdk
             }
         }
 
-
         static bool tracking_enabled = true;
 
         void Awake()
         {
             gio_http_client = (new GameObject("GoedleHTTPClient")).AddComponent<detail.GoedleHttpClient>();
-            gio_http_client.addUnityHTTPClient(www);
+
             //Check if instance already exists
             if (instance == null)
             {
@@ -244,10 +224,13 @@ namespace goedle_sdk
                     app_name = app_version;
             //string locale = Application.systemLanguage.ToString();
             // Build HTTP CLient
+            detail.IGoedleWebRequest goedleWebRequest = new detail.GoedleWebRequest();
+            detail.IGoedleUploadHandler goedleUploadHandler = new detail.GoedleUploadHandler();
+            detail.IGoedleDownloadBuffer goedleDownloadBuffer = new detail.GoedleDownloadBuffer();
 
             if (tracking_enabled && gio_interface == null)
             {
-                gio_interface = new detail.GoedleAnalytics(api_key, app_key, user_id.ToString("D"), app_version, GA_TRACKIND_ID, app_name, GA_CD_1, GA_CD_2, GA_CD_EVENT, gio_http_client);
+                gio_interface = new detail.GoedleAnalytics(api_key, app_key, user_id.ToString("D"), app_version, GA_TRACKIND_ID, app_name, GA_CD_1, GA_CD_2, GA_CD_EVENT, gio_http_client, goedleWebRequest, goedleUploadHandler, goedleDownloadBuffer);
             }
 		}
 
