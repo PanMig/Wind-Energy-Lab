@@ -15,6 +15,7 @@ class, Τμήμα
 school, Σχολείο
 proceed(input),Επόμενο
 logout,Αποσύνδεση
+inputText, Παρακαλώ συμπλήρωσε όλα τα πεδία.
 
 //Stage 1
 title(Mountains),Βουνά

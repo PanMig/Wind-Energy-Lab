@@ -15,6 +15,7 @@ class, Class
 school, School
 proceed(input),Proceed
 logout, Logout
+inputText, Please fill all the input fields.
 
 //Stage 1
 title(Mountains), Mountains
