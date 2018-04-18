@@ -56,7 +56,7 @@ MonoBehaviour:
   ENABLE_GOEDLE: 1
   APP_VERSION: windLab_v2
   APP_NAME: Wind energy lab
-  ENABLE_GA: 0
+  ENABLE_GA: 1
   GA_TRACKIND_ID: f461126b1ec2a7be13213bae67dd3f37
   GA_CD_EVENT: 
   GA_CD_1: 0

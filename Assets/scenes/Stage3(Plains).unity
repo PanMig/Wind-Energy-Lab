@@ -320,7 +320,7 @@ MonoBehaviour:
   turbinePrefab: {fileID: 1490337103480528, guid: fd57aac2cb52e7f49bbf909f69f8ee8a,
     type: 2}
   spawnPoint: {fileID: 17927049}
-  posIncrement: 50
+  posIncrement: 60
   numberOfTurbinesOperating: 0
   numberOfDamagedTurbines: 0
 --- !u!4 &58763120
