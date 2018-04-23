@@ -13,5 +13,6 @@ public class Loader : MonoBehaviour {
 
         //Instantiate gameManager prefab
         Instantiate(gameManager);
+
     }
 }

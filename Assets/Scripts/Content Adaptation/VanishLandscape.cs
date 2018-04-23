@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class VanishLandscape : MonoBehaviour {
     Vector3 pos;
-    string hold_landscape = GameManager.hold_landscape;
+    string hold_landscape = GameManager.instance.hold_landscape;
 
     // Use this for initialization
 	void Start () {
-        if (GameManager.strategy != null){
-            hold_landscape = GameManager.strategy["scenario"];
+        if (goedle_sdk.GoedleAnalytics.instance.gio_interface.strategy != null){
+            hold_landscape = goedle_sdk.GoedleAnalytics.instance.gio_interface.strategy["config"][0]["scenario"].Value;
         }
         if (gameObject.name != hold_landscape)
             moveGameObject(true);

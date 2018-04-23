@@ -41,7 +41,7 @@ public class TurbineSelector : MonoBehaviour
             GameManager.instance.Windclass = 3;
             windClassText.text = "Wind class III";
         }
-        GoedleAnalytics.track("select.wind_class", GameManager.instance.Windclass.ToString());
+        GoedleAnalytics.instance.track("select.wind_class", GameManager.instance.Windclass.ToString());
     }
 
 
@@ -115,7 +115,7 @@ public class TurbineSelector : MonoBehaviour
         {
             btn.SetActive(false);
         }
-        GoedleAnalytics.track("select.turbine_type", GameManager.instance.Type.ToString());
+        GoedleAnalytics.instance.track("select.turbine_type", GameManager.instance.Type.ToString());
     }
 
     public void CalculateMaxNumberOfTurbines()

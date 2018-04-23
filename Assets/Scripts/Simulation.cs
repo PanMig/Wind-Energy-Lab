@@ -88,7 +88,7 @@ public class Simulation : MonoBehaviour
         startTime = Time.time;
         InitializeWindArray();
         InitializeOutputArray();
-        GoedleAnalytics.track("start.simulation");
+        GoedleAnalytics.instance.track("start.simulation");
 
         // wind speed
         InvokeRepeating("CalculateWindSpeed", 0.0f, 10.0f);

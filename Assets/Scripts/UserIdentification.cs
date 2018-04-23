@@ -40,22 +40,21 @@ public class UserIdentification : MonoBehaviour
             // Creating a hashed user id, md5 hash of a string and then using a guid
             string[] user_ids = inputFields.OfType<InputField>().Select(o => o.ToString()).ToArray();
             string hashed_user_id = GoedleUtils.userHash(user_ids.ToString());
-            goedle_sdk.GoedleAnalytics.setUserId(hashed_user_id);
+            goedle_sdk.GoedleAnalytics.instance.setUserId(hashed_user_id);
             StartCoroutine(waitOnStrategy());
         }
     }
 
-
     IEnumerator waitOnStrategy()
     {
         int c = 0;
-        while (goedle_sdk.GoedleAnalytics.gio_interface.strategy == null || c < 150)
+        while (c < 150)
         {
-            yield return null;
             c++;
+            yield return null;
         }
+
         // Apply the new configuration, the request 
         GameManager.instance.LoadLevel("Stage1");
     }
-
 }

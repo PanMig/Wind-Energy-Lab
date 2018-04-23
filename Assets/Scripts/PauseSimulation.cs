@@ -27,14 +27,14 @@ public class PauseSimulation : MonoBehaviour
             prevSimulationSpeed = simulator.simulationSpeed;
             simulator.simulationSpeed = 0;
             pauseText.enabled = true;
-            GoedleAnalytics.track("pause.simulation");
+            GoedleAnalytics.instance.track("pause.simulation");
         }
         else if (gamePaused == true)
         {
             gamePaused = false;
             simulator.simulationSpeed = prevSimulationSpeed;
             pauseText.enabled = false;
-            GoedleAnalytics.track("resume.simulation");
+            GoedleAnalytics.instance.track("resume.simulation");
         }
     }
 

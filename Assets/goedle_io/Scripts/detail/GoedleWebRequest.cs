@@ -1,56 +1,99 @@
-using UnityEngine;
-using System.Collections;
-using UnityEngine.Networking;
 using System;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngineInternal;
+using UnityEngine.Bindings;
+using UnityEngine.Scripting;
+using UnityEngine;
+using UnityEngine.Networking;
 
 namespace goedle_sdk.detail {
 
-    public interface IGoedleWebRequest : IDisposable
+    public interface IGoedleWebRequest
     {
-
+        bool isHttpError { get;}
         bool isNetworkError { get; }
-        bool isHttpError { get; }
         string url { get; set; }
         long responseCode { get; }
         string method { get; set; }
         bool chunkedTransfer{ get; set; }
-        DownloadHandlerBuffer downloadHandler { get; set; }
+        DownloadHandler downloadHandler { get; set; }
         UploadHandler uploadHandler { get; set; }
-        void SetRequestHeader(string name, string value);
+        UnityWebRequest unityWebRequest { get; set; }
         UnityWebRequestAsyncOperation SendWebRequest();
-
+        void SetRequestHeader(string name, string value);
     }
 
-    public class GoedleWebRequest : UnityWebRequest,  IGoedleWebRequest{
+    public class GoedleWebRequest : IGoedleWebRequest{
 
-        public new extern bool isNetworkError
-        {
-            [MethodImpl(MethodImplOptions.InternalCall)]
-            get;
+        UnityWebRequest _unityWebRequest { get; set; }
+       
+        public GoedleWebRequest(){
+            
         }
 
-        public new extern bool isHttpError
+        public bool isNetworkError
         {
-            [MethodImpl(MethodImplOptions.InternalCall)]
-            get;
+            get { return _unityWebRequest.isNetworkError; }
         }
 
-        public new DownloadHandlerBuffer downloadHandler { get;  set; }
-
-        public new string url {  get; set; }
-
-        public new string method { get; set; }
-
-        public new extern long responseCode
+        public bool isHttpError
         {
-            [MethodImpl(MethodImplOptions.InternalCall)]
-            get;
+            get { return _unityWebRequest.isHttpError; }
         }
 
-        public new UploadHandler uploadHandler { get;  set; }
+        public string url
+        {
+            get { return _unityWebRequest.url; }
+            set { _unityWebRequest.url = value; }
+        }
 
+        public string method
+        {
+            get { return _unityWebRequest.method; }
+            set { _unityWebRequest.method = value; }
+        }
+
+        public bool chunkedTransfer
+        {
+            get { return _unityWebRequest.chunkedTransfer; }
+            set { _unityWebRequest.chunkedTransfer = value; }
+        }
+
+        public UnityWebRequest unityWebRequest
+        {
+            get { return _unityWebRequest; }
+            set { _unityWebRequest = value; }
+
+        }
+
+        public DownloadHandler downloadHandler 
+        { 
+            get { return _unityWebRequest.downloadHandler;  }
+            set { _unityWebRequest.downloadHandler = value;  }
+        }
+
+        public UploadHandler uploadHandler
+        {
+            get { return _unityWebRequest.uploadHandler; }
+            set { _unityWebRequest.uploadHandler = value; }
+        }
+
+        public UnityWebRequestAsyncOperation SendWebRequest()
+        {
+            return _unityWebRequest.SendWebRequest();
+        }
+
+        public long responseCode
+        {
+            get { return _unityWebRequest.responseCode; }
+        }
+
+        public void SetRequestHeader(string name, string value)
+        {
+            _unityWebRequest.SetRequestHeader(name,value);
+        }
     }
-
 }
-

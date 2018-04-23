@@ -7,21 +7,21 @@ namespace goedle_sdk.detail {
 
     public interface IGoedleDownloadBuffer
     {
-        DownloadHandlerBuffer downloadHandlerBuffer { get; }
+        DownloadHandler downloadHandlerBuffer { get; }
         string text { get; }
     }
 
     public class GoedleDownloadBuffer : IGoedleDownloadBuffer
     {
 
-        DownloadHandlerBuffer _downloadHandlerBuffer { get;}
+        DownloadHandler _downloadHandlerBuffer { get; set; }
 
         public GoedleDownloadBuffer()
         {
-            _downloadHandlerBuffer = new DownloadHandlerBuffer();
+            _downloadHandlerBuffer =(DownloadHandler) new DownloadHandlerBuffer();
         }
 
-        public DownloadHandlerBuffer downloadHandlerBuffer
+        public DownloadHandler downloadHandlerBuffer
         {
             get { return _downloadHandlerBuffer; }
         }

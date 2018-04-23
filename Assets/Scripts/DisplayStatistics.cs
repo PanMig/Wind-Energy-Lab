@@ -35,7 +35,7 @@ public class DisplayStatistics : MonoBehaviour
     private void DisplayCost()
     {
         String cost = GameManager.cost.ToString();
-        GoedleAnalytics.track("game.result", "cost", GameManager.cost.ToString());
+        GoedleAnalytics.instance.track("game.result", "cost", GameManager.cost.ToString());
         Cost.text = cost + " $";
     }
 
@@ -50,16 +50,16 @@ public class DisplayStatistics : MonoBehaviour
         overPower.text = overPowerPercent.ToString("F2") + " % ";
 
         //analytics
-        GoedleAnalytics.track("game.result", "underpower",underPowerPercent.ToString());
-        GoedleAnalytics.track("game.result", "correct_power",correctPowerPercent.ToString());
-        GoedleAnalytics.track("game.result", "overpower", overPowerPercent.ToString());
+        GoedleAnalytics.instance.track("game.result", "underpower",underPowerPercent.ToString());
+        GoedleAnalytics.instance.track("game.result", "correct_power",correctPowerPercent.ToString());
+        GoedleAnalytics.instance.track("game.result", "overpower", overPowerPercent.ToString());
 
     }
 
     void DisplayProfit()
     {
         profit.text = (GameManager.instance.profit * 0.001f).ToString("F2") + " $ ";
-        GoedleAnalytics.track("game.result", "profit", (GameManager.instance.profit * 0.001f).ToString("F2"));
+        GoedleAnalytics.instance.track("game.result", "profit", (GameManager.instance.profit * 0.001f).ToString("F2"));
     }
 
     void DisplayScore()
@@ -94,7 +94,7 @@ public class DisplayStatistics : MonoBehaviour
             score.text = LocalizationService.Instance.GetTextByKeyWithLocalize("score(gold_1)", LocalizationService.Instance.Localization) + GameManager.score.ToString()
                     + LocalizationService.Instance.GetTextByKeyWithLocalize("score(gold_2)", LocalizationService.Instance.Localization);
         }
-        GoedleAnalytics.track("game.result", "score",GameManager.score.ToString());
+        GoedleAnalytics.instance.track("game.result", "score",GameManager.score.ToString());
     }
 
 
