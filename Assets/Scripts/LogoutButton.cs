@@ -17,6 +17,6 @@ public class LogoutButton : MonoBehaviour
             inputFields[i].text = null;
         }
 
-        GoedleAnalytics.track("logout");
+        GoedleAnalytics.instance.track("logout");
     }
 }

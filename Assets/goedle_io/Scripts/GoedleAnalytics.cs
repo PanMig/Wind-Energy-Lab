@@ -29,22 +29,19 @@ namespace goedle_sdk
     public class GoedleAnalytics : MonoBehaviour
     {
         public static GoedleAnalytics instance = null;
-
         /*! \cond PRIVATE */
         #region settings
         [Header("Project")]
+        [Tooltip("Enable (True) / Disable(False) stageing_enviroment, highly recommeded for testing")]
+        public bool staging = false;
         [Tooltip("The APP Key of the goedle.io project.")]
         public string app_key = "";
         [Tooltip("The API Key of the goedle.io project.")]
         public string api_key = "";
-		[Tooltip("Enable (True)/ Disable (False) tracking with goedle.io, default is True")]
-		public bool ENABLE_GOEDLE = true;
 		[Tooltip("You can specify an app version here.")]
 		public string APP_VERSION = "";
 		[Tooltip("You should specify an app name here.")]
 		public string APP_NAME = "";
-        [Tooltip("Enable (True) / Disable(False) additional tracking with Google Analytics")]
-        public bool ENABLE_GA = true;
         [Tooltip("Google Analytics Tracking Id")]
         public string GA_TRACKIND_ID = null;
         [Tooltip("Google Analytics Custom Dimension Event Listener. This is for group call support.")]
@@ -53,21 +50,18 @@ namespace goedle_sdk
         public int GA_CD_1 = 0;
         [Tooltip("Google Analytics Number of Custom Dimension for Group member. (To set this you need a configured custom dimension in Google Analytics)")]
         public int GA_CD_2 = 0;
+        [Tooltip("Enable (True) / Disable(False) only content adaptation")]
+        public bool adaptation_only = false;
         #endregion
         /*! \endcond */
-
-
-
 
         /// <summary>
         /// Tracks an event.
         /// </summary>
         /// <param name="event">the name of the event to send</param>
-        public static void track(string eventName)
+        public void track(string eventName)
         {
-			#if !ENABLE_GOEDLE
-                goedle_analytics.track(eventName);
-            #endif
+            goedle_analytics.track(eventName, new detail.GoedleUploadHandler());
         }
 
 		/// <summary>
@@ -76,11 +70,9 @@ namespace goedle_sdk
 		/// <param name="event">the name of the event to send</param>
 		/// <param name="event_id">the name of the event to send</param>
 
-		public static void track(string eventName, string eventId)
+		public void track(string eventName, string eventId)
 		{
-			#if !ENABLE_GOEDLE
-                goedle_analytics.track(eventName,eventId);
-			#endif
+            goedle_analytics.track(eventName,eventId, new detail.GoedleUploadHandler());
 		}
 
 		/// <summary>
@@ -90,13 +82,10 @@ namespace goedle_sdk
 		/// <param name="event_id">the id of the event to send</param>
 		/// <param name="event_value">the value of the event to send</param>
 
-		public static void track(string eventName, string eventId, string event_value)
+		public void track(string eventName, string eventId, string event_value)
 		{
-			#if !ENABLE_GOEDLE
-                goedle_analytics.track(eventName,eventId,event_value);
-			#endif
+            goedle_analytics.track(eventName,eventId,event_value, new detail.GoedleUploadHandler());
 		}
-
 
 		/// <summary>
 		/// Identify function for a user.
@@ -104,13 +93,10 @@ namespace goedle_sdk
 		/// <param name="trait_key">for now only last_name and first_name is supported</param>
 		/// <param name="trait_value">the value of the key</param>
 
-		public static void trackTraits(string traitKey, string traitValue)
+		public void trackTraits(string traitKey, string traitValue)
 		{
-			#if !ENABLE_GOEDLE
-                goedle_analytics.trackTraits(traitKey, traitValue);
-			#endif
+            goedle_analytics.trackTraits(traitKey, traitValue, new detail.GoedleUploadHandler());
 		}
-
 
 		/// <summary>
 		/// Group tracking function for a user.
@@ -118,11 +104,9 @@ namespace goedle_sdk
 		/// <param name="group_type">The entity type, like school or company</param>
 		/// <param name="group_member">The name or identifier for the entity, like department number, class number</param>
 
-		public static void trackGroup(string group_type, string group_member)
+		public void trackGroup(string group_type, string group_member)
 		{
-			#if !ENABLE_GOEDLE
-                goedle_analytics.trackGroup(group_type, group_member);
-			#endif
+            goedle_analytics.trackGroup(group_type, group_member, new detail.GoedleUploadHandler());
 		}
 
 		/// <summary>
@@ -130,40 +114,37 @@ namespace goedle_sdk
 		/// </summary>
 		/// <param name="user_id">a custom user id</param>
 
-		public static void setUserId(string user_id)
+		public void setUserId(string user_id)
 		{
-			#if !ENABLE_GOEDLE
-                goedle_analytics.set_user_id(user_id);
-			#endif
+            goedle_analytics.set_user_id(user_id, new detail.GoedleUploadHandler());
 		}
 
 
         /// <summary>
         /// request strategy from GIO API
         /// </summary>s
-        public void requestStrategy(float maxblocking_time) {
-            #if !ENABLE_GOEDLE
-                goedle_analytics.requestStrategy(maxblocking_time);
-            #endif
+        public void requestStrategy() 
+        {
+            if (!staging)
+            {
+                detail.IGoedleDownloadBuffer goedleDownloadBuffer = new detail.GoedleDownloadBuffer();
+                goedle_analytics.requestStrategy(goedleDownloadBuffer);
+            }
         }
-
 
         /// <summary>
         /// Reset user id
         /// </summary>
 
-        public static void resetUserId()
+        public void resetUserId()
         {
-        #if !ENABLE_GOEDLE
             Guid new_user_id = Guid.NewGuid();
             goedle_analytics.reset_user_id(new_user_id.ToString("D"));
-        #endif
         }
 
-
 		#region internal
-        public static detail.GoedleAnalytics gio_interface;
-        public static detail.GoedleAnalytics goedle_analytics
+        public detail.GoedleAnalytics gio_interface;
+        public detail.GoedleAnalytics goedle_analytics
 		{
 			get
 			{
@@ -171,26 +152,14 @@ namespace goedle_sdk
 			}
 		}
 
-        public detail.GoedleHttpClient gio_http_client;
-        public detail.GoedleHttpClient http_client
-        {
-            get
-            {
-                return gio_http_client;
-            }
-        }
-
-        static bool tracking_enabled = true;
-
         void Awake()
         {
-            gio_http_client = (new GameObject("GoedleHTTPClient")).AddComponent<detail.GoedleHttpClient>();
-
             //Check if instance already exists
             if (instance == null)
             {
                 //if not, set instance to this
                 instance = this;
+                InitGoedle();
             }
             //If instance already exists and it's not this:
             else if (instance != this)
@@ -200,18 +169,11 @@ namespace goedle_sdk
             }
             //Sets this to not be destroyed when reloading scene
             DontDestroyOnLoad(gameObject);
-            DontDestroyOnLoad(GameObject.Find("GoedleHTTPClient"));
 
-            InitGoedle();
         }
 
 		private void InitGoedle()
 		{
-            #if ENABLE_GOEDLE
-            tracking_enabled = false;
-            test_flag = false;
-            Debug.LogWarning("Your Unity version does not support native plugins. Disabling goedle.io.");
-            #endif
             Guid user_id = Guid.NewGuid();
             string app_version = APP_VERSION;
             string app_name = APP_NAME;
@@ -222,15 +184,14 @@ namespace goedle_sdk
                     app_name = Application.productName;
                 else
                     app_name = app_version;
-            //string locale = Application.systemLanguage.ToString();
+            // string locale = Application.systemLanguage.ToString();
             // Build HTTP CLient
             detail.IGoedleWebRequest goedleWebRequest = new detail.GoedleWebRequest();
             detail.IGoedleUploadHandler goedleUploadHandler = new detail.GoedleUploadHandler();
-            detail.IGoedleDownloadBuffer goedleDownloadBuffer = new detail.GoedleDownloadBuffer();
-
-            if (tracking_enabled && gio_interface == null)
+            if (gio_interface == null && (!string.IsNullOrEmpty(instance.api_key) || !string.IsNullOrEmpty(instance.app_key)))
             {
-                gio_interface = new detail.GoedleAnalytics(api_key, app_key, user_id.ToString("D"), app_version, GA_TRACKIND_ID, app_name, GA_CD_1, GA_CD_2, GA_CD_EVENT, gio_http_client, goedleWebRequest, goedleUploadHandler, goedleDownloadBuffer);
+                gio_interface = new detail.GoedleAnalytics(api_key, app_key, user_id.ToString("D"), app_version, GA_TRACKIND_ID, app_name, GA_CD_1, GA_CD_2, GA_CD_EVENT, detail.GoedleHttpClient.instance, goedleWebRequest, goedleUploadHandler, staging, adaptation_only);
+                Debug.Log("goedle.io SDK is initialzied");
             }
 		}
 
