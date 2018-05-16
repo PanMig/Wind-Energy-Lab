@@ -45,11 +45,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int windclass;
     public int Windclass { get { return windclass; } set { windclass = value ; } }
-
+    
     private SceneLoader sceneLoader;
 
     //Content Adaptation Configurations
-    public string hold_landscape = "Area1";
     public SimpleJSON.JSONNode strategy = null;
 
     void Awake()
@@ -73,7 +72,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        GoedleAnalytics.instance.requestStrategy();
         playerName = null;
         playerClass = null;
         playerSchoolName = null;

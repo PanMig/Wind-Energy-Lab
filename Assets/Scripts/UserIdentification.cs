@@ -28,33 +28,29 @@ public class UserIdentification : MonoBehaviour
         }
         return false;
     }
-
+    
     public void StartSimulation()
     {
-        if (IsInputEmpty())
-        {
-            textLog.SetActive(true);
-        }
-        else
-        {
-            // Creating a hashed user id, md5 hash of a string and then using a guid
-            string[] user_ids = inputFields.OfType<InputField>().Select(o => o.ToString()).ToArray();
-            string hashed_user_id = GoedleUtils.userHash(user_ids.ToString());
-            goedle_sdk.GoedleAnalytics.instance.setUserId(hashed_user_id);
-            StartCoroutine(waitOnStrategy());
-        }
+		goedle_sdk.GoedleAnalytics.instance.requestStrategy();
+		string user_id_raw = GameManager.instance.playerName + GameManager.instance.playerClass + GameManager.instance.playerSchoolName;
+        // Creating a hashed user id, md5 hash of a string and then using a guid
+        string hashed_user_id = GoedleUtils.userHash(user_id_raw);
+        goedle_sdk.GoedleAnalytics.instance.setUserId(hashed_user_id);
+		StartCoroutine(getStrategy());
+
     }
 
-    IEnumerator waitOnStrategy()
-    {
-        int c = 0;
-        while (c < 150)
-        {
-            c++;
-            yield return null;
-        }
+	public IEnumerator getStrategy()
+	{
+		int c = 0;
+		while (goedle_sdk.GoedleAnalytics.instance.goedle_analytics.strategy == null || c < 150)
+		{
+			yield return null;
+			c++;
+		}
+		GameManager.instance.LoadLevel("Stage1");
 
-        // Apply the new configuration, the request 
-        GameManager.instance.LoadLevel("Stage1");
-    }
+	}
+    
+
 }
