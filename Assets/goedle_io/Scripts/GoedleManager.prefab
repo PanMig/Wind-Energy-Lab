@@ -51,14 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869a1b8b5dd6a4fc1a8d0a76f77e5b5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  app_key: 1
-  api_key: secret
-  ENABLE_GOEDLE: 1
+  staging: 0
+  app_key: 166e01cf646e1e94fc571b19b89640e2
+  api_key: 651ff44fcec78831c95c377eb66e9a66
   APP_VERSION: v_test
   APP_NAME: wind energy Pilot 2 Test
-  ENABLE_GA: 1
   GA_TRACKIND_ID: 
   GA_CD_EVENT: 
   GA_CD_1: 0
   GA_CD_2: 0
-  gio_http_client: {fileID: 0}
+  adaptation_only: 1
