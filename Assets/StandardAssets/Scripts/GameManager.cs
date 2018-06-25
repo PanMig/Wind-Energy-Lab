@@ -182,21 +182,21 @@ public class GameManager : MonoBehaviour
         {
             //SceneManager.LoadScene("Stage2(Mountains)");
             sceneLoader = GameObject.FindGameObjectWithTag("SceneLoader").GetComponent<SceneLoader>();
-            sceneLoader.LoadScene("Stage2(Mountains)");
+            sceneLoader.LoadScene("S_Mountains(SubAreas)");
             GoedleAnalytics.instance.track("select.scene", "stage2", "mountains");
         }
         else if (instance.Areachoice == MainArea.fields)
         {
             //SceneManager.LoadScene("Stage2(Plains)");
             sceneLoader = GameObject.FindGameObjectWithTag("SceneLoader").GetComponent<SceneLoader>();
-            sceneLoader.LoadScene("Stage2(Plains)");
+            sceneLoader.LoadScene("S_Plains(SubAreas)");
             GoedleAnalytics.instance.track("select.scene", "stage2", "plains");
         }
         else if (instance.Areachoice == MainArea.seashore)
         {
             //SceneManager.LoadScene("Stage2(Seashore)");
             sceneLoader = GameObject.FindGameObjectWithTag("SceneLoader").GetComponent<SceneLoader>();
-            sceneLoader.LoadScene("Stage2(Seashore)");
+            sceneLoader.LoadScene("S_Seashore(SubAreas)");
             GoedleAnalytics.instance.track("select.scene", "stage2", "seashore");
         }
     }

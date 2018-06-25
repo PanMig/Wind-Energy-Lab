@@ -298,7 +298,7 @@ public class Simulation : MonoBehaviour
         {
             minutesCount = 0;
             GameManager.instance.endSimulation = false;
-            GameManager.instance.LoadLevel("StatsScene");
+            GameManager.instance.LoadLevel("S_Stats");
             //Resources.UnloadUnusedAssets(); //removes unused assets to free memory
         }
     }
