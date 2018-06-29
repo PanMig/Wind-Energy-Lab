@@ -69,7 +69,7 @@ public class SurprizeSceneCtrl : MonoBehaviour {
             else GoedleAnalytics.instance.track("choose.answer", "Scenario_2","0");
 
             //final scene
-            GameManager.instance.LoadLevel("S_End");
+            GameManager.instance.LoadLevel("EndScene");
         }
         
     }
