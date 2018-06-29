@@ -33,8 +33,8 @@ public class MapPointer : MonoBehaviour {
 
     void Start()
 	{
-		spriteRend = GetComponent<SpriteRenderer>();
-        this.spriteRend.sprite = pointerSprites[0];
+		//spriteRend = GetComponent<SpriteRenderer>();
+        //this.spriteRend.sprite = pointerSprites[0];
 
         //hide image on start
         EnableInfoPanel(false);
@@ -50,7 +50,7 @@ public class MapPointer : MonoBehaviour {
 	void OnMouseEnter()
 	{
 
-        this.spriteRend.sprite = pointerSprites[1];
+        //this.spriteRend.sprite = pointerSprites[1];
         //PlacePanelNextToSprite();
         EnableInfoPanel(true);
         accessCostText = GameObject.FindGameObjectWithTag("access cost").GetComponent<Text>();
@@ -64,7 +64,7 @@ public class MapPointer : MonoBehaviour {
 
 	void OnMouseExit()
 	{
-		this.spriteRend.sprite = pointerSprites[0];
+		//this.spriteRend.sprite = pointerSprites[0];
         EnableInfoPanel(false);
         accessCostText = null;
         penaltyForArchaiologicalText = null;

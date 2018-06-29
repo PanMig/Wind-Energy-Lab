@@ -91,7 +91,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -116,6 +116,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    androidETC2FallbackOverride: 0
   - buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -125,6 +126,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    androidETC2FallbackOverride: 0
   - buildTarget: WebGL
     maxTextureSize: 1024
     resizeAlgorithm: 0
@@ -134,6 +136,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 1
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -141,11 +144,11 @@ TextureImporter:
       name: Rotors table_0
       rect:
         serializedVersion: 2
-        x: 27
-        y: 260
-        width: 113
-        height: 91
-      alignment: 0
+        x: 0
+        y: 299
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -155,11 +158,11 @@ TextureImporter:
       name: Rotors table_1
       rect:
         serializedVersion: 2
-        x: 141
-        y: 316
-        width: 113
-        height: 35
-      alignment: 0
+        x: 64
+        y: 299
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -169,11 +172,11 @@ TextureImporter:
       name: Rotors table_2
       rect:
         serializedVersion: 2
-        x: 255
-        y: 316
-        width: 112
-        height: 35
-      alignment: 0
+        x: 128
+        y: 299
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -183,11 +186,11 @@ TextureImporter:
       name: Rotors table_3
       rect:
         serializedVersion: 2
-        x: 368
-        y: 316
-        width: 113
-        height: 35
-      alignment: 0
+        x: 192
+        y: 299
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -197,11 +200,11 @@ TextureImporter:
       name: Rotors table_4
       rect:
         serializedVersion: 2
-        x: 482
-        y: 316
-        width: 113
-        height: 35
-      alignment: 0
+        x: 256
+        y: 299
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -211,11 +214,11 @@ TextureImporter:
       name: Rotors table_5
       rect:
         serializedVersion: 2
-        x: 141
-        y: 297
-        width: 113
-        height: 18
-      alignment: 0
+        x: 320
+        y: 299
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -225,11 +228,11 @@ TextureImporter:
       name: Rotors table_6
       rect:
         serializedVersion: 2
-        x: 255
-        y: 297
-        width: 112
-        height: 18
-      alignment: 0
+        x: 384
+        y: 299
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -239,11 +242,11 @@ TextureImporter:
       name: Rotors table_7
       rect:
         serializedVersion: 2
-        x: 368
-        y: 297
-        width: 113
-        height: 18
-      alignment: 0
+        x: 448
+        y: 299
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -253,11 +256,11 @@ TextureImporter:
       name: Rotors table_8
       rect:
         serializedVersion: 2
-        x: 482
-        y: 297
-        width: 113
-        height: 18
-      alignment: 0
+        x: 512
+        y: 299
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -267,11 +270,11 @@ TextureImporter:
       name: Rotors table_9
       rect:
         serializedVersion: 2
-        x: 141
-        y: 279
-        width: 113
-        height: 17
-      alignment: 0
+        x: 0
+        y: 235
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -281,11 +284,11 @@ TextureImporter:
       name: Rotors table_10
       rect:
         serializedVersion: 2
-        x: 255
-        y: 279
-        width: 112
-        height: 17
-      alignment: 0
+        x: 64
+        y: 235
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -295,11 +298,11 @@ TextureImporter:
       name: Rotors table_11
       rect:
         serializedVersion: 2
-        x: 368
-        y: 279
-        width: 113
-        height: 17
-      alignment: 0
+        x: 128
+        y: 235
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -309,11 +312,11 @@ TextureImporter:
       name: Rotors table_12
       rect:
         serializedVersion: 2
-        x: 482
-        y: 279
-        width: 113
-        height: 17
-      alignment: 0
+        x: 192
+        y: 235
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -323,11 +326,11 @@ TextureImporter:
       name: Rotors table_13
       rect:
         serializedVersion: 2
-        x: 141
-        y: 260
-        width: 113
-        height: 18
-      alignment: 0
+        x: 256
+        y: 235
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -337,11 +340,11 @@ TextureImporter:
       name: Rotors table_14
       rect:
         serializedVersion: 2
-        x: 255
-        y: 260
-        width: 112
-        height: 18
-      alignment: 0
+        x: 320
+        y: 235
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -351,11 +354,11 @@ TextureImporter:
       name: Rotors table_15
       rect:
         serializedVersion: 2
-        x: 368
-        y: 260
-        width: 113
-        height: 18
-      alignment: 0
+        x: 384
+        y: 235
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -365,11 +368,11 @@ TextureImporter:
       name: Rotors table_16
       rect:
         serializedVersion: 2
-        x: 482
-        y: 260
-        width: 113
-        height: 18
-      alignment: 0
+        x: 448
+        y: 235
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -379,11 +382,11 @@ TextureImporter:
       name: Rotors table_17
       rect:
         serializedVersion: 2
-        x: 28
-        y: 141
-        width: 112
-        height: 91
-      alignment: 0
+        x: 512
+        y: 235
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -393,11 +396,11 @@ TextureImporter:
       name: Rotors table_18
       rect:
         serializedVersion: 2
-        x: 141
-        y: 197
-        width: 117
-        height: 35
-      alignment: 0
+        x: 0
+        y: 171
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -407,11 +410,11 @@ TextureImporter:
       name: Rotors table_19
       rect:
         serializedVersion: 2
-        x: 259
-        y: 197
-        width: 111
-        height: 35
-      alignment: 0
+        x: 64
+        y: 171
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -421,11 +424,11 @@ TextureImporter:
       name: Rotors table_20
       rect:
         serializedVersion: 2
-        x: 371
-        y: 197
-        width: 112
-        height: 35
-      alignment: 0
+        x: 128
+        y: 171
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -435,11 +438,11 @@ TextureImporter:
       name: Rotors table_21
       rect:
         serializedVersion: 2
-        x: 484
-        y: 197
-        width: 112
-        height: 35
-      alignment: 0
+        x: 192
+        y: 171
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -449,11 +452,11 @@ TextureImporter:
       name: Rotors table_22
       rect:
         serializedVersion: 2
-        x: 141
-        y: 178
-        width: 117
-        height: 18
-      alignment: 0
+        x: 256
+        y: 171
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -463,11 +466,11 @@ TextureImporter:
       name: Rotors table_23
       rect:
         serializedVersion: 2
-        x: 259
-        y: 178
-        width: 111
-        height: 18
-      alignment: 0
+        x: 320
+        y: 171
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -477,11 +480,11 @@ TextureImporter:
       name: Rotors table_24
       rect:
         serializedVersion: 2
-        x: 371
-        y: 178
-        width: 112
-        height: 18
-      alignment: 0
+        x: 384
+        y: 171
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -491,11 +494,11 @@ TextureImporter:
       name: Rotors table_25
       rect:
         serializedVersion: 2
-        x: 484
-        y: 178
-        width: 112
-        height: 18
-      alignment: 0
+        x: 448
+        y: 171
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -505,11 +508,11 @@ TextureImporter:
       name: Rotors table_26
       rect:
         serializedVersion: 2
-        x: 141
-        y: 160
-        width: 117
-        height: 17
-      alignment: 0
+        x: 512
+        y: 171
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -519,11 +522,11 @@ TextureImporter:
       name: Rotors table_27
       rect:
         serializedVersion: 2
-        x: 259
-        y: 160
-        width: 111
-        height: 17
-      alignment: 0
+        x: 0
+        y: 107
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -533,11 +536,11 @@ TextureImporter:
       name: Rotors table_28
       rect:
         serializedVersion: 2
-        x: 371
-        y: 160
-        width: 112
-        height: 17
-      alignment: 0
+        x: 64
+        y: 107
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -547,11 +550,11 @@ TextureImporter:
       name: Rotors table_29
       rect:
         serializedVersion: 2
-        x: 484
-        y: 160
-        width: 112
-        height: 17
-      alignment: 0
+        x: 128
+        y: 107
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -561,11 +564,11 @@ TextureImporter:
       name: Rotors table_30
       rect:
         serializedVersion: 2
-        x: 141
-        y: 141
-        width: 117
-        height: 18
-      alignment: 0
+        x: 192
+        y: 107
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -575,11 +578,11 @@ TextureImporter:
       name: Rotors table_31
       rect:
         serializedVersion: 2
-        x: 259
-        y: 141
-        width: 111
-        height: 18
-      alignment: 0
+        x: 256
+        y: 107
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -589,11 +592,11 @@ TextureImporter:
       name: Rotors table_32
       rect:
         serializedVersion: 2
-        x: 371
-        y: 141
-        width: 112
-        height: 18
-      alignment: 0
+        x: 320
+        y: 107
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -603,11 +606,11 @@ TextureImporter:
       name: Rotors table_33
       rect:
         serializedVersion: 2
-        x: 484
-        y: 141
-        width: 112
-        height: 18
-      alignment: 0
+        x: 384
+        y: 107
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -617,11 +620,11 @@ TextureImporter:
       name: Rotors table_34
       rect:
         serializedVersion: 2
-        x: 28
-        y: 31
-        width: 113
-        height: 91
-      alignment: 0
+        x: 448
+        y: 107
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -631,11 +634,11 @@ TextureImporter:
       name: Rotors table_35
       rect:
         serializedVersion: 2
-        x: 142
-        y: 86
-        width: 113
-        height: 36
-      alignment: 0
+        x: 512
+        y: 107
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -645,11 +648,11 @@ TextureImporter:
       name: Rotors table_36
       rect:
         serializedVersion: 2
-        x: 256
-        y: 86
-        width: 112
-        height: 36
-      alignment: 0
+        x: 0
+        y: 43
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -659,11 +662,11 @@ TextureImporter:
       name: Rotors table_37
       rect:
         serializedVersion: 2
-        x: 369
-        y: 86
-        width: 113
-        height: 36
-      alignment: 0
+        x: 64
+        y: 43
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -673,11 +676,11 @@ TextureImporter:
       name: Rotors table_38
       rect:
         serializedVersion: 2
-        x: 483
-        y: 86
-        width: 113
-        height: 36
-      alignment: 0
+        x: 128
+        y: 43
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -687,11 +690,11 @@ TextureImporter:
       name: Rotors table_39
       rect:
         serializedVersion: 2
-        x: 142
-        y: 68
-        width: 113
-        height: 17
-      alignment: 0
+        x: 192
+        y: 43
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -702,10 +705,10 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 68
-        width: 112
-        height: 17
-      alignment: 0
+        y: 43
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -715,11 +718,11 @@ TextureImporter:
       name: Rotors table_41
       rect:
         serializedVersion: 2
-        x: 369
-        y: 68
-        width: 113
-        height: 17
-      alignment: 0
+        x: 320
+        y: 43
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -729,11 +732,11 @@ TextureImporter:
       name: Rotors table_42
       rect:
         serializedVersion: 2
-        x: 483
-        y: 68
-        width: 113
-        height: 17
-      alignment: 0
+        x: 384
+        y: 43
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -743,11 +746,11 @@ TextureImporter:
       name: Rotors table_43
       rect:
         serializedVersion: 2
-        x: 142
-        y: 49
-        width: 113
-        height: 18
-      alignment: 0
+        x: 448
+        y: 43
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -757,95 +760,11 @@ TextureImporter:
       name: Rotors table_44
       rect:
         serializedVersion: 2
-        x: 256
-        y: 49
-        width: 112
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Rotors table_45
-      rect:
-        serializedVersion: 2
-        x: 369
-        y: 49
-        width: 113
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Rotors table_46
-      rect:
-        serializedVersion: 2
-        x: 483
-        y: 49
-        width: 113
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Rotors table_47
-      rect:
-        serializedVersion: 2
-        x: 142
-        y: 31
-        width: 113
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Rotors table_48
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 31
-        width: 112
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Rotors table_49
-      rect:
-        serializedVersion: 2
-        x: 369
-        y: 31
-        width: 113
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Rotors table_50
-      rect:
-        serializedVersion: 2
-        x: 483
-        y: 31
-        width: 113
-        height: 17
-      alignment: 0
+        x: 512
+        y: 43
+        width: 64
+        height: 64
+      alignment: 9
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []

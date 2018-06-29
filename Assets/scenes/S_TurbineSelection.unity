@@ -113,6 +113,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &2831437
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4439977767648018, guid: 1be462b9370ba9d4bb42c35b88dd1db3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 972.7356
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439977767648018, guid: 1be462b9370ba9d4bb42c35b88dd1db3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 296.33627
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439977767648018, guid: 1be462b9370ba9d4bb42c35b88dd1db3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 872
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439977767648018, guid: 1be462b9370ba9d4bb42c35b88dd1db3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439977767648018, guid: 1be462b9370ba9d4bb42c35b88dd1db3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439977767648018, guid: 1be462b9370ba9d4bb42c35b88dd1db3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439977767648018, guid: 1be462b9370ba9d4bb42c35b88dd1db3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439977767648018, guid: 1be462b9370ba9d4bb42c35b88dd1db3, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114477574951747836, guid: 1be462b9370ba9d4bb42c35b88dd1db3,
+        type: 2}
+      propertyPath: windclass
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1be462b9370ba9d4bb42c35b88dd1db3, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &33807263
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,10 +298,10 @@ RectTransform:
   m_Father: {fileID: 33807264}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 211, y: -178.8}
-  m_SizeDelta: {x: 582.3, y: 389.6}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -311.95, y: 194}
+  m_SizeDelta: {x: 623.9, y: 365}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &415037013
 MonoBehaviour:
@@ -276,7 +323,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: c54ff1a0bf0f79e4eae28dca65d56f73, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
