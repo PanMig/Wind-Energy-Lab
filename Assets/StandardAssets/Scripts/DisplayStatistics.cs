@@ -26,7 +26,7 @@ public class DisplayStatistics : MonoBehaviour
         DisplayUsage();
         DisplayCost();
         DisplayProfit();
-        if (SceneManager.GetActiveScene().name == "EndScene")
+        if (SceneManager.GetActiveScene().name == "S_End")
         {
             DisplayScore();
         }
