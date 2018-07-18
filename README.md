@@ -18,7 +18,7 @@ You will see that maintaining the correct amount of power - not too little, or n
 # Aesthetics  
 The game tries to have as much as possible a relistic look, that resembles a real operating wind farm. The use of a simple GUI system is also availiable to give the ability to even unexpirienced users, to try the game without frustation.
 
-![gamephoto](https://cloud.githubusercontent.com/assets/15057375/24956876/5285e37c-1f92-11e7-913c-2a3aba4c60b0.png)
+![screenshot 19](https://user-images.githubusercontent.com/15057375/42884768-dc3cfe12-8aa7-11e8-9b55-894f5a2ff077.png)
 
 # Code Overview
 The language used is C# (.mono).
