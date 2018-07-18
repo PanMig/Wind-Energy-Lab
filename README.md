@@ -20,7 +20,7 @@ The game tries to have as much as possible a relistic look, that resembles a rea
 
 ![screenshot 19](https://user-images.githubusercontent.com/15057375/42884768-dc3cfe12-8aa7-11e8-9b55-894f5a2ff077.png)
 
-![screenshot 27](https://user-images.githubusercontent.com/15057375/42884845-0d317cfa-8aa8-11e8-938d-fed856d5b27d.png)
+![screenshot 29](https://user-images.githubusercontent.com/15057375/42884882-26e3d5d0-8aa8-11e8-897b-e9b3bb2918dc.png)
 
 # Code Overview
 The language used is C# (.mono).
