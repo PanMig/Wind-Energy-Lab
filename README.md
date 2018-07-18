@@ -45,8 +45,7 @@ Also, there is a number of other scripts that execute various behaviors of diffe
 
 
 # Demo
-You can try and test an early "Windows" version of the game in the following link:
-http://www.envisage-h2020.eu/virtual-labs/
+You can try and test the web version of the game in the following link in the 3D games TAB: http://www.envisage-h2020.eu/virtual-labs/
 
 # Contact
 - Panagiotis migkotzidis (panagiotismigo@gmail.com)
