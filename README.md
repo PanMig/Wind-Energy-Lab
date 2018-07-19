@@ -17,7 +17,7 @@ You will see that maintaining the correct amount of power - not too little, or n
 
 # Install
 
-To install and modify this project we can either clone the repository or download it. The game has been developed using the Unity engine and can only be opened with the respective software.
+To install and modify this project you can either clone the repository or download it. The game has been developed using the Unity engine and can only be opened with the respective software.
 
 Steps to open the source code and assets of the game :
 1) Download and install Unity (https://unity3d.com/get-unity/download)
