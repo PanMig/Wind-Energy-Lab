@@ -14,6 +14,10 @@ public class TurbineInputManager : MonoBehaviour
     private Vector2 mousePos;
     private Vector2 canvasPos;
 
+    public AudioClip turnOn;
+    public AudioClip turnOff;
+    public AudioClip repair;
+
     void Start()
     {
         turbine = GetComponent<TurbineController>();
@@ -51,6 +55,7 @@ public class TurbineInputManager : MonoBehaviour
         {
             turbine.DisableTurbine();
             GoedleAnalytics.instance.track("disable.turbine");
+            SoundManager.instance.PlaySound(turnOff);
 
         }
         //clicks while is not rotating.
@@ -58,12 +63,14 @@ public class TurbineInputManager : MonoBehaviour
         {
             turbine.EnableTurbine();
             GoedleAnalytics.instance.track("enable.turbine");
+            SoundManager.instance.PlaySound(turnOn);
         }
         //clicks while turbine is damaged.
         else if (turbine.IsDamaged() == true)
         {
             turbine.RepairTurbine();
             GoedleAnalytics.instance.track("repair.turbine");
+            SoundManager.instance.PlaySound(repair);
         }
     }
 

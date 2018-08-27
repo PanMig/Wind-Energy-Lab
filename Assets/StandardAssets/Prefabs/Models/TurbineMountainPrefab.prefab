@@ -286,6 +286,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PopUpCanvas: {fileID: 223229708845204018}
+  turnOn: {fileID: 8300000, guid: 20d9e93d2cbfa2d4cb093a4ee0e41643, type: 3}
+  turnOff: {fileID: 8300000, guid: 7edbadcb26ef72549a030848e10e3c88, type: 3}
+  repair: {fileID: 8300000, guid: e535ab690ae062248a34e78f7f0d624c, type: 3}
 --- !u!114 &114115600290819398
 MonoBehaviour:
   m_ObjectHideFlags: 1

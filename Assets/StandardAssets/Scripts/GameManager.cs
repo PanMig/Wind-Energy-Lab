@@ -189,7 +189,7 @@ public class GameManager : MonoBehaviour
         {
             //SceneManager.LoadScene("Stage2(Plains)");
             sceneLoader = GameObject.FindGameObjectWithTag("SceneLoader").GetComponent<SceneLoader>();
-            sceneLoader.LoadScene("S_Plains");
+            sceneLoader.LoadScene("S_Fields");
             GoedleAnalytics.instance.track("select.scene", "stage2", "plains");
         }
         else if (instance.Areachoice == MainArea.seashore)

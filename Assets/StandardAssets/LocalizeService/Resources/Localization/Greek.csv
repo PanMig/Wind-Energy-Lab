@@ -14,7 +14,7 @@ name, Όνομα
 class, Τμήμα
 school, Σχολείο
 proceed(input),Επόμενο
-logout,Αποσύνδεση
+logout,Έξοδος
 
 //Stage 1
 title(Mountains),Βουνά

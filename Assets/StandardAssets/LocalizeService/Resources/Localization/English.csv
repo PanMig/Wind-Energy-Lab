@@ -14,7 +14,7 @@ name, Name
 class, Class
 school, School
 proceed(input),Proceed
-logout, Logout
+logout, Exit
 
 //Stage 1
 title(Mountains), Mountains

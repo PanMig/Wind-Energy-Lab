@@ -51,6 +51,11 @@ public class UserIdentification : MonoBehaviour
 		GameManager.instance.LoadLevel(sceneToLoad);
         return null;
 	}
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
     
 
 }

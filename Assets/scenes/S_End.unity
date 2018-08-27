@@ -2437,6 +2437,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 114739703025328162, guid: 7711ccbbfa41fc741a2b2a599f9bd137,
+          type: 2}
+        m_MethodName: PlaySound
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 07b02d0c63130e144ac731261ddb962d,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1530140498
@@ -2854,9 +2867,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2017143699}
   - component: {fileID: 2017143698}
-  - component: {fileID: 2017143697}
   - component: {fileID: 2017143696}
-  - component: {fileID: 2017143695}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2864,21 +2875,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2017143695
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2017143694}
-  m_Enabled: 1
 --- !u!124 &2017143696
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2017143694}
-  m_Enabled: 1
---- !u!92 &2017143697
 Behaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}

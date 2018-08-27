@@ -31,10 +31,12 @@ public class MapPointer : MonoBehaviour {
     private Text totalText;
     private Text subareaIndexText;
 
+    public AudioClip selectionClip;
+
     void Start()
 	{
-		//spriteRend = GetComponent<SpriteRenderer>();
-        //this.spriteRend.sprite = pointerSprites[0];
+		spriteRend = GetComponent<SpriteRenderer>();
+        this.spriteRend.sprite = pointerSprites[0];
 
         //hide image on start
         EnableInfoPanel(false);
@@ -50,7 +52,7 @@ public class MapPointer : MonoBehaviour {
 	void OnMouseEnter()
 	{
 
-        //this.spriteRend.sprite = pointerSprites[1];
+        this.spriteRend.sprite = pointerSprites[1];
         //PlacePanelNextToSprite();
         EnableInfoPanel(true);
         accessCostText = GameObject.FindGameObjectWithTag("access cost").GetComponent<Text>();
@@ -64,7 +66,7 @@ public class MapPointer : MonoBehaviour {
 
 	void OnMouseExit()
 	{
-		//this.spriteRend.sprite = pointerSprites[0];
+		this.spriteRend.sprite = pointerSprites[0];
         EnableInfoPanel(false);
         accessCostText = null;
         penaltyForArchaiologicalText = null;
@@ -78,6 +80,7 @@ public class MapPointer : MonoBehaviour {
         GameManager.instance.IncrementCost(total);
         GameManager.instance.areaInstallationCost = GameManager.cost;
         GameManager.instance.SetSubArea(subAreaType);
+        SoundManager.instance.PlaySound(selectionClip);
         GameManager.instance.LoadLevel("S_TurbineSelection");
         GoedleAnalytics.instance.track("click.map_pointer", subAreaIndex.ToString());
     }
