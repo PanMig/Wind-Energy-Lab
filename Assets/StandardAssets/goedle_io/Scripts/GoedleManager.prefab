@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staging: 0
-  app_key: 166e01cf646e1e94fc571b19b89640e2
-  api_key: 651ff44fcec78831c95c377eb66e9a66
+  app_key: 90e167a8ba993ab18f52ec7fdb44fdea
+  api_key: 218f2f9f41d9f86da2fb4bd74eea4ce7
   APP_VERSION: v_test
   APP_NAME: wind energy Pilot 2 Test
   GA_TRACKIND_ID: 
